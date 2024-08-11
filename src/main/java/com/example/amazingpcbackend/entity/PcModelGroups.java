@@ -22,7 +22,7 @@ public class PcModelGroups {
     @JoinColumn(name = "pcCategoryId")
     private PcCategories pcCategories;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, unique = true, length = 50)
     private String modelGroupName; //One
 
     @Column(nullable = false, length = 100)

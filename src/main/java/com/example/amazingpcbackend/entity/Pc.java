@@ -32,7 +32,7 @@ public class Pc {
     @Column(nullable = true, length = 350)
     private String description;
 
-    private int totalPrice;
+    private float totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "gpu_id")
@@ -61,17 +61,4 @@ public class Pc {
     @ManyToOne
     @JoinColumn(name = "case_id")
     private Parts pcCase;
-
-//    @ElementCollection
-//    @CollectionTable(name = "pc_ssd_quantity", joinColumns = @JoinColumn(name = "pc_id"))
-//    @MapKeyColumn(name = "ssd_id")
-//    @Column(name = "quantity")
-//    private Map<Long, Integer> ssd;
-//
-//    @ElementCollection
-//    @CollectionTable(name = "pc_fan_quantity", joinColumns = @JoinColumn(name = "pc_id"))
-//    @MapKeyColumn(name = "fan_id")
-//    @Column(name = "quantity")
-//    private Map<Long, Integer> fan;
-
 }

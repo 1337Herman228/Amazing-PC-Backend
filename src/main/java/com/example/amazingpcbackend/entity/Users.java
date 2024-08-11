@@ -14,10 +14,10 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    @Column(unique = true, length = 100)
+    @Column(unique = true, nullable = false, length = 100)
     private String login;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String password;
 
     @ManyToOne
