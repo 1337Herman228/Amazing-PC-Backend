@@ -6,9 +6,19 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+#      ddl-auto: create
+#      ddl-auto: validate
     show-sql: true
   flyway:
-    enabled: false
+#    locations: classpath:db.migration
+#    url: jdbc:postgresql://localhost:5433/amazing-pc-db
+#    user: postgres
+#    password: postgres
     baseline-on-migrate: true
-    locations: classpath:db/migration
+    enabled: false
+
+jwt:
+  secret:
+    key: "439adb87583df62d6ef6ba54faf42945c9ca704f7069f975898d1f7210ad05f6"
+  expiration: 24h

@@ -11,13 +11,13 @@ import lombok.experimental.Accessors;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @Column(unique = true, nullable = false, length = 100)
     private String login;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 300)
     private String password;
 
     @ManyToOne

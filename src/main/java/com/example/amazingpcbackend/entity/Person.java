@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long personId;
 
     @Column(length = 100, nullable = false)
