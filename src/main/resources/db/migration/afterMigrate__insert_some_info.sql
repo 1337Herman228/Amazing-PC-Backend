@@ -256,7 +256,7 @@ INSERT INTO public.types (type_id, type_name, alternative_name)
 VALUES (10001, 'gpu', 'Видеокарта');
 
 INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10002, 'сpu', 'Процессор');
+VALUES (10002, 'cpu', 'Процессор');
 
 INSERT INTO public.types (type_id, type_name, alternative_name)
 VALUES (10003, 'motherboard', 'Материнская плата');
@@ -274,7 +274,7 @@ INSERT INTO public.types (type_id, type_name, alternative_name)
 VALUES (10007, 'psu', 'Блок питания');
 
 INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10008, 'case', 'Корпус');
+VALUES (10008, 'cases', 'Корпус');
 
 INSERT INTO public.types (type_id, type_name, alternative_name)
 VALUES (10009, 'fan', 'Вентилятор');

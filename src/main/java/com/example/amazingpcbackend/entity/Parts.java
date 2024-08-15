@@ -43,57 +43,46 @@ public class Parts {
 
     @OneToOne
     @JoinColumn(name = "cpuId", referencedColumnName = "cpuId")
-    @JsonIgnore
     private Cpu cpu;
 
     @OneToOne
     @JoinColumn(name = "gpuId", referencedColumnName = "gpuId")
-    @JsonIgnore
     private Gpu gpu;
 
     @OneToOne
     @JoinColumn(name = "motherboardId", referencedColumnName = "motherboardId")
-    @JsonIgnore
     private Motherboard motherboard;
 
     @OneToOne
     @JoinColumn(name = "psuId", referencedColumnName = "psuId")
-    @JsonIgnore
     private Psu psu;
 
     @OneToOne
     @JoinColumn(name = "cpuAirCoolingId", referencedColumnName = "cpuAirCoolingId")
-    @JsonIgnore
     private CpuAirCooling cpuAirCooling;
 
     @OneToOne
     @JoinColumn(name = "cpuLiquidCoolingId", referencedColumnName = "cpuLiquidCoolingId")
-    @JsonIgnore
     private CpuLiquidCooling cpuLiquidCooling;
 
     @OneToOne
     @JoinColumn(name = "ramId", referencedColumnName = "ramId")
-    @JsonIgnore
     private Ram ram;
 
     @OneToOne
     @JoinColumn(name = "ssdId", referencedColumnName = "ssdId")
-    @JsonIgnore
     private Ssd ssd;
 
     @OneToOne
     @JoinColumn(name = "fanId", referencedColumnName = "fanId")
-    @JsonIgnore
     private Fans fan;
 
     @OneToOne
     @JoinColumn(name = "caseId", referencedColumnName = "caseId")
-    @JsonIgnore
     private Cases cases;
 
     @OneToOne
     @JoinColumn(name = "peripheryId", referencedColumnName = "peripheryId")
-    @JsonIgnore
     private Periphery periphery;
 
 }
