@@ -15,9 +15,9 @@ public interface CpuRepository extends JpaRepository<Cpu, Long> {
     List<Cpu> findByBaseFrequency(int baseFrequency);
     List<Cpu> findByBoostFrequency(int boostFrequency);
     List<Cpu> findByTechProcess(String techProcess);
-    List<Cpu> findByCashL1(String cashL1);
-    List<Cpu> findByCashL2(String cashL2);
-    List<Cpu> findByCashL3(String cashL3);
+    List<Cpu> findByCacheL1(String cashL1);
+    List<Cpu> findByCacheL2(String cashL2);
+    List<Cpu> findByCacheL3(String cashL3);
     List<Cpu> findByTdp(int tdp);
 
 }

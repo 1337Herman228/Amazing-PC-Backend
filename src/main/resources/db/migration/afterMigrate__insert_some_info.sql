@@ -1,21 +1,21 @@
 ---------------------- Cpu ----------------------
 -- I5-12400F
-INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cashl1,
-                        cashl2, cashl3, socket, tech_process, ram_type)
+INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cachel1,
+                        cachel2, cachel3, socket, tech_process, ram_type)
 VALUES (2500, 4400, 6, 12, 128, 65, 10001, null, '7680 КБ', '18432 КБ', 'LGA 1700', 'intel 7',
-        '{"ramType": ["DDR4","DDR5"]}');
+        '["DDR4","DDR5"]');
 
 -- I5-14400F
-INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cashl1,
-                        cashl2, cashl3, socket, tech_process, ram_type)
+INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cachel1,
+                        cachel2, cachel3, socket, tech_process, ram_type)
 VALUES (2500, 4700, 10, 16, 128, 65, 10002, null, '9728 КБ', '20480 КБ', 'LGA 1700', '7 нм',
-        '{"ramType": ["DDR4","DDR5"]}');
+        '["DDR4","DDR5"]');
 
 -- I7-14700KF
-INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cashl1,
-                        cashl2, cashl3, socket, tech_process, ram_type)
+INSERT INTO public.cpu (base_frequency, boost_frequency, cpu_cores, cpu_threads, max_ram_capacity, tdp, cpu_id, cachel1,
+                        cachel2, cachel3, socket, tech_process, ram_type)
 VALUES (2100, 5400, 20, 28, 128, 65, 10003, '80 КБ', '20 MБ', '33 MБ', 'LGA 1700', 'intel 7',
-        '{"ramType": ["DDR4","DDR5"]}');
+        '["DDR4","DDR5"]');
 
 
 ---------------------- Gpu ----------------------
@@ -55,13 +55,13 @@ VALUES (4, 128, 3, 4, 6, 10002, 'Intel Z790', 'ATX', 'DDR5', 'LGA 1700');
 INSERT INTO public.cpu_air_cooling (air_flow, fans_quantity, height, max_noise_level, tdp, cpu_air_cooling_id,
                                     backlight, connector, fan_size, fan_speed, sockets)
 VALUES (61.25, 1, 165, 23.7, 250, 10001, 'Отсутствует', '4-pin PWM', '140x140x25 мм', '500-1800 об/мин',
-        '{"sockets": ["AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066"]}');
+        '["AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066"]');
 
 ---------------------- Cpu_Liquid_Cooling ----------------------
 -- ASUS ROG RYUO III 360 White
 INSERT INTO public.cpu_liquid_cooling (air_flow, fans_quantity, height, length, max_noise_level, tdp, width,
                                        cpu_liquid_cooling_id, backlight, connector, fan_size, fan_speed, sockets)
-VALUES (70.07, 3, 30, 399.5, 36.45, 280, 120, 10001, 'ARGB', '4-pin PWM', '120x120x25 мм', '2200 +/- 300 RPM', '{"sockets": ["AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066"]}');
+VALUES (70.07, 3, 30, 399.5, 36.45, 280, 120, 10001, 'ARGB', '4-pin PWM', '120x120x25 мм', '2200 +/- 300 RPM', '["AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066"]');
 
 
 ---------------------- Ram ----------------------
@@ -117,19 +117,19 @@ VALUES (2, 5, 850, 8, 10003, 'ATX12V 3.0', '20+4 pin', 'активный', '80+ 
 INSERT INTO public.cases (extension_slots_quantity, hdd_slots_quantity, height, length, max_cpu_cooler_height,
                           max_gpu_length, max_liquid_cooling_length, ssd_slots_quantity, weight, width, case_id,
                           possible_form_factors)
-VALUES (8, 4, 450, 446, 163, 400, 420, 4, 11, 285, 10001, '{"form-factors": ["micro-ATX","mini-ATX","ATX"]}');
+VALUES (8, 4, 450, 446, 163, 400, 420, 4, 11, 285, 10001, '["micro-ATX","mini-ATX","ATX"]');
 
 -- Lian Li O11 Vision White
 INSERT INTO public.cases (extension_slots_quantity, hdd_slots_quantity, height, length, max_cpu_cooler_height,
                           max_gpu_length, max_liquid_cooling_length, ssd_slots_quantity, weight, width, case_id,
                           possible_form_factors)
-VALUES (6, 2, 464, 480, 174, 430, 390, 5, 18, 304, 10002, '{"form-factors": ["micro-ATX","mini-ATX","ATX"]}');
+VALUES (6, 2, 464, 480, 174, 430, 390, 5, 18, 304, 10002, '["micro-ATX","mini-ATX","ATX"]');
 
 -- DeepCool CH360
 INSERT INTO public.cases (extension_slots_quantity, hdd_slots_quantity, height, length, max_cpu_cooler_height,
                           max_gpu_length, max_liquid_cooling_length, ssd_slots_quantity, weight, width, case_id,
                           possible_form_factors)
-VALUES (4, 3, 428, 431, 165, 320, 270, 2, 6, 215, 10003, '{"form-factors": ["micro-ATX","mini-ATX"]}');
+VALUES (4, 3, 428, 431, 165, 320, 270, 2, 6, 215, 10003, '["micro-ATX","mini-ATX"]');
 
 
 ---------------------- Fans ----------------------
@@ -227,9 +227,6 @@ INSERT INTO public.partitions (partition_id, partition_name)
 VALUES (100018, 'от 800W');
 
 INSERT INTO public.partitions (partition_id, partition_name)
-VALUES (100019, 'от 800W');
-
-INSERT INTO public.partitions (partition_id, partition_name)
 VALUES (100020, 'Lian Li');
 
 INSERT INTO public.partitions (partition_id, partition_name)
@@ -295,196 +292,196 @@ INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_a
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (350, 15, null, 10001, null, 10001, null, null, null, null, 10001, 10002, null, null, null, null, 10002, 'I5-12400F', 'Описание...',
-        '/cpu/i5-12400f');
+        '/uploads/i5-12400f.jpg');
 
 -- I5-14400F
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (450, 15, null, 10001, null, 10002, null, null, null, null, 10002, 10003, null, null, null, null, 10002, 'I5-14400F', 'Описание...',
-        '/cpu/i5-14400f');
+        '/uploads/i5-14400f.jpg');
 
 -- I7-14700KF
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (650, 10, null, 10001, null, 10003, null, null, null, null, 10003, 10003, null, null, null, null, 10002, 'I7-14700KF', 'Описание...',
-        '/cpu/i7-14700kf');
+        '/uploads/i7-14700kf.jpg');
 
 -- PALIT GeForce RTX 4060 DUAL
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (1050, 10, null, 10001, null, null, null, null, 10001, null, 10004, 10001, null, null, null, null, 10001, 'PALIT GeForce RTX 4060 DUAL', 'Описание...',
-        '/gpu/palit-geforce-rtx-4060-dual');
+        '/uploads/palit-geforce-rtx-4060-dual.jpg');
 
 -- Palit GeForce RTX 4070 SUPER JetStream
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (1350, 10, null, 10001, null, null, null, null, 10002, null, 10005, 10004, null, null, null, null, 10001, 'Palit GeForce RTX 4070 SUPER JetStream', 'Описание...',
-        '/gpu/palit-geforce-rtx-4070-super-jetstream');
+        '/uploads/palit-geforce-rtx-4070-super-jetstream.jpg');
 
 -- MSI GeForce RTX 4080 SUPER GAMING SLIM
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (1650, 10, null, 10001, null, null, null, null, 10003, null, 10006, 10005, null, null, null, null, 10001, 'MSI GeForce RTX 4080 SUPER GAMING SLIM', 'Описание...',
-        '/gpu/msi-geforce-rtx-4080-super-gaming-slim');
+        '/uploads/msi-geforce-rtx-4080-super-gaming-slim.jpg');
 
 -- MSI PRO B760M-A
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (330, 15, null, 10001, null, null, null, null, null, 10001, 10007, 10006, null, null, null, null, 10003, 'MSI PRO B760M-A', 'Описание...',
-        '/motherboard/msi-pro-b760m-a');
+        '/uploads/msi-pro-b760m-a.jpg');
 
 -- MSI PRO Z790-A MAX
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (450, 15, null, 10001, null, null, null, null, null, 10002, 10008, 10007, null, null, null, null, 10003, 'MSI PRO Z790-A MAX', 'Описание...',
-        '/motherboard/msi-pro-z790-a-max');
+        '/uploads/msi-pro-z790-a-max.jpg');
 
 -- DeepCool ASSASSIN 4S
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (150, 15, null, 10001, 10001, null, null, null, null, null, 10009, 10008, null, null, null, null, 10004, 'DeepCool ASSASSIN 4S', 'Описание...',
-        '/cpu-fan/deepcool-assassin-4s');
+        '/uploads/deepcool-assassin-4s.jpg');
 
 -- ASUS ROG RYUO III 360 White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (460, 15, null, 10001, null, null, 10001, null, null, null, 100010, 10009, null, null, null, null, 10004, 'ASUS ROG RYUO III 360 White', 'Описание...',
-        '/cpu-fan/asus-rog-ryuo-III-360-white');
+        '/uploads/asus-rog-ryuo-III-360-white.jpg');
 
 -- 16GB Kingston FURY Beast RGB
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (200, 30, null, 10001, null, null, null, null, null, null, 100011, 100010, null, null, 10001, null, 10005, '16GB Kingston FURY Beast RGB', 'Описание...',
-        '/ram/16gb-kingston-fury-beast-rgb');
+        '/uploads/16gb-kingston-fury-beast-rgb.jpg');
 
 -- 32GB Kingston FURY Beast RGB
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (320, 20, null, 10001, null, null, null, null, null, null, 100012, 100011, null, null, 10002, null, 10005, '32GB Kingston FURY Beast RGB', 'Описание...',
-        '/ram/32gb-kingston-fury-beast-rgb');
+        '/uploads/32gb-kingston-fury-beast-rgb.jpg');
 
 -- 64GB TEAMGROUP T-Force Delta RGB White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (600, 20, null, 10001, null, null, null, null, null, null, 100013, 100012, null, null, 10003, null, 10005, '64GB TEAMGROUP T-Force Delta RGB White', 'Описание...',
-        '/ram/64gb-teamgroup-t-force-delta-rgb-white');
+        '/uploads/64gb-teamgroup-t-force-delta-rgb-white.jpg');
 
 -- 512GB ADATA LEGEND 850
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (230, 30, null, 10001, null, null, null, null, null, null, 100014, 100013, null, null, null, 10001, 10006, '512GB ADATA LEGEND 850', 'Описание...',
-        '/ssd/512gb-adata-legend-850');
+        '/uploads/512gb-adata-legend-850.jpg');
 
 -- 1TB ADATA LEGEND 850
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (380, 20, null, 10001, null, null, null, null, null, null, 100015, 100014, null, null, null, 10002, 10006, '1TB ADATA LEGEND 850', 'Описание...',
-        '/ssd/1tb-adata-legend-850');
+        '/uploads/1tb-adata-legend-850.jpg');
 
 -- 2TB Samsung 990 PRO
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (550, 15, null, 10001, null, null, null, null, null, null, 100016, 100015, null, null, null, 10003, 10006, '2TB Samsung 990 PRO', 'Описание...',
-        '/ssd/2tb-samsung-990-pro');
+        '/uploads/2tb-samsung-990-pro.jpg');
 
 -- 650W DeepCool PK650D
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (310, 15, null, 10001, null, null, null, null, null, null, 100017, 100016, null, 10001, null, null, 10007, '650W DeepCool PK650D', 'Описание...',
-        '/psu/650w-deepcool-pk650d');
+        '/uploads/650w-deepcool-pk650d.jpg');
 
 -- 750W DeepCool PK750D
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (410, 15, null, 10001, null, null, null, null, null, null, 100018, 100017, null, 10002, null, null, 10007, '750W DeepCool PK750D', 'Описание...',
-        '/psu/750w-deepcool-pk750d');
+        '/uploads/750w-deepcool-pk750d.jpg');
 
 -- 850W MSI MAG A850GL
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (610, 10, null, 10001, null, null, null, null, null, null, 100019, 100018, null, 10003, null, null, 10007, '850W MSI MAG A850GL', 'Описание...',
-        '/psu/850w-msi-mag-a850gl');
+        '/uploads/850w-msi-mag-a850gl.jpg');
 
 -- ASUS TUF GAMING GT502 White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (380, 10, 10001, 10001, null, null, null, null, null, null, 100020, 10009, null, null, null, null, 10008, 'ASUS TUF GAMING GT502 White', 'Описание...',
-        '/case/asus-tuf-gaming-gt502-white');
+        '/uploads/asus-tuf-gaming-gt502-white.jpg');
 
 -- Lian Li O11 Vision White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (450, 10, 10002, 10001, null, null, null, null, null, null, 100021, 100020, null, null, null, null, 10008, 'Lian Li O11 Vision White', 'Описание...',
-        '/case/lian-li-011-vision-white');
+        '/uploads/lian-li-011-vision-white.jpg');
 
 -- DeepCool CH360
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (200, 25, 10003, 10001, null, null, null, null, null, null, 100022, 10008, null, null, null, null, 10008, 'DeepCool CH360', 'Описание...',
-        '/case/deepcool-ch360');
+        '/uploads/deepcool-ch360.jpg');
 
 -- Montech AX 120 PWM White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (60, 40, null, 10001, null, null, null, 10001, null, null, 100023, 100021, null, null, null, null, 10009, 'Montech AX 120 PWM White', 'Описание...',
-        '/fans/montech-ax-120-pwm-white');
+        '/uploads/montech-ax-120-pwm-white.jpg');
 
 -- Lian Li UNI FAN AL V2 120 White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (70, 40, null, 10001, null, null, null, 10002, null, null, 100024, 100021, null, null, null, null, 10009, 'Lian Li UNI FAN AL V2 120 White', 'Описание...',
-        '/fans/lian-li-uni-fan-al-v2-120-white');
+        '/uploads/lian-li-uni-fan-al-v2-120-white.jpg');
 
 -- Thermaltake TOUGHFAN 12 White
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (80, 30, null, 10001, null, null, null, 10003, null, null, 100025, 100022, null, null, null, null, 10009, 'Thermaltake TOUGHFAN 12 White', 'Описание...',
-        '/fans/thermaltake-toughfan-12-white');
+        '/uploads/thermaltake-toughfan-12-white.jpg');
 
 -- LG UltraGear 24GN65R
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (350, 10, null, 10002, null, null, null, null, null, null, 100026, 100023, 10001, null, null, null, 100010, 'LG UltraGear 24GN65R', 'Описание...',
-        '/periphery/lg-ultragear-24gn65r');
+        '/uploads/lg-ultragear-24gn65r.jpg');
 
 -- Razer DeathAdder V3 Pro
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (220, 10, null, 10002, null, null, null, null, null, null, 100027, 100026, 10002, null, null, null, 100011, 'Razer DeathAdder V3 Pro', 'Описание...',
-        '/periphery/razer-deathadder-v3-pro');
+        '/uploads/razer-deathadder-v3-pro.jpg');
 
 -- Razer Kraken V3
 INSERT INTO public.parts (price, remaining_quantity, case_id, category_id, cpu_air_cooling_id, cpu_id,
                           cpu_liquid_cooling_id, fan_id, gpu_id, motherboard_id, part_id, partition_id, periphery_id,
                           psu_id, ram_id, ssd_id, type_id, name, description, image)
 VALUES (300, 10, null, 10002, null, null, null, null, null, null, 100028, 100026, 10003, null, null, null, 100012, 'Razer Kraken V3', 'Описание...',
-        '/periphery/razer-kraken-v3');
+        '/uploads/razer-kraken-v3.jpg');
 
 
 ---------------------- Pc_types ----------------------
@@ -551,13 +548,13 @@ VALUES (10003, 'Заголовок...', 'Описание...', '/pc/design/desig
 
 ---------------------- Pc_preview ----------------------
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
-VALUES (10001, 'Заголовок...', 'Описание...', '/pc/preview/preview-1', '{"slider_images": ["/pc/preview/slider-image-1.1","/pc/preview/slider-image-1.2","/pc/preview/slider-image-1.3"]}');
+VALUES (10001, 'Заголовок...', 'Описание...', '/pc/preview/preview-1', '["/pc/preview/slider-image-1.1","/pc/preview/slider-image-1.2","/pc/preview/slider-image-1.3"]');
 
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
-VALUES (10002, 'Заголовок...', 'Описание...', '/pc/preview/preview-2', '{"slider_images": ["/pc/preview/slider-image-2.1","/pc/preview/slider-image-2.2","/pc/preview/slider-image-2.3"]}');
+VALUES (10002, 'Заголовок...', 'Описание...', '/pc/preview/preview-2', '["/pc/preview/slider-image-2.1","/pc/preview/slider-image-2.2","/pc/preview/slider-image-2.3"]');
 
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
-VALUES (10003, 'Заголовок...', 'Описание...', '/pc/preview/preview-3', '{"slider_images": ["/pc/preview/slider-image-3.1","/pc/preview/slider-image-3.2","/pc/preview/slider-image-3.3"]}');
+VALUES (10003, 'Заголовок...', 'Описание...', '/pc/preview/preview-3', '["/pc/preview/slider-image-3.1","/pc/preview/slider-image-3.2","/pc/preview/slider-image-3.3"]');
 
 ---------------------- Pc_performance ----------------------
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
@@ -701,10 +698,10 @@ VALUES (10003, '+375(29)3334444', 'email@gmail.com', 'Имя', 'Фамилия')
 
 ---------------------- Users ----------------------
 INSERT INTO public.users (person_id, role_id, user_id, password, login)
-VALUES (10001, 10001, 10001, 'password', 'login');
+VALUES (10001, 10001, 10001, '$2a$10$RrH9jCooA8rrgcQUpfWctOr3H6x5Lxn/8.0qcAadCjE711QmdH/gO', 'admin');
 
 INSERT INTO public.users (person_id, role_id, user_id, password, login)
-VALUES (10002, 10002, 10002, '123', '123');
+VALUES (10002, 10002, 10002, '$2a$10$ZNCDiKrhA/EMkjNCA8x8Xu7hOaU.7/UT3S6Ox2rm2z/uMPbkomrhi', '88888888');
 
 INSERT INTO public.users (person_id, role_id, user_id, password, login)
 VALUES (10003, 10002, 10003, 'user', 'user');

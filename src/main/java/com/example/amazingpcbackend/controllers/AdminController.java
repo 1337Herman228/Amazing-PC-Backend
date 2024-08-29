@@ -1,12 +1,21 @@
 package com.example.amazingpcbackend.controllers;
 
+import com.example.amazingpcbackend.dto.CpuAddDto;
+import com.example.amazingpcbackend.dto.PartAddDto;
+import com.example.amazingpcbackend.entity.Partitions;
 import com.example.amazingpcbackend.entity.Parts;
+import com.example.amazingpcbackend.entity.Types;
+import com.example.amazingpcbackend.exceptions.PartitionsException;
+import com.example.amazingpcbackend.exceptions.PartsException;
+import com.example.amazingpcbackend.exceptions.TypesException;
+import com.example.amazingpcbackend.repo.PartitionsRepository;
 import com.example.amazingpcbackend.repo.PartsRepository;
+import com.example.amazingpcbackend.repo.TypesRepository;
+import com.example.amazingpcbackend.services.PartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,9 +26,145 @@ import java.util.List;
 public class AdminController {
 
     private final PartsRepository partsRepository;
+    private final TypesRepository typesRepository;
+    private final PartitionsRepository partitionsRepository;
+
+    private final PartService partService;
 
     @GetMapping("/parts")
-    public List<Parts> products() {
+    public List<Parts> getProducts() {
         return partsRepository.findAll();
     }
+
+    @GetMapping("/types")
+    public List<Types> getTypes() {
+        return typesRepository.findAll();
+    }
+
+    @GetMapping("/partitions")
+    public List<Partitions> getPartitions() {
+        return partitionsRepository.findAll();
+    }
+
+    @GetMapping("/get-type/{typeId}")
+    public Types getTypeByID(@PathVariable Long typeId) {
+        return typesRepository.findById(typeId).orElse(null);
+    }
+
+    @GetMapping("/get-partition/{partitionId}")
+    public Partitions getPartitionByID(@PathVariable Long partitionId) {
+        return partitionsRepository.findById(partitionId).orElse(null);
+    }
+
+    @GetMapping("/get-part/{partId}")
+    public Parts getPartByID(@PathVariable Long partId) {
+        return partsRepository.findById(partId).orElse(null);
+    }
+
+    @PostMapping("/add-type")
+    @ResponseStatus(HttpStatus.CREATED)
+    public HttpStatus addType(@RequestBody Types newType) throws TypesException {
+        try {
+            typesRepository.save(newType);
+            return HttpStatus.CREATED;
+        } catch (Exception e) {
+            throw new TypesException("can't add new type", e);
+        }
+    }
+
+    @PostMapping("/add-partition")
+    @ResponseStatus(HttpStatus.CREATED)
+    public HttpStatus addPartition(@RequestBody Partitions newPartition) throws PartitionsException {
+        try {
+            partitionsRepository.save(newPartition);
+            return HttpStatus.CREATED;
+        } catch (Exception e) {
+            throw new PartitionsException("can't add new partition", e);
+        }
+    }
+
+    @PostMapping("/add-part")
+    @ResponseStatus(HttpStatus.CREATED)
+    public HttpStatus addPart(@RequestBody PartAddDto part) throws PartsException {
+        try {
+            partService.addPart(part);
+            return HttpStatus.CREATED;
+        } catch (Exception e) {
+            throw new PartsException("can't add new part", e);
+        }
+    }
+
+    @PostMapping("/edit-type")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editType(@RequestBody Types editType) throws TypesException {
+        try {
+            typesRepository.findById(editType.getTypeId()).ifPresent(type -> {
+                type.setTypeName(editType.getTypeName());
+                type.setAlternativeName(editType.getAlternativeName());
+                typesRepository.save(type);
+            });
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new TypesException("can't edit type", e);
+        }
+    }
+
+    @PostMapping("/edit-partition")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPartition(@RequestBody Partitions editPartition) throws PartitionsException {
+        try {
+            partitionsRepository.findById(editPartition.getPartitionId()).ifPresent(partition -> {
+                partition.setPartitionName(editPartition.getPartitionName());
+                partitionsRepository.save(partition);
+            });
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new PartitionsException("can't edit partition", e);
+        }
+    }
+
+    @PostMapping("/edit-part")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPart(@RequestBody PartAddDto part) throws PartsException {
+        try {
+            partService.editPart(part);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new PartsException("can't edit part", e);
+        }
+    }
+
+    @DeleteMapping ("/delete-type")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteType(@RequestBody Types type) throws TypesException {
+        try {
+            typesRepository.deleteById(type.getTypeId());
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new TypesException("can't delete type", e);
+        }
+    }
+
+    @DeleteMapping ("/delete-partition")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePartition(@RequestBody Partitions partition) throws PartitionsException {
+        try {
+            partitionsRepository.deleteById(partition.getPartitionId());
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new PartitionsException("can't delete partition", e);
+        }
+    }
+
+    @DeleteMapping ("/delete-part")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePart(@RequestBody Parts part) throws PartsException {
+        try {
+            partService.deletePart(part);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new PartsException("can't delete part", e);
+        }
+    }
+
 }

@@ -52,8 +52,6 @@ public class AuthenticationController {
             return authDto;
 
         }catch (Exception e){
-//            String error = "error";
-//            return jsonConvertingService.convertObjectToJson(error);
             throw new AuthenticationException("can't authenticate", e);
         }
     }

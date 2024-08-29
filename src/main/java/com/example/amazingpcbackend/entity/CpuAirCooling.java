@@ -14,7 +14,7 @@ public class CpuAirCooling {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cpuAirCoolingId;
 
-    @Column(columnDefinition = "json")
+    //JSON
     private String sockets; // Am4, Am5 , Lga1700
 
     private int fansQuantity; //2

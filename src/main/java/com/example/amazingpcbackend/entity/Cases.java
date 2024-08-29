@@ -25,6 +25,6 @@ public class Cases {
     private float height; //401 мм
     private float weight; //5.68 кг
 
-    @Column(columnDefinition = "json")
+    // JSON
     private String possibleFormFactors;
 }

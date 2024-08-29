@@ -14,6 +14,6 @@ public class Partitions {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long partitionId;
 
-    @Column(nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String partitionName; // RTX4060, 500GB, 24"
 }

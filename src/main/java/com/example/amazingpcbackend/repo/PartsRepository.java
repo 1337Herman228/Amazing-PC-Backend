@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PartsRepository extends JpaRepository<Parts, Long> {
+    Optional<Parts> findByName(String name);
     List<Parts> findByNameContaining(String name);
     List<Parts> findByPrice(float price);
     Optional<Parts> findByCategories(Categories category);

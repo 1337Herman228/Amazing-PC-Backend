@@ -1,5 +1,7 @@
 package com.example.amazingpcbackend.entity;
 
+import com.example.amazingpcbackend.dao.RamType;
+import com.example.amazingpcbackend.dao.converters.RamTypeConverter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -21,8 +23,13 @@ public class Cpu {
 
     private int maxRamCapacity; //192
 
-    @Column(columnDefinition = "json")
-    private String ramType; // [DDR4, DDR5]
+//    @Convert(converter = RamTypeConverter.class)
+//    @Column(columnDefinition = "json")
+//    private RamType ramType;
+
+    //JSON
+    @Column(length = 300)
+    private String ramType;
 
     private int cpuCores; //6
     private int cpuThreads; //12
@@ -33,13 +40,13 @@ public class Cpu {
     private String techProcess; //intel 7
 
     @Column(length = 30)
-    private String cashL1; //80 КБ
+    private String cacheL1; //80 КБ
 
     @Column(length = 30)
-    private String cashL2; //11.5 MБ
+    private String cacheL2; //11.5 MБ
 
     @Column(length = 30)
-    private String cashL3; //24 MБ
+    private String cacheL3; //24 MБ
 
     private int tdp; //65
 }

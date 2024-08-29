@@ -14,7 +14,7 @@ public class Periphery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long peripheryId;
 
-    @Column(columnDefinition = "json")
+    //JSON
     private String characteristics;
 
 }

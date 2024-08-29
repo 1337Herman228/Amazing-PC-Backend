@@ -2,6 +2,7 @@ package com.example.amazingpcbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -15,7 +16,7 @@ public class Parts {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long partId;
 
-    @Column(nullable = false, length = 130)
+    @Column(unique = true, nullable = false, length = 130)
     private String name;
 
     @Column(nullable = false)
@@ -40,6 +41,8 @@ public class Parts {
     @ManyToOne
     @JoinColumn(name = "typeId", nullable = false)
     private Types types;
+
+    //////
 
     @OneToOne
     @JoinColumn(name = "cpuId", referencedColumnName = "cpuId")
