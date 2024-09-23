@@ -16,27 +16,26 @@ public class PartService {
     private final CpuRepository cpuRepository;
     private final GpuRepository gpuRepository;
     private final MotherboardRepository motherboardRepository;
-    private final CpuLiquidCoolingRepository cpuLiquidCoolingRepository ;
-    private final CpuAirCoolingRepository cpuAirCoolingRepository ;
-    private final RamRepository ramRepository ;
-    private final SsdRepository ssdRepository ;
-    private final PsuRepository psuRepository ;
-    private final CasesRepository casesRepository ;
-    private final FansRepository fansRepository ;
-    private final PeripheryRepository peripheryRepository ;
+    private final CpuLiquidCoolingRepository cpuLiquidCoolingRepository;
+    private final CpuAirCoolingRepository cpuAirCoolingRepository;
+    private final RamRepository ramRepository;
+    private final SsdRepository ssdRepository;
+    private final PsuRepository psuRepository;
+    private final CasesRepository casesRepository;
+    private final FansRepository fansRepository;
+    private final PeripheryRepository peripheryRepository;
 
     private final CategoriesRepository categoriesRepository;
     private final TypesRepository typesRepository;
     private final PartitionsRepository partitionsRepository;
 
-    public void deletePart (Parts part) throws PartsException {
+    public void deletePart(Parts part) throws PartsException {
         try {
             partsRepository.delete(part);
 
-            if (part.getCategories().getCategoryName().equals("Периферия")){
+            if (part.getCategories().getCategoryName().equals("Периферия")) {
                 peripheryRepository.delete(part.getPeriphery());
-            }
-            else if (part.getCategories().getCategoryName().equals("Комплектующие")) {
+            } else if (part.getCategories().getCategoryName().equals("Комплектующие")) {
 
                 String typeAlternativeName = part.getTypes().getTypeName();
                 switch (typeAlternativeName) {
@@ -53,10 +52,9 @@ public class PartService {
                         break;
                     }
                     case "cpu_fan": {
-                        if(part.getCpuAirCooling() != null) {
+                        if (part.getCpuAirCooling() != null) {
                             cpuAirCoolingRepository.delete(part.getCpuAirCooling());
-                        }
-                        else if(part.getCpuLiquidCooling() != null) {
+                        } else if (part.getCpuLiquidCooling() != null) {
                             cpuLiquidCoolingRepository.delete(part.getCpuLiquidCooling());
                         }
                         break;
@@ -89,17 +87,16 @@ public class PartService {
         }
     }
 
-    public void addPart (PartAddDto part) throws PartsException {
+    public void addPart(PartAddDto part) throws PartsException {
 
         try {
-            if (part.getCategory().equals("Периферия")){
+            if (part.getCategory().equals("Периферия")) {
                 Periphery newPeriphery = new Periphery();
                 Periphery periphery = getPeriphery(newPeriphery, part.getPeriphery());
                 peripheryRepository.save(periphery);
                 Parts newPart = new Parts();
                 partsRepository.save(getPart(newPart, part).setPeriphery(periphery));
-            }
-            else if (part.getCategory().equals("Комплектующие")) {
+            } else if (part.getCategory().equals("Комплектующие")) {
 
                 String type = part.getType();
 
@@ -130,30 +127,29 @@ public class PartService {
                         break;
                     }
                     case "Охлаждение": {
-                        if(part.getCpuAirCooling() != null) {
+                        if (part.getCpuAirCooling() != null) {
                             CpuAirCooling newCpuAirCooling = new CpuAirCooling();
                             CpuAirCooling cpuAirCooling = getCpuAirCooling(newCpuAirCooling, part.getCpuAirCooling());
                             cpuAirCoolingRepository.save(cpuAirCooling);
                             Parts newPart = new Parts();
                             partsRepository.save(getPart(newPart, part).setCpuAirCooling(cpuAirCooling));
                             break;
-                        }
-                        else if(part.getCpuLiquidCooling() != null) {
+                        } else if (part.getCpuLiquidCooling() != null) {
                             CpuLiquidCooling newCpuLiquidCooling = new CpuLiquidCooling();
                             CpuLiquidCooling cpuLiquidCooling = getCpuLiquidCooling(newCpuLiquidCooling, part.getCpuLiquidCooling());
                             cpuLiquidCoolingRepository.save(cpuLiquidCooling);
                             Parts newPart = new Parts();
-                            partsRepository.save(getPart(newPart,part).setCpuLiquidCooling(cpuLiquidCooling));
+                            partsRepository.save(getPart(newPart, part).setCpuLiquidCooling(cpuLiquidCooling));
                             break;
                         }
                         break;
                     }
                     case "Оперативная память": {
                         Ram newRam = new Ram();
-                        Ram ram = getRam(newRam,part.getRam());
+                        Ram ram = getRam(newRam, part.getRam());
                         ramRepository.save(ram);
                         Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart,part).setRam(ram));
+                        partsRepository.save(getPart(newPart, part).setRam(ram));
                         break;
                     }
                     case "SSD накопитель": {
@@ -161,7 +157,7 @@ public class PartService {
                         Ssd ssd = getSsd(newSsd, part.getSsd());
                         ssdRepository.save(ssd);
                         Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart,part).setSsd(ssd));
+                        partsRepository.save(getPart(newPart, part).setSsd(ssd));
                         break;
                     }
                     case "Блок питания": {
@@ -169,7 +165,7 @@ public class PartService {
                         Psu psu = getPsu(newPsu, part.getPsu());
                         psuRepository.save(psu);
                         Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart,part).setPsu(psu));
+                        partsRepository.save(getPart(newPart, part).setPsu(psu));
                         break;
                     }
                     case "Корпус": {
@@ -177,7 +173,7 @@ public class PartService {
                         Cases cases = getCases(newCases, part.getCases());
                         casesRepository.save(cases);
                         Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart,part).setCases(cases));
+                        partsRepository.save(getPart(newPart, part).setCases(cases));
                         break;
                     }
                     case "Вентилятор": {
@@ -185,7 +181,7 @@ public class PartService {
                         Fans fans = getFans(newFans, part.getFan());
                         fansRepository.save(fans);
                         Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart,part).setFan(fans));
+                        partsRepository.save(getPart(newPart, part).setFan(fans));
                         break;
                     }
                 }
@@ -196,18 +192,17 @@ public class PartService {
         }
     }
 
-    public void editPart (PartAddDto part) throws PartsException {
+    public void editPart(PartAddDto part) throws PartsException {
 
         try {
-            if (part.getCategory().equals("Периферия")){
+            if (part.getCategory().equals("Периферия")) {
                 peripheryRepository.findById(part.getPeriphery().getPeripheryId()).ifPresent(object -> {
                     peripheryRepository.save(getPeriphery(object, part.getPeriphery()));
                 });
                 partsRepository.findByName(part.getName()).ifPresent(object -> {
                     partsRepository.save(getPart(object, part));
                 });
-            }
-            else if (part.getCategory().equals("Комплектующие")) {
+            } else if (part.getCategory().equals("Комплектующие")) {
 
                 String type = part.getType();
 
@@ -237,15 +232,14 @@ public class PartService {
                         break;
                     }
                     case "Охлаждение": {
-                        if(part.getCpuAirCooling() != null) {
+                        if (part.getCpuAirCooling() != null) {
                             cpuAirCoolingRepository.findById(part.getCpuAirCooling().getCpuAirCoolingId()).ifPresent(object -> {
                                 cpuAirCoolingRepository.save(getCpuAirCooling(object, part.getCpuAirCooling()));
                                 cpuAirCoolingRepository.save(object);
                             });
                             updatePart(part);
                             break;
-                        }
-                        else if(part.getCpuLiquidCooling() != null) {
+                        } else if (part.getCpuLiquidCooling() != null) {
                             cpuLiquidCoolingRepository.findById(part.getCpuLiquidCooling().getCpuLiquidCoolingId()).ifPresent(object -> {
                                 cpuLiquidCoolingRepository.save(getCpuLiquidCooling(object, part.getCpuLiquidCooling()));
                                 cpuLiquidCoolingRepository.save(object);
@@ -303,7 +297,7 @@ public class PartService {
         }
     }
 
-    private void updatePart (PartAddDto part){
+    private void updatePart(PartAddDto part) {
         partsRepository.findById(part.getPartId()).ifPresent(object -> {
             partsRepository.save(getPart(object, part));
         });
@@ -457,7 +451,7 @@ public class PartService {
         return newCases;
     }
 
-    private static Fans getFans( Fans newFans, Fans fans) {
+    private static Fans getFans(Fans newFans, Fans fans) {
         newFans.setFanSize(fans.getFanSize());
         newFans.setBacklight(fans.getBacklight());
         newFans.setFanSpeed(fans.getFanSpeed());

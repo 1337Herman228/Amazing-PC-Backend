@@ -249,41 +249,41 @@ VALUES (100026, 'Razer');
 
 
 ---------------------- Types ----------------------
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10001, 'gpu', 'Видеокарта');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10001, 'gpu', 'Видеокарта', '/svg-icons/gpu.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10002, 'cpu', 'Процессор');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10002, 'cpu', 'Процессор', '/svg-icons/cpu.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10003, 'motherboard', 'Материнская плата');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10003, 'motherboard', 'Материнская плата', '/svg-icons/motherboard.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10004, 'cpu_fan', 'Охлаждение');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10004, 'cpu_fan', 'Охлаждение', '/svg-icons/cpu_fan.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10005, 'ram', 'Оперативная память');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10005, 'ram', 'Оперативная память', '/svg-icons/ram.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10006, 'ssd', 'SSD накопитель');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10006, 'ssd', 'SSD накопитель', '/svg-icons/ssd.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10007, 'psu', 'Блок питания');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10007, 'psu', 'Блок питания', '/svg-icons/psu.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10008, 'cases', 'Корпус');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10008, 'cases', 'Корпус', '/svg-icons/cases.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (10009, 'fan', 'Вентилятор');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (10009, 'fan', 'Вентиляторы', '/svg-icons/fan.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (100010, 'display', 'Монитор');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (100010, 'monitor', 'Монитор', '/svg-icons/monitor.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (100011, 'mouse', 'Мышь');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (100011, 'mouse', 'Мышь', '/svg-icons/mouse.svg');
 
-INSERT INTO public.types (type_id, type_name, alternative_name)
-VALUES (100012, 'headphones', 'Наушники');
+INSERT INTO public.types (type_id, type_name, alternative_name, type_image)
+VALUES (100012, 'headphones', 'Наушники', '/svg-icons/headphones.svg');
 
 
 ---------------------- Parts ----------------------

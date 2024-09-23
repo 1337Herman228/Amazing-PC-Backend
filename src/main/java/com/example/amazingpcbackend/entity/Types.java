@@ -20,4 +20,7 @@ public class Types {
 
     @Column(unique = true, nullable = false, length = 70)
     private String alternativeName; // Видеокарта/Процессор/Монитор
+
+    @Column(nullable = false, length = 300)
+    private String typeImage; // svg
 }

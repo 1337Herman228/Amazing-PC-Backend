@@ -38,7 +38,6 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     @ResponseStatus(HttpStatus.OK)
-    //public String authenticate(@RequestBody String requestBody) throws JsonProcessingException, AuthenticationException {
     public AuthDto authenticate(@RequestBody String requestBody) throws JsonProcessingException, AuthenticationException {
         ObjectMapper objectMapper = new ObjectMapper();
         AuthenticationRequest authenticationRequest = objectMapper.readValue(requestBody, AuthenticationRequest.class);
@@ -48,7 +47,6 @@ public class AuthenticationController {
             authDto.setAuthenticationResponse(authenticationResponse);
             authDto.setRole(userRepository.findByLogin(authenticationRequest.login()).orElseThrow().getRoles().getPosition());
             authDto.setUserId(userRepository.findByLogin(authenticationRequest.login()).orElseThrow().getUserId());
-//            return jsonConvertingService.convertObjectToJson(authDto);
             return authDto;
 
         }catch (Exception e){

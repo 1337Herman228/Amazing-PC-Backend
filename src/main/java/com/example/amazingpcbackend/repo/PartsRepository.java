@@ -10,9 +10,9 @@ public interface PartsRepository extends JpaRepository<Parts, Long> {
     Optional<Parts> findByName(String name);
     List<Parts> findByNameContaining(String name);
     List<Parts> findByPrice(float price);
-    Optional<Parts> findByCategories(Categories category);
-    Optional<Parts> findByPartitions(Partitions partition);
-    Optional<Parts> findByTypes(Types type);
+    List<Parts> findByCategories(Categories category);
+    List<Parts> findByPartitions(Partitions partition);
+    List<Parts> findByTypes(Types type);
     Optional<Parts> findByCpu(Cpu cpu);
     Optional<Parts> findByGpu(Gpu gpu);
     Optional<Parts> findByMotherboard(Motherboard motherboard);
