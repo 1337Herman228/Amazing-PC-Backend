@@ -17,4 +17,6 @@ public class PcCategories {
     @Column(nullable = false, length = 100)
     private String pcCategoryName; // Нет категории / Оптимальные игровые компьютеры / Кастомные компьютеры
 
+    @Column(length = 1000)
+    private String pcCategoryDescription; // Современные игровые компьютеры с процессорами Intel Core и видеокартами NVIDIA GeForce RTX предлагают идеальное сочетание производительности и стоимости. Максимум эффективности.
 }

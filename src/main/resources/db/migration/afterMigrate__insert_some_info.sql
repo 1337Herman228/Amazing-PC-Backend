@@ -502,26 +502,26 @@ VALUES (10004, 'configuration');
 INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
 VALUES (10001, 'Нет категории');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10002, 'Оптимальные игровые компьютеры');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10002, 'Оптимальные игровые компьютеры', 'Современные игровые компьютеры с процессорами Intel Core и видеокартами NVIDIA GeForce RTX предлагают идеальное сочетание производительности и стоимости. Максимум эффективности.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10003, 'Мощные игровые компьютеры');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10003, 'Мощные игровые компьютеры', 'Мощные игровые компьютеры для максимальных настроек графики в играх, на базе процессоров Intel Core и видеокарт NVIDIA GeForce RTX. Отлично подходят для киберспортивных игроков и геймеров, ценящих плавность игрового процесса с высоким FPS на максимальных графических настройках. Выбор чемпионов.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10004, 'Кастомные компьютеры');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10004, 'Кастомные компьютеры', 'Эксклюзивная линейка компьютеров для тех, кто не ищет компромиссов в играх. Конфигурации на основе самых мощных процессоров Intel Core и видеокарт NVIDIA GeForce RTX обеспечивают высший уровень производительности, уникальные корпуса с RGB-подсветкой и системой водяного охлаждения. Персонализированные варианты для самых изысканных геймеров.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10005, 'Игровые мини ПК');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10005, 'Игровые мини ПК', 'Добро пожаловать в эпоху компактных игровых компьютеров нового поколения! Это воплощение мощи и стиля в одном устройстве. Оформленные в современном дизайне, они скрывает в себе потрясающую производительность, способную обеспечить вас плавным геймплеем на максимальных настройках графики.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10006, 'Оптимальные рабочие станции');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10006, 'Оптимальные рабочие станции', 'Современные рабочие компьютеры с процессорами Intel Core и видеокартами NVIDIA GeForce RTX предлагают идеальное сочетание производительности и стоимости для профессиональных задач. Они обеспечивают максимум эффективности для работы с графическими и многозадачными приложениями без лишних затрат.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10007, 'Мощные рабочие станции');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10007, 'Мощные рабочие станции', 'Эксклюзивная линейка рабочих компьютеров для профессионалов, которые не ищут компромиссов в производительности. Конфигурации на основе самых мощных процессоров Intel Core и видеокарт NVIDIA Quadro RTX обеспечивают высший уровень производительности для работы с самыми требовательными приложениями. Уникальные корпуса с эргономичным дизайном и системой водяного охлаждения. Персонализированные варианты для самых требовательных специалистов.');
 
-INSERT INTO public.pc_categories (pc_category_id, pc_category_name)
-VALUES (10008, 'Кастомные рабочие станции');
+INSERT INTO public.pc_categories (pc_category_id, pc_category_name, pc_category_description)
+VALUES (10008, 'Кастомные рабочие станции', 'Эксклюзивная линейка компьютеров для тех, кто не ищет компромиссов в играх. Конфигурации на основе самых мощных процессоров Intel Core и видеокарт NVIDIA GeForce RTX обеспечивают высший уровень производительности, уникальные корпуса с RGB-подсветкой и системой водяного охлаждения. Персонализированные варианты для самых изысканных геймеров.');
 
 
 ---------------------- Pc_header ----------------------
