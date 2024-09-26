@@ -1,9 +1,10 @@
 package com.example.amazingpcbackend.controllers;
 
 import com.example.amazingpcbackend.dto.ConfiguratorComponentsListDto;
-import com.example.amazingpcbackend.entity.PcCategories;
+import com.example.amazingpcbackend.dto.PcCatalogDto;
 import com.example.amazingpcbackend.repo.PcCategoriesRepository;
 import com.example.amazingpcbackend.services.ConfiguratorService;
+import com.example.amazingpcbackend.services.PcService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ import java.util.List;
 public class UserController {
 
     private final ConfiguratorService configuratorService;
-    private final PcCategoriesRepository pcCategoriesRepository;
 
+    private final PcService pcService;
 
     @GetMapping("/configurator-parts")
     public ConfiguratorComponentsListDto getConfiguratorParts() {
@@ -26,8 +27,8 @@ public class UserController {
     }
 
     @GetMapping("/pc-categories")
-    public List<PcCategories> getGamingPc() {
-        return pcCategoriesRepository.findAll();
+    public PcCatalogDto getGamingPc() {
+        return pcService.getGamingPc();
     }
 
 }

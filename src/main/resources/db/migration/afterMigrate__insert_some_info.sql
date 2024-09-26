@@ -486,7 +486,7 @@ VALUES (300, 10, null, 10002, null, null, null, null, null, null, 100028, 100026
 
 ---------------------- Pc_types ----------------------
 INSERT INTO public.pc_types (pc_type_id, type)
-VALUES (10001, 'pc');
+VALUES (10001, 'gaming-pc');
 
 INSERT INTO public.pc_types (pc_type_id, type)
 VALUES (10002, 'notebook');
@@ -534,6 +534,15 @@ VALUES (10002, 'Описание...', '/pc/header/header-2', '/pc/header/header-
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
 VALUES (10003, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
 
+INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
+VALUES (10004, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+
+INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
+VALUES (10005, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+
+INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
+VALUES (10006, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+
 
 ---------------------- Pc_design ----------------------
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
@@ -545,6 +554,14 @@ VALUES (10002, 'Заголовок...', 'Описание...', '/pc/design/desig
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
 VALUES (10003, 'Заголовок...', 'Описание...', '/pc/design/design-3');
 
+INSERT INTO public.pc_design (pc_design_id, title, description, image)
+VALUES (10004, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+
+INSERT INTO public.pc_design (pc_design_id, title, description, image)
+VALUES (10005, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+
+INSERT INTO public.pc_design (pc_design_id, title, description, image)
+VALUES (10006, 'Заголовок...', 'Описание...', '/pc/design/design-3');
 
 ---------------------- Pc_preview ----------------------
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
@@ -556,6 +573,15 @@ VALUES (10002, 'Заголовок...', 'Описание...', '/pc/preview/prev
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
 VALUES (10003, 'Заголовок...', 'Описание...', '/pc/preview/preview-3', '["/pc/preview/slider-image-3.1","/pc/preview/slider-image-3.2","/pc/preview/slider-image-3.3"]');
 
+INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
+VALUES (10004, 'Заголовок...', 'Описание...', '/pc/preview/preview-1', '["/pc/preview/slider-image-1.1","/pc/preview/slider-image-1.2","/pc/preview/slider-image-1.3"]');
+
+INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
+VALUES (10005, 'Заголовок...', 'Описание...', '/pc/preview/preview-2', '["/pc/preview/slider-image-2.1","/pc/preview/slider-image-2.2","/pc/preview/slider-image-2.3"]');
+
+INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
+VALUES (10006, 'Заголовок...', 'Описание...', '/pc/preview/preview-3', '["/pc/preview/slider-image-3.1","/pc/preview/slider-image-3.2","/pc/preview/slider-image-3.3"]');
+
 ---------------------- Pc_performance ----------------------
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
 VALUES (10001, 'Заголовок...', 'Описание...', '/pc/performance/performance-1.1', '/pc/performance/performance-1.2');
@@ -566,6 +592,15 @@ VALUES (10002, 'Заголовок...', 'Описание...', '/pc/performance/
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
 VALUES (10003, 'Заголовок...', 'Описание...', '/pc/performance/performance-3.1', '/pc/performance/performance-3.2');
 
+INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
+VALUES (10004, 'Заголовок...', 'Описание...', '/pc/performance/performance-1.1', '/pc/performance/performance-1.2');
+
+INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
+VALUES (10005, 'Заголовок...', 'Описание...', '/pc/performance/performance-2.1', '/pc/performance/performance-2.2');
+
+INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
+VALUES (10006, 'Заголовок...', 'Описание...', '/pc/performance/performance-3.1', '/pc/performance/performance-3.2');
+
 
 ---------------------- Pc_model_groups ----------------------
 -- One
@@ -575,6 +610,34 @@ INSERT INTO public.pc_model_groups (pc_category_id, pc_design_id, pc_header_id, 
                                     ram_description, ssd_description)
 VALUES (10002, 10001, 10001, 10001, 10001, 10001, 10001,
         'One', 'Начальный игровой компьютер',
+        'Процессоры 6 и 10 ядерные Intel Core i5',
+        'Графические карты GeForce RTX 4060 и 4060 Ti',
+        'Материнские платы на чипсете Intel B760',
+        'Блок питания на 550W / 650W стандарта 80+ Bronze',
+        'Оперативная память от 16 до 32 GB DDR4 3600MHz',
+        'Накопители SSD на 512 GB / 1 TB с интерфейсом М.2');
+
+-- Lumen Core
+INSERT INTO public.pc_model_groups (pc_category_id, pc_design_id, pc_header_id, pc_model_group_id, pc_performance_id,
+                                    pc_preview_id, pc_type_id, model_group_name, model_group_description,
+                                    cpu_description, gpu_description, motherboard_description, psu_description,
+                                    ram_description, ssd_description)
+VALUES (10003, 10004, 10004, 10004, 10004, 10004, 10001,
+        'Lumen Core', 'Начальный игровой компьютер',
+        'Процессоры 6 и 10 ядерные Intel Core i5',
+        'Графические карты GeForce RTX 4060 и 4060 Ti',
+        'Материнские платы на чипсете Intel B760',
+        'Блок питания на 550W / 650W стандарта 80+ Bronze',
+        'Оперативная память от 16 до 32 GB DDR4 3600MHz',
+        'Накопители SSD на 512 GB / 1 TB с интерфейсом М.2');
+
+-- Fury
+INSERT INTO public.pc_model_groups (pc_category_id, pc_design_id, pc_header_id, pc_model_group_id, pc_performance_id,
+                                    pc_preview_id, pc_type_id, model_group_name, model_group_description,
+                                    cpu_description, gpu_description, motherboard_description, psu_description,
+                                    ram_description, ssd_description)
+VALUES (10003, 10005, 10005, 10005, 10005, 10005, 10001,
+        'Fury', 'Начальный игровой компьютер',
         'Процессоры 6 и 10 ядерные Intel Core i5',
         'Графические карты GeForce RTX 4060 и 4060 Ti',
         'Материнские платы на чипсете Intel B760',
@@ -614,51 +677,75 @@ VALUES (10006, 10003, 10003, 10003, 10003, 10003, 10003,
 ---------------------- Pc ----------------------
 -- One Super
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (4500, 100022, 10009, 10001, 10004, 10007, 10002,
         10001,10001, 10001, 100017, 100011,
         'One Super',
-        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].');
+        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'uploads/one.jpg');
 
 -- One Max
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (5500, 100022, 10009, 10002, 10005, 10007, 10002,
         10002,10001, 10001, 100018, 100012,
         'One Max',
-        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].');
+        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'uploads/one.jpg');
 
 -- One Ultra
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (6800, 100022, 10009, 10002, 10005, 10007, 10002,
         10003,10001, 10001, 100018, 100012,
         'One Ultra',
-        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].');
+        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'uploads/one.jpg');
+
+-- Lumen Core Super
+INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
+VALUES (7800, 100022, 10009, 10002, 10005, 10007, 10002,
+        11000,10004, 10001, 100018, 100012,
+        'Lumen Core Super',
+        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'uploads/lumen-core.jpg');
+
+-- Fury Super
+INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
+VALUES (8800, 100022, 10009, 10002, 10005, 10007, 10002,
+        11001,10005, 10001, 100018, 100012,
+        'Fury Super',
+        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'uploads/fury.jpg');
 
 -- PLAY 17 M1
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (7400, null, null, 10002, 10005, null, 10001,
         10004,10001, 10002, null, 100012,
         'PLAY 17 M1',
-        'Ноутбук PLAY 17 – это отличный выбор для тех, кто хочет обладать современным ноутбуком, который можно использовать для игр, работы и учёбы. Имеет установленную ОС Windows 11 Home.');
+        'Ноутбук PLAY 17 – это отличный выбор для тех, кто хочет обладать современным ноутбуком, который можно использовать для игр, работы и учёбы. Имеет установленную ОС Windows 11 Home.',
+        'uploads/hyperpc-play.jpg');
 
 -- G1 PRO Super
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (3500, 100022, 10009, 10002, 10005, 10007, 10002,
         10005,10003, 10003, 100018, 100012,
         'G1 PRO Super',
-        'Надежный начального уровня компьютер, оснащенный быстрым процессором и высокоскоростной памятью, предназначенный для профессиональных приложений и эффективной многозадачности.');
+        'Надежный начального уровня компьютер, оснащенный быстрым процессором и высокоскоростной памятью, предназначенный для профессиональных приложений и эффективной многозадачности.',
+        'uploads/pro-g1.jpg');
 
 -- Configuration without pc_model_group
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
-                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description)
+                       pc_model_group_id, pc_type_id, psu_id, ram_id, name, description, image)
 VALUES (3500, 100022, 10009, 10002, 10005, 10007, 10002,
         10006,null, 10003, 100018, 100012,
         'My Configuration',
-        null);
+        null,
+        'components/case/no-case.jpg');
 
 
 ---------------------- Pc_ssd_quantity ----------------------
@@ -704,8 +791,7 @@ INSERT INTO public.users (person_id, role_id, user_id, password, login)
 VALUES (10002, 10002, 10002, '$2a$10$ZNCDiKrhA/EMkjNCA8x8Xu7hOaU.7/UT3S6Ox2rm2z/uMPbkomrhi', '88888888');
 
 INSERT INTO public.users (person_id, role_id, user_id, password, login)
-VALUES (10003, 10002, 10003, 'user', 'user');
-
+VALUES (10003, 10002, 10003, '$2a$10$ZNCDiKrhA/EMkjNCA8x8Xu7hOaU.7/UT3S6Ox2rm2z/uMPbkomrhi', 'user');
 
 ---------------------- Purchase_items ----------------------
 -- LG UltraGear 24GN65R

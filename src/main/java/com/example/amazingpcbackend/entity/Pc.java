@@ -26,12 +26,16 @@ public class Pc {
     @JoinColumn(name = "pcCategoryId")
     private PcCategories pcCategories;
 
-    @Column(nullable = false, length = 70)
+    @Column(length = 70)
     private String name;
 
-    @Column(nullable = true, length = 350)
+    @Column(length = 350)
     private String description;
 
+    @Column(nullable = false, length = 300)
+    private String image;
+
+    @Column(nullable = false)
     private float totalPrice;
 
     @ManyToOne
