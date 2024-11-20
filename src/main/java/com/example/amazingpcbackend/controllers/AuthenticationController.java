@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-//    private final JSONConvertingService jsonConvertingService;
     private final AuthenticationService authenticationService;
     private final UsersRepository userRepository;
 

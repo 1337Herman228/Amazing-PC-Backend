@@ -526,42 +526,42 @@ VALUES (10008, 'Кастомные рабочие станции', 'Эксклю
 
 ---------------------- Pc_header ----------------------
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10001, 'Описание...', '/pc/header/header-1', '/pc/header/header-1-mobile');
+VALUES (10001, 'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10002, 'Описание...', '/pc/header/header-2', '/pc/header/header-2-mobile');
+VALUES (10002, 'Описание...', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10003, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+VALUES (10003, 'Описание...', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10004, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+VALUES (10004, 'Описание...', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10005, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+VALUES (10005, 'Описание...', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 INSERT INTO public.pc_header (pc_header_id, description, image, image_mobile)
-VALUES (10006, 'Описание...', '/pc/header/header-3', '/pc/header/header-3-mobile');
+VALUES (10006, 'Описание...', '/single-product/one/hyperpc-one-banner.jpg', '/single-product/one/hyperpc-one-mobile.jpg');
 
 
 ---------------------- Pc_design ----------------------
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10001, 'Заголовок...', 'Описание...', '/pc/design/design-1');
+VALUES (10001, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10002, 'Заголовок...', 'Описание...', '/pc/design/design-2');
+VALUES (10002, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10003, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+VALUES (10003, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10004, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+VALUES (10004, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10005, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+VALUES (10005, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 INSERT INTO public.pc_design (pc_design_id, title, description, image)
-VALUES (10006, 'Заголовок...', 'Описание...', '/pc/design/design-3');
+VALUES (10006, 'Современный дизайн', 'HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля. Тёмные акценты корпуса и плавная RGB-подсветка добавляют выразительности, делая этот компьютер центром внимания в любом рабочем или игровом пространстве.', '/single-product/one/hyperpc-one-block-design.jpg');
 
 ---------------------- Pc_preview ----------------------
 INSERT INTO public.pc_preview (pc_preview_id, title, description, main_image, slider_images)
@@ -584,22 +584,22 @@ VALUES (10006, 'Заголовок...', 'Описание...', '/pc/preview/prev
 
 ---------------------- Pc_performance ----------------------
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10001, 'Заголовок...', 'Описание...', '/pc/performance/performance-1.1', '/pc/performance/performance-1.2');
+VALUES (10001, 'Мощность', 'HYPERPC ONE оснащён современными комплектующими, которые обеспечивают отличную производительность как в играх, так и при решении творческих задач. Этот ПК готов ко всему — от игр в высоком разрешении до работы с графикой и видео. Каждый компонент выбран и интегрирован так, чтобы гарантировать плавную работу и стабильность в любых сценариях использования.', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-1.2');
 
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10002, 'Заголовок...', 'Описание...', '/pc/performance/performance-2.1', '/pc/performance/performance-2.2');
+VALUES (10002, 'Заголовок...', 'Описание...', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-2.2');
 
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10003, 'Заголовок...', 'Описание...', '/pc/performance/performance-3.1', '/pc/performance/performance-3.2');
+VALUES (10003, 'Заголовок...', 'Описание...', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-3.2');
 
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10004, 'Заголовок...', 'Описание...', '/pc/performance/performance-1.1', '/pc/performance/performance-1.2');
+VALUES (10004, 'Заголовок...', 'Описание...', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-1.2');
 
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10005, 'Заголовок...', 'Описание...', '/pc/performance/performance-2.1', '/pc/performance/performance-2.2');
+VALUES (10005, 'Заголовок...', 'Описание...', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-2.2');
 
 INSERT INTO public.pc_performance (pc_performance_id, title, description, image, image2)
-VALUES (10006, 'Заголовок...', 'Описание...', '/pc/performance/performance-3.1', '/pc/performance/performance-3.2');
+VALUES (10006, 'Заголовок...', 'Описание...', '/single-product/one/hyperpc-one-block-performance.jpg', '/pc/performance/performance-3.2');
 
 
 ---------------------- Pc_model_groups ----------------------
@@ -682,7 +682,7 @@ VALUES (4500, 100022, 10009, 10001, 10004, 10007, 10002,
         10001,10001, 10001, 100017, 100011,
         'One Super',
         'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
-        'uploads/one.jpg');
+        '/uploads/one.jpg');
 
 -- One Max
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
@@ -691,7 +691,7 @@ VALUES (5500, 100022, 10009, 10002, 10005, 10007, 10002,
         10002,10001, 10001, 100018, 100012,
         'One Max',
         'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
-        'uploads/one.jpg');
+        '/uploads/one.jpg');
 
 -- One Ultra
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,
@@ -700,7 +700,7 @@ VALUES (6800, 100022, 10009, 10002, 10005, 10007, 10002,
         10003,10001, 10001, 100018, 100012,
         'One Ultra',
         'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
-        'uploads/one.jpg');
+        '/uploads/one.jpg');
 
 -- Lumen Core Super
 INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherboard_id, pc_category_id, pc_id,

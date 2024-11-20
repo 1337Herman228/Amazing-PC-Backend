@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class CpuDto {
+    private Long cpuId;
     private int baseFrequency;
     private int boostFrequency;
     private int cpuCores;
@@ -18,8 +19,6 @@ public class CpuDto {
     private String cachel3;
     private String socket;
     private String techProcess;
-
-//    private RamType ramType;
 
 //  JSON
     private String ramType;

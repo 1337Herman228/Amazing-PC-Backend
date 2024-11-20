@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class PcCatalogDto {
-
     private List<PcCategories> pcCategories;
     private List<PcModelGroupCatalogDto> pcModelGroupList;
 }

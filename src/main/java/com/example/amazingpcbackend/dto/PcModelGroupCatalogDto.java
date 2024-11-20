@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class PcModelGroupCatalogDto {
-    PcModelGroups pcModelGroup;
-    float minPrice;
-    String image;
-    int configurationsCount;
+    private PcModelGroups pcModelGroup;
+    private float minPrice;
+    private String image;
+    private int configurationsCount;
 }
