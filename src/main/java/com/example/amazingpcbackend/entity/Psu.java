@@ -2,17 +2,15 @@ package com.example.amazingpcbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "psu")
 @Accessors(chain = true)
-public class Psu {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long psuId;
+public class Psu extends Parts{
 
     private int power; //650 W
 

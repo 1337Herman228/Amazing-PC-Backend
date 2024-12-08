@@ -1,31 +1,23 @@
 package com.example.amazingpcbackend.entity;
 
-import com.example.amazingpcbackend.dao.RamType;
-import com.example.amazingpcbackend.dao.converters.RamTypeConverter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import jakarta.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "cpu")
 @Accessors(chain = true)
-public class Cpu {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long cpuId;
+public class Cpu extends Parts {
 
     @Column(length = 30)
     private String socket; //LGA 1700
 
     private int maxRamCapacity; //192
-
-//    @Convert(converter = RamTypeConverter.class)
-//    @Column(columnDefinition = "json")
-//    private RamType ramType;
 
     //JSON
     @Column(length = 300)

@@ -10,7 +10,8 @@ import lombok.experimental.Accessors;
 @Data
 @Table(name = "parts")
 @Accessors(chain = true)
-public class Parts {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Parts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,48 +45,48 @@ public class Parts {
 
     //////
 
-    @OneToOne
-    @JoinColumn(name = "cpuId", referencedColumnName = "cpuId")
-    private Cpu cpu;
-
-    @OneToOne
-    @JoinColumn(name = "gpuId", referencedColumnName = "gpuId")
-    private Gpu gpu;
-
-    @OneToOne
-    @JoinColumn(name = "motherboardId", referencedColumnName = "motherboardId")
-    private Motherboard motherboard;
-
-    @OneToOne
-    @JoinColumn(name = "psuId", referencedColumnName = "psuId")
-    private Psu psu;
-
-    @OneToOne
-    @JoinColumn(name = "cpuAirCoolingId", referencedColumnName = "cpuAirCoolingId")
-    private CpuAirCooling cpuAirCooling;
-
-    @OneToOne
-    @JoinColumn(name = "cpuLiquidCoolingId", referencedColumnName = "cpuLiquidCoolingId")
-    private CpuLiquidCooling cpuLiquidCooling;
-
-    @OneToOne
-    @JoinColumn(name = "ramId", referencedColumnName = "ramId")
-    private Ram ram;
-
-    @OneToOne
-    @JoinColumn(name = "ssdId", referencedColumnName = "ssdId")
-    private Ssd ssd;
-
-    @OneToOne
-    @JoinColumn(name = "fanId", referencedColumnName = "fanId")
-    private Fans fan;
-
-    @OneToOne
-    @JoinColumn(name = "caseId", referencedColumnName = "caseId")
-    private Cases cases;
-
-    @OneToOne
-    @JoinColumn(name = "peripheryId", referencedColumnName = "peripheryId")
-    private Periphery periphery;
+//    @OneToOne
+//    @JoinColumn(name = "cpuId", referencedColumnName = "cpuId")
+//    private Cpu cpu;
+//
+//    @OneToOne
+//    @JoinColumn(name = "gpuId", referencedColumnName = "gpuId")
+//    private Gpu gpu;
+//
+//    @OneToOne
+//    @JoinColumn(name = "motherboardId", referencedColumnName = "motherboardId")
+//    private Motherboard motherboard;
+//
+//    @OneToOne
+//    @JoinColumn(name = "psuId", referencedColumnName = "psuId")
+//    private Psu psu;
+//
+//    @OneToOne
+//    @JoinColumn(name = "cpuAirCoolingId", referencedColumnName = "cpuAirCoolingId")
+//    private CpuAirCooling cpuAirCooling;
+//
+//    @OneToOne
+//    @JoinColumn(name = "cpuLiquidCoolingId", referencedColumnName = "cpuLiquidCoolingId")
+//    private CpuLiquidCooling cpuLiquidCooling;
+//
+//    @OneToOne
+//    @JoinColumn(name = "ramId", referencedColumnName = "ramId")
+//    private Ram ram;
+//
+//    @OneToOne
+//    @JoinColumn(name = "ssdId", referencedColumnName = "ssdId")
+//    private Ssd ssd;
+//
+//    @OneToOne
+//    @JoinColumn(name = "fanId", referencedColumnName = "fanId")
+//    private Fans fan;
+//
+//    @OneToOne
+//    @JoinColumn(name = "caseId", referencedColumnName = "caseId")
+//    private Cases cases;
+//
+//    @OneToOne
+//    @JoinColumn(name = "peripheryId", referencedColumnName = "peripheryId")
+//    private Periphery periphery;
 
 }

@@ -3,18 +3,16 @@ package com.example.amazingpcbackend.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import jakarta.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "motherboard")
 @Accessors(chain = true)
-public class Motherboard {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long motherboardId;
+public class Motherboard extends Parts{
 
     @Column(length = 30)
     private String socket; //lga 1700

@@ -14,7 +14,6 @@ public class ConfiguratorComponentListItem {
     // default_checked:true,
     // max_quantity:0,
 
-
     // default_checked - checked по умолчанию (по дефолту стоит в true, даже если поля в объекте нет)
     // когда это значение стоит в false и элемент радиокнопка, то при выборе появляется красный крестик, нажатие на который уюирает выбор кнопки
     // multiselect:'true' - чекбоксы, если поля нет, либо false - то радиокнопки

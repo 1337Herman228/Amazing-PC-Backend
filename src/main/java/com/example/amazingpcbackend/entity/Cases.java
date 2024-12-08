@@ -2,17 +2,15 @@ package com.example.amazingpcbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "cases")
 @Accessors(chain = true)
-public class Cases {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long caseId;
+public class Cases extends Parts{
 
     private int maxCpuCoolerHeight; //168 мм
     private int maxGpuLength; //330 мм

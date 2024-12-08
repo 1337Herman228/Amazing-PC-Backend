@@ -2,17 +2,15 @@ package com.example.amazingpcbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "fans")
 @Accessors(chain = true)
-public class Fans {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long fanId;
+public class Fans extends Parts{
 
     @Column(length = 50)
     private String fanSize; //120 мм

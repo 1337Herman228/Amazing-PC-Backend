@@ -7,6 +7,8 @@ import com.example.amazingpcbackend.repo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PartService {
@@ -29,272 +31,276 @@ public class PartService {
     private final TypesRepository typesRepository;
     private final PartitionsRepository partitionsRepository;
 
-    public void deletePart(Parts part) throws PartsException {
-        try {
-            partsRepository.delete(part);
+//    public void deletePart(Parts part) throws PartsException {
+//        try {
+//            partsRepository.delete(part);
+//
+//            if (part.getCategories().getCategoryName().equals("Периферия")) {
+//                peripheryRepository.delete(part.getPeriphery());
+//            } else if (part.getCategories().getCategoryName().equals("Комплектующие")) {
+//
+//                String typeAlternativeName = part.getTypes().getTypeName();
+//                switch (typeAlternativeName) {
+//                    case "cpu": {
+//                        cpuRepository.delete(part.getCpu());
+//                        break;
+//                    }
+//                    case "gpu": {
+//                        gpuRepository.delete(part.getGpu());
+//                        break;
+//                    }
+//                    case "motherboard": {
+//                        motherboardRepository.delete(part.getMotherboard());
+//                        break;
+//                    }
+//                    case "cpu_fan": {
+//                        if (part.getCpuAirCooling() != null) {
+//                            cpuAirCoolingRepository.delete(part.getCpuAirCooling());
+//                        } else if (part.getCpuLiquidCooling() != null) {
+//                            cpuLiquidCoolingRepository.delete(part.getCpuLiquidCooling());
+//                        }
+//                        break;
+//                    }
+//                    case "ram": {
+//                        ramRepository.delete(part.getRam());
+//                        break;
+//                    }
+//                    case "ssd": {
+//                        ssdRepository.delete(part.getSsd());
+//                        break;
+//                    }
+//                    case "psu": {
+//                        psuRepository.delete(part.getPsu());
+//                        break;
+//                    }
+//                    case "cases": {
+//                        casesRepository.delete(part.getCases());
+//                        break;
+//                    }
+//                    case "fan": {
+//                        fansRepository.delete(part.getFan());
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            throw new PartsException("can't delete part", e);
+//        }
+//    }
+//
+//    public void addPart(PartAddDto part) throws PartsException {
+//
+//        try {
+//            if (part.getCategory().equals("Периферия")) {
+//                Periphery newPeriphery = new Periphery();
+//                Periphery periphery = getPeriphery(newPeriphery, part.getPeriphery());
+//                peripheryRepository.save(periphery);
+//                Parts newPart = new Parts();
+//                partsRepository.save(getPart(newPart, part).setPeriphery(periphery));
+//            } else if (part.getCategory().equals("Комплектующие")) {
+//
+//                String type = part.getType();
+//
+//                switch (type) {
+//
+//                    case "Процессор": {
+//                        Cpu newCpu = new Cpu();
+//                        Cpu cpu = getCpu(newCpu, part.getCpu());
+//                        cpuRepository.save(cpu);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setCpu(cpu));
+//                        break;
+//                    }
+//                    case "Видеокарта": {
+//                        Gpu newGpu = new Gpu();
+//                        Gpu gpu = getGpu(newGpu, part.getGpu());
+//                        gpuRepository.save(gpu);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setGpu(gpu));
+//                        break;
+//                    }
+//                    case "Материнская плата": {
+//                        Motherboard newMotherboard = new Motherboard();
+//                        Motherboard motherboard = getMotherboard(newMotherboard, part.getMotherboard());
+//                        motherboardRepository.save(motherboard);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setMotherboard(motherboard));
+//                        break;
+//                    }
+//                    case "Охлаждение": {
+//                        if (part.getCpuAirCooling() != null) {
+//                            CpuAirCooling newCpuAirCooling = new CpuAirCooling();
+//                            CpuAirCooling cpuAirCooling = getCpuAirCooling(newCpuAirCooling, part.getCpuAirCooling());
+//                            cpuAirCoolingRepository.save(cpuAirCooling);
+//                            Parts newPart = new Parts();
+//                            partsRepository.save(getPart(newPart, part).setCpuAirCooling(cpuAirCooling));
+//                            break;
+//                        } else if (part.getCpuLiquidCooling() != null) {
+//                            CpuLiquidCooling newCpuLiquidCooling = new CpuLiquidCooling();
+//                            CpuLiquidCooling cpuLiquidCooling = getCpuLiquidCooling(newCpuLiquidCooling, part.getCpuLiquidCooling());
+//                            cpuLiquidCoolingRepository.save(cpuLiquidCooling);
+//                            Parts newPart = new Parts();
+//                            partsRepository.save(getPart(newPart, part).setCpuLiquidCooling(cpuLiquidCooling));
+//                            break;
+//                        }
+//                        break;
+//                    }
+//                    case "Оперативная память": {
+//                        Ram newRam = new Ram();
+//                        Ram ram = getRam(newRam, part.getRam());
+//                        ramRepository.save(ram);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setRam(ram));
+//                        break;
+//                    }
+//                    case "SSD накопитель": {
+//                        Ssd newSsd = new Ssd();
+//                        Ssd ssd = getSsd(newSsd, part.getSsd());
+//                        ssdRepository.save(ssd);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setSsd(ssd));
+//                        break;
+//                    }
+//                    case "Блок питания": {
+//                        Psu newPsu = new Psu();
+//                        Psu psu = getPsu(newPsu, part.getPsu());
+//                        psuRepository.save(psu);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setPsu(psu));
+//                        break;
+//                    }
+//                    case "Корпус": {
+//                        Cases newCases = new Cases();
+//                        Cases cases = getCases(newCases, part.getCases());
+//                        casesRepository.save(cases);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setCases(cases));
+//                        break;
+//                    }
+//                    case "Вентилятор": {
+//                        Fans newFans = new Fans();
+//                        Fans fans = getFans(newFans, part.getFan());
+//                        fansRepository.save(fans);
+//                        Parts newPart = new Parts();
+//                        partsRepository.save(getPart(newPart, part).setFan(fans));
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            throw new PartsException("can't add new part", e);
+//        }
+//    }
+//
+//    public void editPart(PartAddDto part) throws PartsException {
+//
+//        try {
+//            if (part.getCategory().equals("Периферия")) {
+//                peripheryRepository.findById(part.getPeriphery().getPeripheryId()).ifPresent(object -> {
+//                    peripheryRepository.save(getPeriphery(object, part.getPeriphery()));
+//                });
+//                partsRepository.findByName(part.getName()).ifPresent(object -> {
+//                    partsRepository.save(getPart(object, part));
+//                });
+//            } else if (part.getCategory().equals("Комплектующие")) {
+//
+//                String type = part.getType();
+//
+//                switch (type) {
+//                    case "Процессор": {
+//                        cpuRepository.findById(part.getCpu().getCpuId()).ifPresent(object -> {
+//                            cpuRepository.save(getCpu(object, part.getCpu()));
+//                            cpuRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Видеокарта": {
+//                        gpuRepository.findById(part.getGpu().getGpuId()).ifPresent(object -> {
+//                            gpuRepository.save(getGpu(object, part.getGpu()));
+//                            gpuRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Материнская плата": {
+//                        motherboardRepository.findById(part.getMotherboard().getMotherboardId()).ifPresent(object -> {
+//                            motherboardRepository.save(getMotherboard(object, part.getMotherboard()));
+//                            motherboardRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Охлаждение": {
+//                        if (part.getCpuAirCooling() != null) {
+//                            cpuAirCoolingRepository.findById(part.getCpuAirCooling().getCpuAirCoolingId()).ifPresent(object -> {
+//                                cpuAirCoolingRepository.save(getCpuAirCooling(object, part.getCpuAirCooling()));
+//                                cpuAirCoolingRepository.save(object);
+//                            });
+//                            updatePart(part);
+//                            break;
+//                        } else if (part.getCpuLiquidCooling() != null) {
+//                            cpuLiquidCoolingRepository.findById(part.getCpuLiquidCooling().getCpuLiquidCoolingId()).ifPresent(object -> {
+//                                cpuLiquidCoolingRepository.save(getCpuLiquidCooling(object, part.getCpuLiquidCooling()));
+//                                cpuLiquidCoolingRepository.save(object);
+//                            });
+//                            updatePart(part);
+//                            break;
+//                        }
+//                        break;
+//                    }
+//                    case "Оперативная память": {
+//                        ramRepository.findById(part.getRam().getRamId()).ifPresent(object -> {
+//                            ramRepository.save(getRam(object, part.getRam()));
+//                            ramRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "SSD накопитель": {
+//                        ssdRepository.findById(part.getSsd().getSsdId()).ifPresent(object -> {
+//                            ssdRepository.save(getSsd(object, part.getSsd()));
+//                            ssdRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Блок питания": {
+//                        psuRepository.findById(part.getPsu().getPsuId()).ifPresent(object -> {
+//                            psuRepository.save(getPsu(object, part.getPsu()));
+//                            psuRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Корпус": {
+//                        casesRepository.findById(part.getCases().getCaseId()).ifPresent(object -> {
+//                            casesRepository.save(getCases(object, part.getCases()));
+//                            casesRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                    case "Вентилятор": {
+//                        fansRepository.findById(part.getFan().getFanId()).ifPresent(object -> {
+//                            fansRepository.save(getFans(object, part.getFan()));
+//                            fansRepository.save(object);
+//                        });
+//                        updatePart(part);
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            throw new PartsException("can't add new part", e);
+//        }
+//    }
 
-            if (part.getCategories().getCategoryName().equals("Периферия")) {
-                peripheryRepository.delete(part.getPeriphery());
-            } else if (part.getCategories().getCategoryName().equals("Комплектующие")) {
-
-                String typeAlternativeName = part.getTypes().getTypeName();
-                switch (typeAlternativeName) {
-                    case "cpu": {
-                        cpuRepository.delete(part.getCpu());
-                        break;
-                    }
-                    case "gpu": {
-                        gpuRepository.delete(part.getGpu());
-                        break;
-                    }
-                    case "motherboard": {
-                        motherboardRepository.delete(part.getMotherboard());
-                        break;
-                    }
-                    case "cpu_fan": {
-                        if (part.getCpuAirCooling() != null) {
-                            cpuAirCoolingRepository.delete(part.getCpuAirCooling());
-                        } else if (part.getCpuLiquidCooling() != null) {
-                            cpuLiquidCoolingRepository.delete(part.getCpuLiquidCooling());
-                        }
-                        break;
-                    }
-                    case "ram": {
-                        ramRepository.delete(part.getRam());
-                        break;
-                    }
-                    case "ssd": {
-                        ssdRepository.delete(part.getSsd());
-                        break;
-                    }
-                    case "psu": {
-                        psuRepository.delete(part.getPsu());
-                        break;
-                    }
-                    case "cases": {
-                        casesRepository.delete(part.getCases());
-                        break;
-                    }
-                    case "fan": {
-                        fansRepository.delete(part.getFan());
-                        break;
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            throw new PartsException("can't delete part", e);
-        }
-    }
-
-    public void addPart(PartAddDto part) throws PartsException {
-
-        try {
-            if (part.getCategory().equals("Периферия")) {
-                Periphery newPeriphery = new Periphery();
-                Periphery periphery = getPeriphery(newPeriphery, part.getPeriphery());
-                peripheryRepository.save(periphery);
-                Parts newPart = new Parts();
-                partsRepository.save(getPart(newPart, part).setPeriphery(periphery));
-            } else if (part.getCategory().equals("Комплектующие")) {
-
-                String type = part.getType();
-
-                switch (type) {
-
-                    case "Процессор": {
-                        Cpu newCpu = new Cpu();
-                        Cpu cpu = getCpu(newCpu, part.getCpu());
-                        cpuRepository.save(cpu);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setCpu(cpu));
-                        break;
-                    }
-                    case "Видеокарта": {
-                        Gpu newGpu = new Gpu();
-                        Gpu gpu = getGpu(newGpu, part.getGpu());
-                        gpuRepository.save(gpu);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setGpu(gpu));
-                        break;
-                    }
-                    case "Материнская плата": {
-                        Motherboard newMotherboard = new Motherboard();
-                        Motherboard motherboard = getMotherboard(newMotherboard, part.getMotherboard());
-                        motherboardRepository.save(motherboard);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setMotherboard(motherboard));
-                        break;
-                    }
-                    case "Охлаждение": {
-                        if (part.getCpuAirCooling() != null) {
-                            CpuAirCooling newCpuAirCooling = new CpuAirCooling();
-                            CpuAirCooling cpuAirCooling = getCpuAirCooling(newCpuAirCooling, part.getCpuAirCooling());
-                            cpuAirCoolingRepository.save(cpuAirCooling);
-                            Parts newPart = new Parts();
-                            partsRepository.save(getPart(newPart, part).setCpuAirCooling(cpuAirCooling));
-                            break;
-                        } else if (part.getCpuLiquidCooling() != null) {
-                            CpuLiquidCooling newCpuLiquidCooling = new CpuLiquidCooling();
-                            CpuLiquidCooling cpuLiquidCooling = getCpuLiquidCooling(newCpuLiquidCooling, part.getCpuLiquidCooling());
-                            cpuLiquidCoolingRepository.save(cpuLiquidCooling);
-                            Parts newPart = new Parts();
-                            partsRepository.save(getPart(newPart, part).setCpuLiquidCooling(cpuLiquidCooling));
-                            break;
-                        }
-                        break;
-                    }
-                    case "Оперативная память": {
-                        Ram newRam = new Ram();
-                        Ram ram = getRam(newRam, part.getRam());
-                        ramRepository.save(ram);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setRam(ram));
-                        break;
-                    }
-                    case "SSD накопитель": {
-                        Ssd newSsd = new Ssd();
-                        Ssd ssd = getSsd(newSsd, part.getSsd());
-                        ssdRepository.save(ssd);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setSsd(ssd));
-                        break;
-                    }
-                    case "Блок питания": {
-                        Psu newPsu = new Psu();
-                        Psu psu = getPsu(newPsu, part.getPsu());
-                        psuRepository.save(psu);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setPsu(psu));
-                        break;
-                    }
-                    case "Корпус": {
-                        Cases newCases = new Cases();
-                        Cases cases = getCases(newCases, part.getCases());
-                        casesRepository.save(cases);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setCases(cases));
-                        break;
-                    }
-                    case "Вентилятор": {
-                        Fans newFans = new Fans();
-                        Fans fans = getFans(newFans, part.getFan());
-                        fansRepository.save(fans);
-                        Parts newPart = new Parts();
-                        partsRepository.save(getPart(newPart, part).setFan(fans));
-                        break;
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            throw new PartsException("can't add new part", e);
-        }
-    }
-
-    public void editPart(PartAddDto part) throws PartsException {
-
-        try {
-            if (part.getCategory().equals("Периферия")) {
-                peripheryRepository.findById(part.getPeriphery().getPeripheryId()).ifPresent(object -> {
-                    peripheryRepository.save(getPeriphery(object, part.getPeriphery()));
-                });
-                partsRepository.findByName(part.getName()).ifPresent(object -> {
-                    partsRepository.save(getPart(object, part));
-                });
-            } else if (part.getCategory().equals("Комплектующие")) {
-
-                String type = part.getType();
-
-                switch (type) {
-                    case "Процессор": {
-                        cpuRepository.findById(part.getCpu().getCpuId()).ifPresent(object -> {
-                            cpuRepository.save(getCpu(object, part.getCpu()));
-                            cpuRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Видеокарта": {
-                        gpuRepository.findById(part.getGpu().getGpuId()).ifPresent(object -> {
-                            gpuRepository.save(getGpu(object, part.getGpu()));
-                            gpuRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Материнская плата": {
-                        motherboardRepository.findById(part.getMotherboard().getMotherboardId()).ifPresent(object -> {
-                            motherboardRepository.save(getMotherboard(object, part.getMotherboard()));
-                            motherboardRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Охлаждение": {
-                        if (part.getCpuAirCooling() != null) {
-                            cpuAirCoolingRepository.findById(part.getCpuAirCooling().getCpuAirCoolingId()).ifPresent(object -> {
-                                cpuAirCoolingRepository.save(getCpuAirCooling(object, part.getCpuAirCooling()));
-                                cpuAirCoolingRepository.save(object);
-                            });
-                            updatePart(part);
-                            break;
-                        } else if (part.getCpuLiquidCooling() != null) {
-                            cpuLiquidCoolingRepository.findById(part.getCpuLiquidCooling().getCpuLiquidCoolingId()).ifPresent(object -> {
-                                cpuLiquidCoolingRepository.save(getCpuLiquidCooling(object, part.getCpuLiquidCooling()));
-                                cpuLiquidCoolingRepository.save(object);
-                            });
-                            updatePart(part);
-                            break;
-                        }
-                        break;
-                    }
-                    case "Оперативная память": {
-                        ramRepository.findById(part.getRam().getRamId()).ifPresent(object -> {
-                            ramRepository.save(getRam(object, part.getRam()));
-                            ramRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "SSD накопитель": {
-                        ssdRepository.findById(part.getSsd().getSsdId()).ifPresent(object -> {
-                            ssdRepository.save(getSsd(object, part.getSsd()));
-                            ssdRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Блок питания": {
-                        psuRepository.findById(part.getPsu().getPsuId()).ifPresent(object -> {
-                            psuRepository.save(getPsu(object, part.getPsu()));
-                            psuRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Корпус": {
-                        casesRepository.findById(part.getCases().getCaseId()).ifPresent(object -> {
-                            casesRepository.save(getCases(object, part.getCases()));
-                            casesRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                    case "Вентилятор": {
-                        fansRepository.findById(part.getFan().getFanId()).ifPresent(object -> {
-                            fansRepository.save(getFans(object, part.getFan()));
-                            fansRepository.save(object);
-                        });
-                        updatePart(part);
-                        break;
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            throw new PartsException("can't add new part", e);
-        }
+    public List<Parts> getAllParts() {
+        return partsRepository.findAll();
     }
 
     private void updatePart(PartAddDto part) {

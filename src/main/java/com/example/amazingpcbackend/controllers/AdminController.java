@@ -83,24 +83,25 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/add-part")
-    @ResponseStatus(HttpStatus.CREATED)
-    public HttpStatus addPart(@RequestBody PartAddDto part) throws PartsException {
-        try {
-            partService.addPart(part);
-            return HttpStatus.CREATED;
-        } catch (Exception e) {
-            throw new PartsException("can't add new part", e);
-        }
-    }
+//    @PostMapping("/add-part")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public HttpStatus addPart(@RequestBody PartAddDto part) throws PartsException {
+//        try {
+//            partService.addPart(part);
+//            return HttpStatus.CREATED;
+//        } catch (Exception e) {
+//            throw new PartsException("can't add new part", e);
+//        }
+//    }
 
-    @PostMapping("/edit-type")
+    @PutMapping("/edit-type")
     @ResponseStatus(HttpStatus.OK)
     public HttpStatus editType(@RequestBody Types editType) throws TypesException {
         try {
             typesRepository.findById(editType.getTypeId()).ifPresent(type -> {
                 type.setTypeName(editType.getTypeName());
                 type.setAlternativeName(editType.getAlternativeName());
+                type.setTypeImage(editType.getTypeImage());
                 typesRepository.save(type);
             });
             return HttpStatus.OK;
@@ -109,7 +110,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/edit-partition")
+    @PutMapping("/edit-partition")
     @ResponseStatus(HttpStatus.OK)
     public HttpStatus editPartition(@RequestBody Partitions editPartition) throws PartitionsException {
         try {
@@ -123,48 +124,48 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/edit-part")
-    @ResponseStatus(HttpStatus.OK)
-    public HttpStatus editPart(@RequestBody PartAddDto part) throws PartsException {
-        try {
-            partService.editPart(part);
-            return HttpStatus.OK;
-        } catch (Exception e) {
-            throw new PartsException("can't edit part", e);
-        }
-    }
+//    @PostMapping("/edit-part")
+//    @ResponseStatus(HttpStatus.OK)
+//    public HttpStatus editPart(@RequestBody PartAddDto part) throws PartsException {
+//        try {
+//            partService.editPart(part);
+//            return HttpStatus.OK;
+//        } catch (Exception e) {
+//            throw new PartsException("can't edit part", e);
+//        }
+//    }
 
-    @DeleteMapping ("/delete-type")
+    @DeleteMapping ("/delete-type/{typeId}")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deleteType(@RequestBody Types type) throws TypesException {
+    public HttpStatus deleteType(@PathVariable Long typeId) throws TypesException {
         try {
-            typesRepository.deleteById(type.getTypeId());
+            typesRepository.deleteById(typeId);
             return HttpStatus.OK;
         } catch (Exception e) {
             throw new TypesException("can't delete type", e);
         }
     }
 
-    @DeleteMapping ("/delete-partition")
+    @DeleteMapping ("/delete-partition/{partitionId}")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deletePartition(@RequestBody Partitions partition) throws PartitionsException {
+    public HttpStatus deletePartition(@PathVariable Long partitionId) throws PartitionsException {
         try {
-            partitionsRepository.deleteById(partition.getPartitionId());
+            partitionsRepository.deleteById(partitionId);
             return HttpStatus.OK;
         } catch (Exception e) {
             throw new PartitionsException("can't delete partition", e);
         }
     }
 
-    @DeleteMapping ("/delete-part")
-    @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deletePart(@RequestBody Parts part) throws PartsException {
-        try {
-            partService.deletePart(part);
-            return HttpStatus.OK;
-        } catch (Exception e) {
-            throw new PartsException("can't delete part", e);
-        }
-    }
+//    @DeleteMapping ("/delete-part/{partId}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public HttpStatus deletePart(@PathVariable Long partId) throws PartsException {
+//        try {
+//            partService.deletePart(partsRepository.findById(partId).orElse(null));
+//            return HttpStatus.OK;
+//        } catch (Exception e) {
+//            throw new PartsException("can't delete part", e);
+//        }
+//    }
 
 }

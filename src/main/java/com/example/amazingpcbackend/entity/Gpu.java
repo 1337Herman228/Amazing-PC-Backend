@@ -3,18 +3,16 @@ package com.example.amazingpcbackend.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import jakarta.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "gpu")
 @Accessors(chain = true)
-public class Gpu {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long gpuId;
+public class Gpu extends Parts{
 
     private int techProcess; // 5nm
     private int maxDisplaysQuantity; // 4

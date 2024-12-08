@@ -2,17 +2,15 @@ package com.example.amazingpcbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Table(name = "cpu_liquid_cooling")
 @Accessors(chain = true)
-public class CpuLiquidCooling {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long cpuLiquidCoolingId;
+public class CpuLiquidCooling extends Parts{
 
     // JSON
     private String sockets; // Am4, Am5 , Lga1700

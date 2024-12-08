@@ -77,7 +77,7 @@ public class PcService {
             List<PcFansQuantity> pcFansQuantities = pcFansQuantityRepository.findByPc(pc);
             for(PcFansQuantity pcFansQuantity : pcFansQuantities) {
                 FanDto fanDto = new FanDto();
-                Optional<Parts> part = partsRepository.findByFan(pcFansQuantity.getFan().getFan());
+                Optional<Parts> part = partsRepository.findById(pcFansQuantity.getFan().getPartId());
                 fanDto.setFan(part.get());
                 fanDto.setQuantity(pcFansQuantity.getQuantity());
                 fanDtoList.add(fanDto);
@@ -87,7 +87,7 @@ public class PcService {
             List<PcSsdQuantity> pcSsdQuantities = pcSsdQuantityRepository.findByPc(pc);
             for(PcSsdQuantity pcSsdQuantity : pcSsdQuantities) {
                 SsdDto ssdDto = new SsdDto();
-                Optional<Parts> part = partsRepository.findBySsd(pcSsdQuantity.getSsd().getSsd());
+                Optional<Parts> part = partsRepository.findById(pcSsdQuantity.getSsd().getPartId());
                 ssdDto.setSsd(part.get());
                 ssdDto.setQuantity(pcSsdQuantity.getQuantity());
                 ssdDtoList.add(ssdDto);
@@ -101,7 +101,6 @@ public class PcService {
 
         return pcDtoList;
     }
-
 
     private static PcModelGroupCatalogDto getPcModelGroupCatalogDto(PcModelGroups pcModelGroup, Pc minPricePc, List<Pc> pcs) {
         float minPrice = minPricePc.getTotalPrice();

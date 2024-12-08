@@ -55,10 +55,6 @@ public class PcModelGroups {
     private PcDesign pcDesign;
 
     @OneToOne
-    @JoinColumn(name = "pcPreviewId")
-    private PcPreview pcPreview;
-
-    @OneToOne
     @JoinColumn(name = "pcPerformanceId")
     private PcPerformance pcPerformance;
 }
