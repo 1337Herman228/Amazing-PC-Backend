@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserTests {
+public class AdminTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -24,6 +24,9 @@ public class UserTests {
     private ObjectMapper objectMapper;
     @Autowired
     private PartitionsRepository partitionsRepository;
+
+    // Заранее задаем валидный токен
+    public String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMzg2MDIxOSwiZXhwIjoxNzM0MDMzMDE5fQ.SXXHW196lMcGn6DlxVv6nezGPSnn1LDVSNPrfSYIvuQ";
 
     @Test
     public void testAddPartition_Success() throws Exception {
@@ -35,9 +38,6 @@ public class UserTests {
 
         // Преобразуем объект в JSON
         String requestBody = objectMapper.writeValueAsString(partition);
-
-        // Заранее задаем валидный токен
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMzY4Nzg3NiwiZXhwIjoxNzMzODYwNjc2fQ.SO6jMzQtzZnQRlz8CiMEMZgex3DPFzHI0TPE7MnYBbk";
 
         // Выполняем POST-запрос к контроллеру
         ResultActions result = mockMvc.perform(post("/admin/add-partition")
@@ -61,9 +61,6 @@ public class UserTests {
         // Преобразуем объект в JSON
         String requestBody = objectMapper.writeValueAsString(partition);
 
-        // Заранее задаем валидный токен
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMzY4Nzg3NiwiZXhwIjoxNzMzODYwNjc2fQ.SO6jMzQtzZnQRlz8CiMEMZgex3DPFzHI0TPE7MnYBbk";
-
         // Выполняем PUT-запрос к контроллеру
         ResultActions result = mockMvc.perform(put("/admin/edit-partition")
                 .contentType("application/json")
@@ -76,9 +73,6 @@ public class UserTests {
 
     @Test
     public void testDeletePartition_Success() throws Exception {
-
-        // Заранее задаем валидный токен
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczMzY4Nzg3NiwiZXhwIjoxNzMzODYwNjc2fQ.SO6jMzQtzZnQRlz8CiMEMZgex3DPFzHI0TPE7MnYBbk";
 
         // id существующего раздела
         long partitionIdToDelete = 7777L;

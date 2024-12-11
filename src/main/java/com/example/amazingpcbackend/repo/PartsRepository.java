@@ -21,4 +21,5 @@ public interface PartsRepository extends JpaRepository<Parts, Long> {
 //    Optional<Parts> findByCases(Cases cases);
 //    Optional<Parts> findByPeriphery(Periphery periphery);
 //    Optional<Parts> findBySsd(Ssd ssd);
+
 }
