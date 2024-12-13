@@ -13,13 +13,4 @@ public interface PartsRepository extends JpaRepository<Parts, Long> {
     List<Parts> findByCategories(Categories category);
     List<Parts> findByPartitions(Partitions partition);
     List<Parts> findByTypes(Types type);
-//    Optional<Parts> findByCpu(Cpu cpu);
-//    Optional<Parts> findByGpu(Gpu gpu);
-//    Optional<Parts> findByMotherboard(Motherboard motherboard);
-//    Optional<Parts> findByPsu(Psu psu);
-//    Optional<Parts> findByFan(Fans fan);
-//    Optional<Parts> findByCases(Cases cases);
-//    Optional<Parts> findByPeriphery(Periphery periphery);
-//    Optional<Parts> findBySsd(Ssd ssd);
-
 }

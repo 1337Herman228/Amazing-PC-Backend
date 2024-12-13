@@ -3,11 +3,10 @@ package com.example.amazingpcbackend.controllers;
 import com.example.amazingpcbackend.dto.ConfiguratorComponentsListDto;
 import com.example.amazingpcbackend.dto.PcCatalogDto;
 import com.example.amazingpcbackend.dto.PcDto;
-import com.example.amazingpcbackend.entity.Pc;
-import com.example.amazingpcbackend.repo.PcCategoriesRepository;
-import com.example.amazingpcbackend.repo.PcModelGroupsRepository;
+import com.example.amazingpcbackend.entity.PurchaseItems;
 import com.example.amazingpcbackend.services.ConfiguratorService;
 import com.example.amazingpcbackend.services.PcService;
+import com.example.amazingpcbackend.services.PurchasesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +21,9 @@ import java.util.List;
 public class UserController {
 
     private final ConfiguratorService configuratorService;
+    private final PurchasesService purchasesService;
 
     private final PcService pcService;
-    private final PcModelGroupsRepository pcModelGroupsRepository;
 
     @GetMapping("/configurator-parts")
     public ConfiguratorComponentsListDto getConfiguratorParts() {
@@ -49,6 +48,11 @@ public class UserController {
     @GetMapping("/get-pc-by-model-group-name/{modelGroupName}")
     public List<PcDto> getPcsByModelGroupName(@PathVariable String modelGroupName) {
         return pcService.getPcsByModelGroupName(modelGroupName);
+    }
+
+    @GetMapping("/get-user-cart-items/{userId}")
+    public List<PurchaseItems> getUserCartItems(@PathVariable Long userId) {
+        return purchasesService.getUserCartItems(userId);
     }
 
 }

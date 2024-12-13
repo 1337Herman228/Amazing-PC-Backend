@@ -8,7 +8,8 @@ import lombok.experimental.Accessors;
 @Data
 @Table(name = "purchase_items")
 @Accessors(chain = true)
-public class PurchaseItems {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class PurchaseItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,12 +21,4 @@ public class PurchaseItems {
     @ManyToOne
     @JoinColumn(name = "purchaseId")
     private Purchases purchase;
-
-    @ManyToOne
-    @JoinColumn(name = "partId")
-    private Parts part;
-
-    @ManyToOne
-    @JoinColumn(name = "pcId")
-    private Pc pc;
 }

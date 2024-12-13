@@ -8,17 +8,11 @@ import lombok.experimental.Accessors;
 @Data
 @Table(name = "compare_items")
 @Accessors(chain = true)
-public class CompareItems {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class CompareItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long compareItemId;
 
-    @ManyToOne
-    @JoinColumn(name = "partId")
-    private Parts part;
-
-    @ManyToOne
-    @JoinColumn(name = "pcId")
-    private Pc pc;
 }

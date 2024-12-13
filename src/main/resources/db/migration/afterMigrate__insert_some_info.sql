@@ -626,7 +626,7 @@ INSERT INTO public.pc (total_price, case_id, cpu_fan_id, cpu_id, gpu_id, motherb
 VALUES (7800, 100022, 10009, 10002, 10005, 10007, 10002,
         11000, 10004, 10001, 100018, 100012,
         'Lumen Core Super',
-        'Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
+        'Платформа для гейминга в Full HD разрешении, созданнаFя на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].',
         'uploads/lumen-core.jpg');
 
 -- Fury Super
@@ -713,15 +713,29 @@ VALUES (10003, 10002, 10003, '$2a$10$ZNCDiKrhA/EMkjNCA8x8Xu7hOaU.7/UT3S6Ox2rm2z/
 
 ---------------------- Purchase_items ----------------------
 -- LG UltraGear 24GN65R
-INSERT INTO public.purchase_items (quantity, total_price, part_id, pc_id, purchase_id, purchase_item_id)
-VALUES (1, 300, 100026, null, null, 10001);
+INSERT INTO public.purchase_items (quantity, total_price, purchase_id, purchase_item_id)
+VALUES (1, 300, null,  10001);
 
--- LG UltraGear 24GN65R
-INSERT INTO public.purchase_items (quantity, total_price, part_id, pc_id, purchase_id, purchase_item_id)
-VALUES (2, 230, 100015, null, null, 10002);
+-- Rtx 4070
+INSERT INTO public.purchase_items (quantity, total_price, purchase_id, purchase_item_id)
+VALUES (2, 230, null,  10002);
 
-INSERT INTO public.purchase_items (quantity, total_price, part_id, pc_id, purchase_id, purchase_item_id)
-VALUES (1, 6800, null, 10003, null, 10003);
+-- One Ultra
+INSERT INTO public.purchase_items (quantity, total_price, purchase_id, purchase_item_id)
+VALUES (1, 6800,  null, 10003);
+
+---------------------- Purchase_items_pc -------------------
+
+INSERT INTO public.purchase_items_pc (pc_id, purchase_item_id)
+VALUES (10003, 10003);
+
+---------------------- Purchase_items_parts -------------------
+
+INSERT INTO public.purchase_items_parts (part_id, purchase_item_id)
+VALUES (100026, 10001);
+
+INSERT INTO public.purchase_items_parts (part_id, purchase_item_id)
+VALUES (100015, 10002);
 
 
 ---------------------- Cart ----------------------
@@ -738,6 +752,7 @@ VALUES (10003, 10003);
 ---------------------- Purchases ----------------------
 INSERT INTO public.purchases (date, purchase_id, user_id, destination)
 VALUES ('2024-08-11 20:31:32.000000', 10001, 10002, 'Сюда');
+
 -- Обновляем purchase_items и добавляем ссылку на purchase
 UPDATE public.purchase_items
 SET purchase_id = 10001
@@ -748,6 +763,7 @@ WHERE purchase_item_id = 10002;
 
 INSERT INTO public.purchases (date, purchase_id, user_id, destination)
 VALUES ('2024-08-11 20:32:32.000000', 10002, 10003, 'Туда');
+
 -- Обновляем purchase_items и добавляем ссылку на purchase
 UPDATE public.purchase_items
 SET purchase_id = 10002
@@ -755,21 +771,39 @@ WHERE purchase_item_id = 10003;
 
 
 ---------------------- Compare_items ----------------------
-INSERT INTO public.compare_items (compare_item_id, part_id, pc_id)
-VALUES (10001, null, 10001);
+INSERT INTO public.compare_items (compare_item_id)
+VALUES (10001);
 
-INSERT INTO public.compare_items (compare_item_id, part_id, pc_id)
-VALUES (10002, null, 10002);
+INSERT INTO public.compare_items (compare_item_id)
+VALUES (10002);
 
-INSERT INTO public.compare_items (compare_item_id, part_id, pc_id)
-VALUES (10003, null, 10003);
+INSERT INTO public.compare_items (compare_item_id)
+VALUES (10003);
 
-INSERT INTO public.compare_items (compare_item_id, part_id, pc_id)
-VALUES (10004, 10001, null);
+INSERT INTO public.compare_items (compare_item_id )
+VALUES (10004);
 
-INSERT INTO public.compare_items (compare_item_id, part_id, pc_id)
-VALUES (10005, 10002, null);
+INSERT INTO public.compare_items (compare_item_id)
+VALUES (10005);
 
+---------------------- Compare_items_pc ----------------------
+
+INSERT INTO public.compare_items_pc (compare_item_id, pc_id)
+VALUES (10004, 10001);
+
+INSERT INTO public.compare_items_pc (compare_item_id, pc_id)
+VALUES (10005, 10002);
+
+---------------------- Compare_items_parts ----------------------
+
+INSERT INTO public.compare_items_parts (compare_item_id, part_id)
+VALUES (10001, 10001);
+
+INSERT INTO public.compare_items_parts (compare_item_id, part_id)
+VALUES (10002, 10002);
+
+INSERT INTO public.compare_items_parts (compare_item_id, part_id)
+VALUES (10003, 10003);
 
 ---------------------- Compare ----------------------
 INSERT INTO public.compare (compare_item_compare_item_id, user_user_id)

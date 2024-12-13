@@ -22,42 +22,6 @@ public class ConfiguratorService {
     private final PartsRepository partsRepository;
     private final TypesRepository typesRepository;
 
-//    public ConfiguratorComponentsListDto getComponentsList() {
-//        ConfiguratorComponentsListDto configuratorComponentsListDto = new ConfiguratorComponentsListDto();
-//        List<ConfiguratorComponentListItem> components = new ArrayList<>();
-//
-//        List<Types> allTypes = typesRepository.findAll();
-//
-//        for (Types type : allTypes) {
-//            ConfiguratorComponentListItem component = new ConfiguratorComponentListItem();
-//            component.setType(type);
-//
-//            List<Parts> parts = partsRepository.findByTypes(type);
-//            component.setCategory(parts.get(0).getCategories());
-//            component.setItems(parts);
-//
-//            List<Partitions> partitions = new ArrayList<>();
-//            List<String> listOfPartitions = new ArrayList<>();
-//            for (Parts part : parts) {
-//                if (part.getPartitions() != null) {
-//                    partitions.add(part.getPartitions());
-//                }
-//            }
-//            for(Partitions partition : partitions) {
-//                listOfPartitions.add(partition.getPartitionName());
-//            }
-//            Set<String> set = new HashSet<>(listOfPartitions);
-//            listOfPartitions.clear();
-//            listOfPartitions.addAll(set);
-//
-//            component.setPartition(listOfPartitions);
-//            components.add(component);
-//        }
-//
-//        configuratorComponentsListDto.setComponents(components);
-//        return configuratorComponentsListDto;
-//    }
-
     public ConfiguratorComponentsListDto getComponentsList() {
         ConfiguratorComponentsListDto configuratorComponentsListDto = new ConfiguratorComponentsListDto();
         List<ConfiguratorComponentListItem> components = new ArrayList<>();
