@@ -2,13 +2,13 @@ package com.example.amazingpcbackend.repo;
 
 import com.example.amazingpcbackend.entity.Purchases;
 import com.example.amazingpcbackend.entity.Users;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
-public interface PurchasesRepository extends JpaRepository<Purchases, Long> {
-    List<Purchases> findByUsers(Users users);
+public interface PurchasesRepository extends MongoRepository<Purchases, String> {
+    List<Purchases> findByUser(Users users);
     List<Purchases> findByDestinationContaining(String destination);
-    List<Purchases> findByDate(Date date);
+    List<Purchases> findByDate(Timestamp date);
 }

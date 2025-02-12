@@ -1,19 +1,19 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "pc_types")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "pc_types")
 public class PcTypes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pcTypeId;
-
-    @Column(nullable = false, length = 50)
-    private String type; // pc/notebook/workstation/configuration
+    private String id;
+    private String typeValue; // pc/notebook/workstation/configuration
+    private String typeName; // Компьютер/Ноутбук/Рабочая станция/Конфигурация
 }

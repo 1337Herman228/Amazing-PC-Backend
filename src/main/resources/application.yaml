@@ -1,22 +1,12 @@
+server:
+  error:
+    include-message: always
+
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5433/amazing-pc-db
-    username: postgres
-    password: postgres
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update
-#      ddl-auto: create
-#      ddl-auto: validate
-#    show-sql: true
-  flyway:
-#    locations: classpath:db.migration
-#    url: jdbc:postgresql://localhost:5433/amazing-pc-db
-#    user: postgres
-#    password: postgres
-    baseline-on-migrate: true
-    enabled: false
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/amazing-pc-db
+      database: amazing-pc-db
 
 jwt:
   secret:

@@ -1,11 +1,10 @@
 version: '3.9'
 
 services:
-  postgres:
-    image: 'postgres:14-alpine'
-    environment:
-      - 'POSTGRES_DB=amazing-pc-db'
-      - 'POSTGRES_PASSWORD=postgres'
-      - 'POSTGRES_USER=postgres'
+  mongo:
+    image: mongo:6.0
+    container_name: amazing-pc-mongo
     ports:
-      - '5433:5432'
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: amazing-pc-db

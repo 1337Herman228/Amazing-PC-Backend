@@ -1,13 +1,13 @@
 package com.example.amazingpcbackend.repo;
 
 import com.example.amazingpcbackend.entity.Person;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.amazingpcbackend.entity.Roles;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface PersonRepository extends JpaRepository<Person, Long> {
-    List<Person> findByNameContaining(String name);
-    List<Person> findBySurnameContaining(String surname);
-    List<Person> findByPhoneContaining(String phone);
-    List<Person> findByEmailContaining(String email);
+@Repository
+public interface PersonRepository extends MongoRepository<Person, String> {
+    Optional<Person> findByEmail(String email);
 }

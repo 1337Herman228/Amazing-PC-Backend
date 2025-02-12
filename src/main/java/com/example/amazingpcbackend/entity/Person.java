@@ -1,29 +1,21 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "person")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "person")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personId;
-
-    @Column(length = 100, nullable = false)
+    private String id;
     private String name;
-
-    @Column(length = 100, nullable = false)
     private String surname;
-
-    @Column(length = 20, nullable = false)
     private String phone;
-
-    @Column(length = 80, nullable = false)
     private String email;
-
 }

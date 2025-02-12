@@ -1,19 +1,19 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "categories")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "categories")
 public class Categories {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long categoryId;
-
-    @Column(unique = true, nullable = false, length = 70)
+    private String id;
+    private String categoryValue; // components / periphery
     private String categoryName; //Комплектующие / Переферия
 }

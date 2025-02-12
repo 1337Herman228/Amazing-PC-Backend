@@ -1,11 +1,11 @@
 package com.example.amazingpcbackend.repo;
 
-import com.example.amazingpcbackend.entity.Categories;
 import com.example.amazingpcbackend.entity.PcCategories;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface PcCategoriesRepository extends JpaRepository<PcCategories, Long> {
-    Optional<PcCategories> findByPcCategoryName(String pcCategoryName);
+public interface PcCategoriesRepository extends MongoRepository<PcCategories, String> {
+    Optional<PcCategories> findByPcCategoryName(String name);
+    Optional<PcCategories> findByPcCategoryValue(String value);
 }

@@ -1,31 +1,25 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
+@Document(collection = "users")
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
-    @Column(unique = true, nullable = false, length = 100)
+    private String id;
     private String login;
-
-    @Column(nullable = false, length = 300)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "roleId")
     private Roles roles;
-
-    @OneToOne
-    @JoinColumn(name = "personId")
     private Person person;
-
 }

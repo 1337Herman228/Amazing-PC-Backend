@@ -1,26 +1,20 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "types")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "types")
 public class Types {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long typeId;
-
-    @Column(unique = true, nullable = false, length = 50)
-    private String typeName; // gpu/cpu/display
-
-    @Column(unique = true, nullable = false, length = 70)
-    private String alternativeName; // Видеокарта/Процессор/Монитор
-
-    @Column(nullable = false, length = 300)
+    private String id;
+    private String typeValue; // gpu/cpu/display
+    private String typeName;  // Видеокарта/Процессор/Монитор
     private String typeImage; // svg
 }

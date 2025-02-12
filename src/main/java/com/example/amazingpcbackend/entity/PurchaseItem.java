@@ -7,21 +7,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "purchases")
-public class Purchases {
+@Document(collection = "purchase_items")
+
+public class PurchaseItem {
     @Id
     private String id;
-    private Date date;
-    private String destination;
+    private int quantity;
 
     @DBRef
-    private Users user;
+    private Product product;
 
-    private List<PurchaseItem> itemList;
 }

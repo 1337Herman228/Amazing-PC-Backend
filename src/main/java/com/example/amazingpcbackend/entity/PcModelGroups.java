@@ -1,60 +1,49 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "pc_model_groups")
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
+@Document(collection = "pc_model_groups")
 public class PcModelGroups {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pcModelGroupId;
+    private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "pcTypeId")
+    @DBRef
     private PcTypes pcTypes;
 
-    @ManyToOne
-    @JoinColumn(name = "pcCategoryId")
+    @DBRef
     private PcCategories pcCategories;
 
-    @Column(nullable = false, unique = true, length = 50)
     private String modelGroupName; //One
-
-    @Column(nullable = false, length = 100)
     private String modelGroupDescription; //Начальный игровой компьютер
 
-    @Column(nullable = false, length = 300)
     private String gpuDescription; //...
-
-    @Column(nullable = false, length = 300)
     private String cpuDescription; //...
-
-    @Column(nullable = true, length = 300)
     private String motherboardDescription; //...
-
-    @Column(nullable = false, length = 300)
     private String ramDescription; //...
-
-    @Column(nullable = false, length = 300)
     private String ssdDescription; //...
-
-    @Column(nullable = true, length = 300)
     private String psuDescription; //...
 
-    @OneToOne
-    @JoinColumn(name = "pcHeaderId")
-    private PcHeader pcHeader;
+    private String headerDescription;
+    private String headerImage;
+    private String headerImageMobile;
 
-    @OneToOne
-    @JoinColumn(name = "pcDesignId")
-    private PcDesign pcDesign;
+    private String designTitle;
+    private String designDescription;
+    private String designImage;
 
-    @OneToOne
-    @JoinColumn(name = "pcPerformanceId")
-    private PcPerformance pcPerformance;
+    private String performanceTitle;
+    private String performanceDescription;
+    private String performanceImage;
+    private String performanceImage2;
 }

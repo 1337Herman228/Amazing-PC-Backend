@@ -1,19 +1,19 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "partitions")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "partitions")
 public class Partitions {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long partitionId;
-
-    @Column(unique = true, nullable = false, length = 50)
-    private String partitionName; // RTX4060, 500GB, 24"
+    private String id;
+    private String partitionName; // RTX 4060, 500 GB, 24"
+    private String partitionValue; // RTX4060, 500GB, 24"
 }

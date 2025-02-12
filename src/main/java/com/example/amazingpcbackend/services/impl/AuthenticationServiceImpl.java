@@ -12,7 +12,7 @@ import com.example.amazingpcbackend.repo.UsersRepository;
 import com.example.amazingpcbackend.security.MyUserDetails;
 import com.example.amazingpcbackend.services.AuthenticationService;
 import com.example.amazingpcbackend.services.JwtService;
-import jakarta.transaction.Transactional;
+import com.example.amazingpcbackend.services.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final JwtService jwtService;
 
-    private final UserDetailsService userDetailsService;
+    private final MyUserDetailsService userDetailsService;
 
     private final AuthenticationManager authenticationManager;
 
@@ -38,7 +38,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PersonRepository personRepository;
 
     @Override
-    @Transactional
     public AuthenticationResponse register(NewUserDto newUser) {
         String login = newUser.getLogin();
 
@@ -55,8 +54,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         Roles role = rolesRepository.findByPosition("user").orElseThrow();
         Users user = new Users()
-                .setLogin(login)
                 .setPassword(passwordEncoder.encode(newUser.getPassword()))
+                .setLogin(login)
                 .setRoles(role)
                 .setPerson(person);
         userRepository.save(user);

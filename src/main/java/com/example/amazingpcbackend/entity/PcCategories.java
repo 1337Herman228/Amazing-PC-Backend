@@ -1,22 +1,19 @@
 package com.example.amazingpcbackend.entity;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
 @Data
-@Table(name = "pc_categories")
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "pc_categories")
 public class PcCategories {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pcCategoryId;
-
-    @Column(nullable = false, length = 100)
+    private String id;
+    private String pcCategoryValue; // none / optimal-gaming-pc / custom-pc
     private String pcCategoryName; // Нет категории / Оптимальные игровые компьютеры / Кастомные компьютеры
-
-    @Column(length = 1000)
-    private String pcCategoryDescription; // Современные игровые компьютеры с процессорами Intel Core и видеокартами NVIDIA GeForce RTX предлагают идеальное сочетание производительности и стоимости. Максимум эффективности.
+    private String pcCategoryDescription;
 }

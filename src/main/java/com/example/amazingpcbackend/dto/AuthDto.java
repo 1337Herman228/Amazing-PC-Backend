@@ -6,5 +6,5 @@ import lombok.Data;
 public class AuthDto {
     private AuthenticationResponse authenticationResponse;
     private String role;
-    private Long userId;
+    private String userId;
 }

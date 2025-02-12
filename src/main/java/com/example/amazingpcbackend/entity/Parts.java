@@ -1,45 +1,45 @@
 package com.example.amazingpcbackend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.*;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.util.Map;
+
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "parts")
-@Accessors(chain = true)
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Parts {
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Document(collection = "parts")
+@BsonDiscriminator("part")
+public class Parts extends Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long partId;
+    private Map<String, Object> characteristics;
 
-    @Column(unique = true, nullable = false, length = 130)
-    private String name;
-
-    @Column(nullable = false)
-    private String image;
-
-    @Column(nullable = false, length = 500)
-    private String description;
-
-    @Column(nullable = false)
-    private float price;
-
-    private int remainingQuantity;
-
-    @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
+    @DBRef
     private Categories categories;
 
-    @ManyToOne
-    @JoinColumn(name = "partitionId", nullable = false)
+    @DBRef
     private Partitions partitions;
 
-    @ManyToOne
-    @JoinColumn(name = "typeId", nullable = false)
+    @DBRef
     private Types types;
+
+    public Parts(String id, String name, String image, String description, int price, Map<String, Object> characteristics, Categories category, Partitions partition, Types cpu) {
+        setId(id);
+        setName(name);
+        setDescription(description);
+        setImage(image);
+        setPrice(price);
+        setCharacteristics(characteristics);
+        setCategories(category);
+        setPartitions(partition);
+        setTypes(cpu);
+    }
+
+    @Override
+    public ProductType getProductType() {
+        return ProductType.PART;
+    }
 }

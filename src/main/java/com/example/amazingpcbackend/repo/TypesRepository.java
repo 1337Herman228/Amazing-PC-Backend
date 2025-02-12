@@ -1,11 +1,11 @@
 package com.example.amazingpcbackend.repo;
 
 import com.example.amazingpcbackend.entity.Types;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface TypesRepository extends JpaRepository<Types, Long> {
+public interface TypesRepository  extends MongoRepository<Types, String> {
     Optional<Types> findByTypeName(String typeName);
-    Optional<Types> findByAlternativeName(String alternativeName);
+    Optional<Types> findByTypeValue(String typeValue);
 }
