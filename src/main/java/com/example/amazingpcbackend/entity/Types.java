@@ -14,7 +14,7 @@ public class Types {
 
     @Id
     private String id;
-    private String typeValue; // gpu/cpu/display
-    private String typeName;  // Видеокарта/Процессор/Монитор
-    private String typeImage; // svg
+    private String value; // gpu/cpu/display
+    private String label;  // Видеокарта/Процессор/Монитор
+    private String image; // svg
 }

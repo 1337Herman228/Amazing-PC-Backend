@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface PartitionsRepository extends MongoRepository<Partitions, String> {
-    Optional<Partitions> findByPartitionName(String partitionName);
-    Optional<Partitions> findByPartitionValue(String partitionValue);
+    Optional<Partitions> findByLabel(String label);
+    Optional<Partitions> findByValue(String value);
 }
 

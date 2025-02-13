@@ -14,6 +14,6 @@ public class Categories {
 
     @Id
     private String id;
-    private String categoryValue; // components / periphery
-    private String categoryName; //Комплектующие / Переферия
+    private String value; // components / periphery
+    private String label; //Комплектующие / Переферия
 }

@@ -1,39 +1,32 @@
-//package com.example.amazingpcbackend.controllers;
-//
-//import com.example.amazingpcbackend.dto.PartAddDto;
-//import com.example.amazingpcbackend.entity.Partitions;
-//import com.example.amazingpcbackend.entity.Parts;
-//import com.example.amazingpcbackend.exceptions.PartitionsException;
-//import com.example.amazingpcbackend.exceptions.PartsException;
-//import com.example.amazingpcbackend.exceptions.TypesException;
-//import com.example.amazingpcbackend.repo.PartitionsRepository;
-//import com.example.amazingpcbackend.repo.PartsRepository;
-//import com.example.amazingpcbackend.repo.TypesRepository;
-//import com.example.amazingpcbackend.services.PartService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.security.access.prepost.PreAuthorize;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/admin")
-//@PreAuthorize("hasAuthority('admin')")
-//@RequiredArgsConstructor
-//public class AdminController {
-//
-//    private final PartsRepository partsRepository;
-//    private final TypesRepository typesRepository;
-//    private final PartitionsRepository partitionsRepository;
-//
+package com.example.amazingpcbackend.controllers;
+
+import com.example.amazingpcbackend.entity.Parts;
+import com.example.amazingpcbackend.repo.PartitionsRepository;
+import com.example.amazingpcbackend.repo.PartsRepository;
+import com.example.amazingpcbackend.repo.TypesRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/admin")
+@PreAuthorize("hasAuthority('admin')")
+@RequiredArgsConstructor
+public class AdminController {
+
+    private final PartsRepository partsRepository;
+    private final TypesRepository typesRepository;
+    private final PartitionsRepository partitionsRepository;
+
 //    private final PartService partService;
-//
-//    @GetMapping("/parts")
-//    public List<Parts> getProducts() {
-//        return partsRepository.findAll();
-//    }
-//
+
+    @GetMapping("/parts")
+    public List<Parts> getProducts() {
+        return partsRepository.findAll();
+    }
+
 //    @GetMapping("/types")
 //    public List<Types> getTypes() {
 //        return typesRepository.findAll();
@@ -165,5 +158,5 @@
 //            throw new PartsException("can't delete part", e);
 //        }
 //    }
-//
-//}
+
+}

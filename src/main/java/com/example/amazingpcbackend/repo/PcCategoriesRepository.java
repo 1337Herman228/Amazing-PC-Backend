@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface PcCategoriesRepository extends MongoRepository<PcCategories, String> {
-    Optional<PcCategories> findByPcCategoryName(String name);
-    Optional<PcCategories> findByPcCategoryValue(String value);
+    Optional<PcCategories> findByLabel(String label);
+    Optional<PcCategories> findByValue(String value);
 }

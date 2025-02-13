@@ -1,30 +1,42 @@
-//package com.example.amazingpcbackend.controllers;
-//
-//import com.example.amazingpcbackend.dto.ConfiguratorComponentsListDto;
-//import com.example.amazingpcbackend.dto.PcCatalogDto;
-//import com.example.amazingpcbackend.dto.PcDto;
-//import com.example.amazingpcbackend.entity.PurchaseItems;
-//import com.example.amazingpcbackend.services.ConfiguratorService;
-//import com.example.amazingpcbackend.services.PcService;
-//import com.example.amazingpcbackend.services.PurchasesService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/user")
-//@RequiredArgsConstructor
-//public class UserController {
-//
-//    private final ConfiguratorService configuratorService;
-//    private final PurchasesService purchasesService;
-//
-//    private final PcService pcService;
-//
+package com.example.amazingpcbackend.controllers;
+
+import com.example.amazingpcbackend.entity.Categories;
+import com.example.amazingpcbackend.entity.Partitions;
+import com.example.amazingpcbackend.entity.Types;
+import com.example.amazingpcbackend.repo.CategoriesRepository;
+import com.example.amazingpcbackend.repo.PartitionsRepository;
+import com.example.amazingpcbackend.repo.TypesRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/user")
+@RequiredArgsConstructor
+public class UserController {
+
+    private final TypesRepository typesRepository;
+    private final CategoriesRepository categoriesRepository;
+    private final PartitionsRepository partitionsRepository;
+
+    @GetMapping("/types")
+    public List<Types> getTypes() {
+        return typesRepository.findAll();
+    }
+
+    @GetMapping("/categories")
+    public List<Categories> getCategories() {
+        return categoriesRepository.findAll();
+    }
+
+    @GetMapping("/partitions")
+    public List<Partitions> getPartitions() {
+        return partitionsRepository.findAll();
+    }
+
 //    @GetMapping("/configurator-parts")
 //    public ConfiguratorComponentsListDto getConfiguratorParts() {
 //        return configuratorService.getComponentsList();
@@ -54,5 +66,5 @@
 //    public List<PurchaseItems> getUserCartItems(@PathVariable Long userId) {
 //        return purchasesService.getUserCartItems(userId);
 //    }
-//
-//}
+
+}

@@ -14,6 +14,6 @@ public class Partitions {
 
     @Id
     private String id;
-    private String partitionName; // RTX 4060, 500 GB, 24"
-    private String partitionValue; // RTX4060, 500GB, 24"
+    private String label; // RTX 4060, 500 GB, 24"
+    private String value; // RTX4060, 500GB, 24"
 }

@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface CategoriesRepository extends MongoRepository<Categories, String> {
-    Optional<Categories> findByCategoryName(String categoryName);
-    Optional<Categories> findByCategoryValue(String categoryValue);
+    Optional<Categories> findByLabel(String label);
+    Optional<Categories> findByValue(String value);
 }

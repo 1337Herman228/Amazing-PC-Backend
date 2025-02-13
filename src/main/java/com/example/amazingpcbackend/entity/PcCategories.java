@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PcCategories {
     @Id
     private String id;
-    private String pcCategoryValue; // none / optimal-gaming-pc / custom-pc
-    private String pcCategoryName; // Нет категории / Оптимальные игровые компьютеры / Кастомные компьютеры
-    private String pcCategoryDescription;
+    private String value; // none / optimal-gaming-pc / custom-pc
+    private String label; // Нет категории / Оптимальные игровые компьютеры / Кастомные компьютеры
+    private String description;
 }

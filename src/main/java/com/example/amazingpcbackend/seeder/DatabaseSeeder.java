@@ -22,8 +22,8 @@ public class DatabaseSeeder {
             personRepository.save(new Person("person-1", "admin", "admin", "admin", "admin"));
             personRepository.save(new Person("person-2", "user", "user", "user", "user"));
 
-            usersRepository.save(new Users("user-1", "admin", "adminadmin", rolesRepository.findByPosition("admin").get(), personRepository.findByEmail("admin").get()));
-            usersRepository.save(new Users("user-2", "user", "useruser", rolesRepository.findByPosition("user").get(), personRepository.findByEmail("user").get()));
+            usersRepository.save(new Users("user-1", "admin", "$2a$10$PRS7/aqGOtIXgKIl/a/5ce9ugXrY.zi9595RTjkeSToY6/C9HGdBi", rolesRepository.findByPosition("admin").get(), personRepository.findByEmail("admin").get()));
+            usersRepository.save(new Users("user-2", "user", "$2a$10$n.9aYpIC1sU4Snv8ovfh3.53DHqicMUrlk4F3Gt1V0CLwYaabhZ..", rolesRepository.findByPosition("user").get(), personRepository.findByEmail("user").get()));
 
             categoriesRepository.save(new Categories("category-1", "components", "Комплектующие"));
             categoriesRepository.save(new Categories("category-2", "periphery", "Периферия"));
@@ -80,7 +80,7 @@ public class DatabaseSeeder {
             part1config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
             part1config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "7 нм"));
             part1config.put("ram_type", new CharacteristicValue<>("Тех-процесс", Arrays.asList("DDR4", "DDR5")));
-            partsRepository.save(new Parts("part-1","I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350,part1config, categoriesRepository.findByCategoryValue("components").get(), partitionsRepository.findByPartitionValue("intelcore12th").get(), typesRepository.findByTypeValue("cpu").get()));
+            partsRepository.save(new Parts("part-1","I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350,part1config, categoriesRepository.findByValue("components").get(), partitionsRepository.findByValue("intelcore12th").get(), typesRepository.findByValue("cpu").get()));
 
             Map<String, Object> part2config = new HashMap<>();
             part2config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2500 Мгц"));
@@ -96,9 +96,9 @@ public class DatabaseSeeder {
             part2config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "7 нм"));
             part2config.put("ram_type", new CharacteristicValue<>("Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
             partsRepository.save(new Parts("part-2", "I5-14400F", "/uploads/i5-14400f.jpg", "Описание...", 450,
-                    part2config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("intelcore14th").get(),
-                    typesRepository.findByTypeValue("cpu").get()));
+                    part2config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("intelcore14th").get(),
+                    typesRepository.findByValue("cpu").get()));
 
             Map<String, Object> part3config = new HashMap<>();
             part3config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2100 Мгц"));
@@ -114,9 +114,9 @@ public class DatabaseSeeder {
             part3config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "intel 7"));
             part3config.put("ram_type", new CharacteristicValue<>("Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
             partsRepository.save(new Parts("part-3", "I7-14700KF", "/uploads/i7-14700kf.jpg", "Описание...", 650,
-                    part3config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("intelcore14th").get(),
-                    typesRepository.findByTypeValue("cpu").get()));
+                    part3config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("intelcore14th").get(),
+                    typesRepository.findByValue("cpu").get()));
 
             Map<String, Object> part4config = new HashMap<>();
             part4config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "1830 Мгц"));
@@ -138,9 +138,9 @@ public class DatabaseSeeder {
             part4config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6"));
             part4config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8 pin"));
             partsRepository.save(new Parts("part-4", "PALIT GeForce RTX 4060 DUAL", "/uploads/palit-geforce-rtx-4060-dual.jpg", "Описание...", 1050,
-                    part4config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("rtx4060").get(),
-                    typesRepository.findByTypeValue("gpu").get()));
+                    part4config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("rtx4060").get(),
+                    typesRepository.findByValue("gpu").get()));
 
             Map<String, Object> part5config = new HashMap<>();
             part5config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "1980 Мгц"));
@@ -162,9 +162,9 @@ public class DatabaseSeeder {
             part5config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6X"));
             part5config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8+8 pin"));
             partsRepository.save(new Parts("part-5", "Palit GeForce RTX 4070 SUPER JetStream", "/uploads/palit-geforce-rtx-4070-super-jetstream.jpg", "Описание...", 1350,
-                    part5config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("rtx4070").get(),
-                    typesRepository.findByTypeValue("gpu").get()));
+                    part5config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("rtx4070").get(),
+                    typesRepository.findByValue("gpu").get()));
 
 
             Map<String, Object> part6config = new HashMap<>();
@@ -187,9 +187,9 @@ public class DatabaseSeeder {
             part6config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6X"));
             part6config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8+8 pin"));
             partsRepository.save(new Parts("part-6", "MSI GeForce RTX 4080 SUPER GAMING SLIM", "/uploads/msi-geforce-rtx-4080-super-gaming-slim.jpg", "Описание...", 1650,
-                    part6config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("rtx4080").get(),
-                    typesRepository.findByTypeValue("gpu").get()));
+                    part6config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("rtx4080").get(),
+                    typesRepository.findByValue("gpu").get()));
 
             Map<String, Object> part7config = new HashMap<>();
             part7config.put("m2quantity", new CharacteristicValue<>("Количество M.2 слотов", "2"));
@@ -202,9 +202,9 @@ public class DatabaseSeeder {
             part7config.put("ram_type", new CharacteristicValue<>("Тип RAM", "DDR4"));
             part7config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-7", "MSI PRO B760M-A", "/uploads/msi-pro-b760m-a.jpg", "Описание...", 330,
-                    part7config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("intelb760").get(),
-                    typesRepository.findByTypeValue("motherboard").get()));
+                    part7config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("intelb760").get(),
+                    typesRepository.findByValue("motherboard").get()));
 
             Map<String, Object> part8config = new HashMap<>();
             part8config.put("m2quantity", new CharacteristicValue<>("Количество M.2 слотов", "4"));
@@ -217,9 +217,9 @@ public class DatabaseSeeder {
             part8config.put("ram_type", new CharacteristicValue<>("Тип RAM", "DDR5"));
             part8config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-8", "MSI PRO Z790-A MAX", "/uploads/msi-pro-z790-a-max.jpg", "Описание...", 450,
-                    part8config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("intelz790").get(),
-                    typesRepository.findByTypeValue("motherboard").get()));
+                    part8config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("intelz790").get(),
+                    typesRepository.findByValue("motherboard").get()));
 
             Map<String, Object> part9config = new HashMap<>();
             part9config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "61.25 CFM"));
@@ -233,9 +233,9 @@ public class DatabaseSeeder {
             part9config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "500-1800 об/мин"));
             part9config.put("sockets", new CharacteristicValue<>("Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-9", "DeepCool ASSASSIN 4S", "/uploads/deepcool-assassin-4s.jpg", "Описание...", 150,
-                    part9config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("deepcool").get(),
-                    typesRepository.findByTypeValue("cpu_fan").get()));
+                    part9config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("deepcool").get(),
+                    typesRepository.findByValue("cpu_fan").get()));
 
 
             Map<String, Object> part10config = new HashMap<>();
@@ -252,36 +252,36 @@ public class DatabaseSeeder {
             part10config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "2200 +/- 300 RPM"));
             part10config.put("sockets", new CharacteristicValue<>("Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-10", "ASUS ROG RYUO III 360 White", "/uploads/asus-rog-ryuo-III-360-white.jpg", "Описание...", 460,
-                    part10config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("asus").get(),
-                    typesRepository.findByTypeValue("cpu_fan").get()));
+                    part10config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("asus").get(),
+                    typesRepository.findByValue("cpu_fan").get()));
 
             Map<String, Object> part11config = new HashMap<>();
             part11config.put("capacity", new CharacteristicValue<>("Емкость", "16 ГБ"));
             part11config.put("frequency", new CharacteristicValue<>("Частота", "3600 МГц"));
             part11config.put("type", new CharacteristicValue<>("Тип", "DDR4"));
             partsRepository.save(new Parts("part-11", "16GB Kingston FURY Beast RGB", "/uploads/16gb-kingston-fury-beast-rgb.jpg", "Описание...", 200,
-                    part11config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("16gb").get(),
-                    typesRepository.findByTypeValue("ram").get()));
+                    part11config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("16gb").get(),
+                    typesRepository.findByValue("ram").get()));
 
             Map<String, Object> part12config = new HashMap<>();
             part12config.put("capacity", new CharacteristicValue<>("Емкость", "32 ГБ"));
             part12config.put("frequency", new CharacteristicValue<>("Частота", "3600 МГц"));
             part12config.put("type", new CharacteristicValue<>("Тип", "DDR4"));
             partsRepository.save(new Parts("part-12", "32GB Kingston FURY Beast RGB", "/uploads/32gb-kingston-fury-beast-rgb.jpg", "Описание...", 320,
-                    part12config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("32gb").get(),
-                    typesRepository.findByTypeValue("ram").get()));
+                    part12config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("32gb").get(),
+                    typesRepository.findByValue("ram").get()));
 
             Map<String, Object> part13config = new HashMap<>();
             part13config.put("capacity", new CharacteristicValue<>("Емкость", "64 ГБ"));
             part13config.put("frequency", new CharacteristicValue<>("Частота", "6000 МГц"));
             part13config.put("type", new CharacteristicValue<>("Тип", "DDR5"));
             partsRepository.save(new Parts("part-13", "64GB TEAMGROUP T-Force Delta RGB White", "/uploads/64gb-teamgroup-t-force-delta-rgb-white.jpg", "Описание...", 600,
-                    part13config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("64gb").get(),
-                    typesRepository.findByTypeValue("ram").get()));
+                    part13config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("64gb").get(),
+                    typesRepository.findByValue("ram").get()));
 
             Map<String, Object> part14config = new HashMap<>();
             part14config.put("capacity", new CharacteristicValue<>("Емкость", "512 ГБ"));
@@ -292,9 +292,9 @@ public class DatabaseSeeder {
             part14config.put("read_velocity", new CharacteristicValue<>("Скорость чтения", "5000 МБ/с"));
             part14config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "2700 МБ/с"));
             partsRepository.save(new Parts("part-14", "512GB ADATA LEGEND 850", "/uploads/512gb-adata-legend-850.jpg", "Описание...", 230,
-                    part14config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("512gb").get(),
-                    typesRepository.findByTypeValue("ssd").get()));
+                    part14config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("512gb").get(),
+                    typesRepository.findByValue("ssd").get()));
 
             Map<String, Object> part15config = new HashMap<>();
             part15config.put("capacity", new CharacteristicValue<>("Емкость", "1 ТБ"));
@@ -305,9 +305,9 @@ public class DatabaseSeeder {
             part15config.put("read_velocity", new CharacteristicValue<>("Скорость чтения", "5000 МБ/с"));
             part15config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "4500 МБ/с"));
             partsRepository.save(new Parts("part-15", "1TB ADATA LEGEND 850", "/uploads/1tb-adata-legend-850.jpg", "Описание...", 380,
-                    part15config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("1tb").get(),
-                    typesRepository.findByTypeValue("ssd").get()));
+                    part15config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("1tb").get(),
+                    typesRepository.findByValue("ssd").get()));
 
             Map<String, Object> part16config = new HashMap<>();
             part16config.put("capacity", new CharacteristicValue<>("Емкость", "2 ТБ"));
@@ -317,9 +317,9 @@ public class DatabaseSeeder {
             part16config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "6900 МБ/с"));
             part16config.put("max_temperature", new CharacteristicValue<>("Макс. температура", "70 °C"));
             partsRepository.save(new Parts("part-16", "2TB Samsung 990 PRO", "/uploads/2tb-samsung-990-pro.jpg", "Описание...", 550,
-                    part16config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("2tb").get(),
-                    typesRepository.findByTypeValue("ssd").get()));
+                    part16config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("2tb").get(),
+                    typesRepository.findByValue("ssd").get()));
 
             Map<String, Object> part17config = new HashMap<>();
             part17config.put("power", new CharacteristicValue<>("Мощность", "650W"));
@@ -332,9 +332,9 @@ public class DatabaseSeeder {
             part17config.put("modular", new CharacteristicValue<>("Модульность", "Полумодульный"));
             part17config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-17", "650W DeepCool PK650D", "/uploads/650w-deepcool-pk650d.jpg", "Описание...", 310,
-                    part17config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("500w").get(),
-                    typesRepository.findByTypeValue("psu").get()));
+                    part17config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("500w").get(),
+                    typesRepository.findByValue("psu").get()));
 
             Map<String, Object> part18config = new HashMap<>();
             part18config.put("power", new CharacteristicValue<>("Мощность", "750W"));
@@ -347,9 +347,9 @@ public class DatabaseSeeder {
             part18config.put("modular", new CharacteristicValue<>("Модульность", "Полумодульный"));
             part18config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-18", "750W DeepCool PK750D", "/uploads/750w-deepcool-pk750d.jpg", "Описание...", 410,
-                    part18config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("700w").get(),
-                    typesRepository.findByTypeValue("psu").get()));
+                    part18config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("700w").get(),
+                    typesRepository.findByValue("psu").get()));
 
 
             Map<String, Object> part19config = new HashMap<>();
@@ -363,9 +363,9 @@ public class DatabaseSeeder {
             part19config.put("modular", new CharacteristicValue<>("Модульность", "Модульный"));
             part19config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-19", "850W MSI MAG A850GL", "/uploads/850w-msi-mag-a850gl.jpg", "Описание...", 610,
-                    part19config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("800w").get(),
-                    typesRepository.findByTypeValue("psu").get()));
+                    part19config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("800w").get(),
+                    typesRepository.findByValue("psu").get()));
 
             Map<String, Object> part20config = new HashMap<>();
             part20config.put("extension_slots_quantity", new CharacteristicValue<>("Количество слотов расширения", "8"));
@@ -380,9 +380,9 @@ public class DatabaseSeeder {
             part20config.put("width", new CharacteristicValue<>("Ширина", "285 мм"));
             part20config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
             partsRepository.save(new Parts("part-20", "ASUS TUF GAMING GT502 White", "/uploads/asus-tuf-gaming-gt502-white.jpg", "Описание...", 380,
-                    part20config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("asus").get(),
-                    typesRepository.findByTypeValue("cases").get()));
+                    part20config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("asus").get(),
+                    typesRepository.findByValue("cases").get()));
 
             Map<String, Object> part21config = new HashMap<>();
             part21config.put("extension_slots_quantity", new CharacteristicValue<>("Количество слотов расширения", "6"));
@@ -397,9 +397,9 @@ public class DatabaseSeeder {
             part21config.put("width", new CharacteristicValue<>("Ширина", "304 мм"));
             part21config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
             partsRepository.save(new Parts("part-21", "Lian Li O11 Vision White", "/uploads/lian-li-011-vision-white.jpg", "Описание...", 450,
-                    part21config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("lianli").get(),
-                    typesRepository.findByTypeValue("cases").get()));
+                    part21config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("lianli").get(),
+                    typesRepository.findByValue("cases").get()));
 
 
             Map<String, Object> part22config = new HashMap<>();
@@ -415,9 +415,9 @@ public class DatabaseSeeder {
             part22config.put("width", new CharacteristicValue<>("Ширина", "215 мм"));
             part22config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", "micro-ATX, mini-ATX"));
             partsRepository.save(new Parts("part-22", "DeepCool CH360", "/uploads/deepcool-ch360.jpg", "Описание...", 200,
-                    part22config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("deepcool").get(),
-                    typesRepository.findByTypeValue("cases").get()));
+                    part22config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("deepcool").get(),
+                    typesRepository.findByValue("cases").get()));
 
             Map<String, Object> part23config = new HashMap<>();
             part23config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "59 CFM"));
@@ -426,9 +426,9 @@ public class DatabaseSeeder {
             part23config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "120x120 мм"));
             part23config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "800-1800 об/мин"));
             partsRepository.save(new Parts("part-23", "Montech AX 120 PWM White", "/uploads/montech-ax-120-pwm-white.jpg", "Описание...", 60,
-                    part23config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("120x120mm").get(),
-                    typesRepository.findByTypeValue("fan").get()));
+                    part23config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("120x120mm").get(),
+                    typesRepository.findByValue("fan").get()));
 
             Map<String, Object> part24config = new HashMap<>();
             part24config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "81 CFM"));
@@ -437,9 +437,9 @@ public class DatabaseSeeder {
             part24config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "140x140 мм"));
             part24config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "250-1600 об/мин"));
             partsRepository.save(new Parts("part-24", "Lian Li UNI FAN AL V2 120 White", "/uploads/lian-li-uni-fan-al-v2-120-white.jpg", "Описание...", 70,
-                    part24config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("140x140mm").get(),
-                    typesRepository.findByTypeValue("fan").get()));
+                    part24config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("140x140mm").get(),
+                    typesRepository.findByValue("fan").get()));
 
 
             Map<String, Object> part25config = new HashMap<>();
@@ -449,9 +449,9 @@ public class DatabaseSeeder {
             part25config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "120x120 мм"));
             part25config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "500-1600 об/мин"));
             partsRepository.save(new Parts("part-25", "Thermaltake TOUGHFAN 12 White", "/uploads/thermaltake-toughfan-12-white.jpg", "Описание...", 80,
-                    part25config, categoriesRepository.findByCategoryValue("components").get(),
-                    partitionsRepository.findByPartitionValue("120x120mm").get(),
-                    typesRepository.findByTypeValue("fan").get()));
+                    part25config, categoriesRepository.findByValue("components").get(),
+                    partitionsRepository.findByValue("120x120mm").get(),
+                    typesRepository.findByValue("fan").get()));
 
             Map<String, Object> part26config = new HashMap<>();
             part26config.put("diagonal", new CharacteristicValue<>("Диагональ", "24\""));
@@ -460,9 +460,9 @@ public class DatabaseSeeder {
             part26config.put("frequency", new CharacteristicValue<>("Частота обновления экрана", "144 Гц"));
             part26config.put("ports", new CharacteristicValue<>("Входы", "DisplayPort, HDMI"));
             partsRepository.save(new Parts("part-26", "LG UltraGear 24GN65R", "/uploads/lg-ultragear-24gn65r.jpg", "Описание...", 350,
-                    part26config, categoriesRepository.findByCategoryValue("periphery").get(),
-                    partitionsRepository.findByPartitionValue("24inch").get(),
-                    typesRepository.findByTypeValue("monitor").get()));
+                    part26config, categoriesRepository.findByValue("periphery").get(),
+                    partitionsRepository.findByValue("24inch").get(),
+                    typesRepository.findByValue("monitor").get()));
 
             Map<String, Object> part27config = new HashMap<>();
             part27config.put("buttons_quantity", new CharacteristicValue<>("Количество программируемых клавиш", "5"));
@@ -470,9 +470,9 @@ public class DatabaseSeeder {
             part27config.put("sensor_resolution", new CharacteristicValue<>("Разрешение оптического сенсора", "30000 DPI"));
             part27config.put("weight", new CharacteristicValue<>("Вес", "64 г"));
             partsRepository.save(new Parts("part-27", "Razer DeathAdder V3 Pro", "/uploads/razer-deathadder-v3-pro.jpg", "Описание...", 220,
-                    part27config, categoriesRepository.findByCategoryValue("periphery").get(),
-                    partitionsRepository.findByPartitionValue("razer").get(),
-                    typesRepository.findByTypeValue("mouse").get()));
+                    part27config, categoriesRepository.findByValue("periphery").get(),
+                    partitionsRepository.findByValue("razer").get(),
+                    typesRepository.findByValue("mouse").get()));
 
             Map<String, Object> part28config = new HashMap<>();
             part28config.put("connection_type", new CharacteristicValue<>("Тип подключения", "с проводом"));
@@ -480,9 +480,9 @@ public class DatabaseSeeder {
             part28config.put("connector", new CharacteristicValue<>("Разъем", "USB"));
             part28config.put("weight", new CharacteristicValue<>("Вес", "250 г"));
             partsRepository.save(new Parts("part-28", "Razer Kraken V3", "/uploads/razer-kraken-v3.jpg", "Описание...", 300,
-                    part28config, categoriesRepository.findByCategoryValue("periphery").get(),
-                    partitionsRepository.findByPartitionValue("razer").get(),
-                    typesRepository.findByTypeValue("headphones").get()));
+                    part28config, categoriesRepository.findByValue("periphery").get(),
+                    partitionsRepository.findByValue("razer").get(),
+                    typesRepository.findByValue("headphones").get()));
 
             pcTypesRepository.save(new PcTypes("pc-type-1", "gaming-pc", "Игровой ПК"));
             pcTypesRepository.save(new PcTypes("pc-type-2", "notebook", "Ноутбук"));
