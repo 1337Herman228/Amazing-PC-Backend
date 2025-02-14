@@ -5,7 +5,8 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class CharacteristicValue<T> {
-    private String name;
-    private T value;
+public class CharacteristicItem<T> {
+    private String value;
+    private String label;
+    private T item;
 }

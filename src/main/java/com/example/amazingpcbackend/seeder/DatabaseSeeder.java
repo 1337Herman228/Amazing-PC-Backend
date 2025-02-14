@@ -1,6 +1,6 @@
 package com.example.amazingpcbackend.seeder;
 
-import com.example.amazingpcbackend.dao.CharacteristicValue;
+import com.example.amazingpcbackend.dao.CharacteristicItem;
 import com.example.amazingpcbackend.dao.PartWithQuantity;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.*;
@@ -31,7 +31,7 @@ public class DatabaseSeeder {
             typesRepository.save(new Types("type-1", "gpu", "Видеокарта", "/svg-icons/gpu.svg"));
             typesRepository.save(new Types("type-2", "cpu", "Процессор", "/svg-icons/cpu.svg"));
             typesRepository.save(new Types("type-3", "motherboard", "Материнская плата", "/svg-icons/motherboard.svg"));
-            typesRepository.save(new Types("type-4", "cpu_fan", "Охлаждение", "/svg-icons/cpu_fan.svg"));
+            typesRepository.save(new Types("type-4", "cpu_fan", "Охлаждение процессора", "/svg-icons/cpu_fan.svg"));
             typesRepository.save(new Types("type-5", "ram", "Оперативная память", "/svg-icons/ram.svg"));
             typesRepository.save(new Types("type-6", "ssd", "SSD накопитель", "/svg-icons/ssd.svg"));
             typesRepository.save(new Types("type-7", "psu", "Блок питания", "/svg-icons/psu.svg"));
@@ -67,422 +67,422 @@ public class DatabaseSeeder {
             partitionsRepository.save(new Partitions("partition-24", "32\"", "32inch"));
             partitionsRepository.save(new Partitions("partition-25", "Razer", "razer"));
 
-            Map<String, Object> part1config = new HashMap<>();
-            part1config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2500 Мгц"));
-            part1config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "4400 Мгц"));
-            part1config.put("cpu_cores", new CharacteristicValue<>("Кол-во ядер", "6"));
-            part1config.put("cpu_threads", new CharacteristicValue<>("Кол-во потоков", "12"));
-            part1config.put("max_ram_capacity", new CharacteristicValue<>("Макс. объем оперативной памяти", "128 ГБ"));
-            part1config.put("tdp", new CharacteristicValue<>("Тепловыделение", "65 Вт"));
-            part1config.put("cachel1", new CharacteristicValue<>("Кэш 1-го уровня", null));
-            part1config.put("cachel2", new CharacteristicValue<>("Кэш 2-го уровня", "7680 КБ"));
-            part1config.put("cachel3", new CharacteristicValue<>("Кэш 3-го уровня", "18432 КБ"));
-            part1config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
-            part1config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "7 нм"));
-            part1config.put("ram_type", new CharacteristicValue<>("Тех-процесс", Arrays.asList("DDR4", "DDR5")));
+            List<CharacteristicItem> part1config = new ArrayList<>();
+            part1config.add(new CharacteristicItem<>("base_frequency","Базовая частота", "2500 Мгц"));
+            part1config.add(new CharacteristicItem<>("boost_frequency","Турбо частота", "4400 Мгц"));
+            part1config.add( new CharacteristicItem<>("cpu_cores","Кол-во ядер", "6"));
+            part1config.add( new CharacteristicItem<>("cpu_threads","Кол-во потоков", "12"));
+            part1config.add( new CharacteristicItem<>("max_ram_capacity","Макс. объем оперативной памяти", "128 ГБ"));
+            part1config.add(new CharacteristicItem<>("tdp", "Тепловыделение", "65 Вт"));
+            part1config.add( new CharacteristicItem<>("cachel1","Кэш 1-го уровня", null));
+            part1config.add( new CharacteristicItem<>("cachel2","Кэш 2-го уровня", "7680 КБ"));
+            part1config.add( new CharacteristicItem<>("cachel3","Кэш 3-го уровня", "18432 КБ"));
+            part1config.add( new CharacteristicItem<>("socket","Сокет", "LGA 1700"));
+            part1config.add( new CharacteristicItem<>("tech_process","Тех-процесс", "7 нм"));
+            part1config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
             partsRepository.save(new Parts("part-1","I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350,part1config, categoriesRepository.findByValue("components").get(), partitionsRepository.findByValue("intelcore12th").get(), typesRepository.findByValue("cpu").get()));
 
-            Map<String, Object> part2config = new HashMap<>();
-            part2config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2500 Мгц"));
-            part2config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "4700 Мгц"));
-            part2config.put("cpu_cores", new CharacteristicValue<>("Кол-во ядер", "10"));
-            part2config.put("cpu_threads", new CharacteristicValue<>("Кол-во потоков", "16"));
-            part2config.put("max_ram_capacity", new CharacteristicValue<>("Макс. объем оперативной памяти", "128 ГБ"));
-            part2config.put("tdp", new CharacteristicValue<>("Тепловыделение", "65 Вт"));
-            part2config.put("cachel1", new CharacteristicValue<>("Кэш 1-го уровня", null));
-            part2config.put("cachel2", new CharacteristicValue<>("Кэш 2-го уровня", "9728 КБ"));
-            part2config.put("cachel3", new CharacteristicValue<>("Кэш 3-го уровня", "20480 КБ"));
-            part2config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
-            part2config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "7 нм"));
-            part2config.put("ram_type", new CharacteristicValue<>("Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
+            List<CharacteristicItem> part2config = new ArrayList<>();
+            part2config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "2500 Мгц"));
+            part2config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "4700 Мгц"));
+            part2config.add(new CharacteristicItem<>("cpu_cores", "Кол-во ядер", "10"));
+            part2config.add(new CharacteristicItem<>("cpu_threads", "Кол-во потоков", "16"));
+            part2config.add(new CharacteristicItem<>("max_ram_capacity", "Макс. объем оперативной памяти", "128 ГБ"));
+            part2config.add(new CharacteristicItem<>("tdp", "Тепловыделение", "65 Вт"));
+            part2config.add(new CharacteristicItem<>("cachel1", "Кэш 1-го уровня", null));
+            part2config.add(new CharacteristicItem<>("cachel2", "Кэш 2-го уровня", "9728 КБ"));
+            part2config.add(new CharacteristicItem<>("cachel3", "Кэш 3-го уровня", "20480 КБ"));
+            part2config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
+            part2config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "7 нм"));
+            part2config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
             partsRepository.save(new Parts("part-2", "I5-14400F", "/uploads/i5-14400f.jpg", "Описание...", 450,
                     part2config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelcore14th").get(),
                     typesRepository.findByValue("cpu").get()));
 
-            Map<String, Object> part3config = new HashMap<>();
-            part3config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2100 Мгц"));
-            part3config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "5400 Мгц"));
-            part3config.put("cpu_cores", new CharacteristicValue<>("Кол-во ядер", "20"));
-            part3config.put("cpu_threads", new CharacteristicValue<>("Кол-во потоков", "28"));
-            part3config.put("max_ram_capacity", new CharacteristicValue<>("Макс. объем оперативной памяти", "128 ГБ"));
-            part3config.put("tdp", new CharacteristicValue<>("Тепловыделение", "65 Вт"));
-            part3config.put("cachel1", new CharacteristicValue<>("Кэш 1-го уровня", "80 КБ"));
-            part3config.put("cachel2", new CharacteristicValue<>("Кэш 2-го уровня", "20 МБ"));
-            part3config.put("cachel3", new CharacteristicValue<>("Кэш 3-го уровня", "33 МБ"));
-            part3config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
-            part3config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "intel 7"));
-            part3config.put("ram_type", new CharacteristicValue<>("Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
+            List<CharacteristicItem> part3config = new ArrayList<>();
+            part3config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "2100 Мгц"));
+            part3config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "5400 Мгц"));
+            part3config.add(new CharacteristicItem<>("cpu_cores", "Кол-во ядер", "20"));
+            part3config.add(new CharacteristicItem<>("cpu_threads", "Кол-во потоков", "28"));
+            part3config.add(new CharacteristicItem<>("max_ram_capacity", "Макс. объем оперативной памяти", "128 ГБ"));
+            part3config.add(new CharacteristicItem<>("tdp", "Тепловыделение", "65 Вт"));
+            part3config.add(new CharacteristicItem<>("cachel1", "Кэш 1-го уровня", "80 КБ"));
+            part3config.add(new CharacteristicItem<>("cachel2", "Кэш 2-го уровня", "20 МБ"));
+            part3config.add(new CharacteristicItem<>("cachel3", "Кэш 3-го уровня", "33 МБ"));
+            part3config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
+            part3config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "intel 7"));
+            part3config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
             partsRepository.save(new Parts("part-3", "I7-14700KF", "/uploads/i7-14700kf.jpg", "Описание...", 650,
                     part3config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelcore14th").get(),
                     typesRepository.findByValue("cpu").get()));
 
-            Map<String, Object> part4config = new HashMap<>();
-            part4config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "1830 Мгц"));
-            part4config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "2460 Мгц"));
-            part4config.put("bus_width", new CharacteristicValue<>("Шина", "128 бит"));
-            part4config.put("cuda", new CharacteristicValue<>("CUDA ядра", "3072"));
-            part4config.put("display_port", new CharacteristicValue<>("DisplayPort", "3"));
-            part4config.put("extension_slots", new CharacteristicValue<>("Слоты расширения", "2"));
-            part4config.put("fans", new CharacteristicValue<>("Вентиляторы", "2"));
-            part4config.put("hdmi", new CharacteristicValue<>("HDMI", "1"));
-            part4config.put("height", new CharacteristicValue<>("Высота", "40 мм"));
-            part4config.put("length", new CharacteristicValue<>("Длина", "249 мм"));
-            part4config.put("max_displays_quantity", new CharacteristicValue<>("Макс. кол-во дисплеев", "4"));
-            part4config.put("min_power_unit", new CharacteristicValue<>("Мин. мощность блока питания", "500 Вт"));
-            part4config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "5 нм"));
-            part4config.put("vram_capacity", new CharacteristicValue<>("Видеопамять", "8 ГБ"));
-            part4config.put("width", new CharacteristicValue<>("Ширина", "123 мм"));
-            part4config.put("max_resolution", new CharacteristicValue<>("Макс. разрешение", "5120x2880"));
-            part4config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6"));
-            part4config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8 pin"));
+            List<CharacteristicItem> part4config = new ArrayList<>();
+            part4config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "1830 Мгц"));
+            part4config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "2460 Мгц"));
+            part4config.add(new CharacteristicItem<>("bus_width", "Шина", "128 бит"));
+            part4config.add(new CharacteristicItem<>("cuda", "CUDA ядра", "3072"));
+            part4config.add(new CharacteristicItem<>("display_port", "DisplayPort", "3"));
+            part4config.add(new CharacteristicItem<>("extension_slots", "Слоты расширения", "2"));
+            part4config.add(new CharacteristicItem<>("fans", "Вентиляторы", "2"));
+            part4config.add(new CharacteristicItem<>("hdmi", "HDMI", "1"));
+            part4config.add(new CharacteristicItem<>("height", "Высота", "40 мм"));
+            part4config.add(new CharacteristicItem<>("length", "Длина", "249 мм"));
+            part4config.add(new CharacteristicItem<>("max_displays_quantity", "Макс. кол-во дисплеев", "4"));
+            part4config.add(new CharacteristicItem<>("min_power_unit", "Мин. мощность блока питания", "500 Вт"));
+            part4config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "5 нм"));
+            part4config.add(new CharacteristicItem<>("vram_capacity", "Видеопамять", "8 ГБ"));
+            part4config.add(new CharacteristicItem<>("width", "Ширина", "123 мм"));
+            part4config.add(new CharacteristicItem<>("max_resolution", "Макс. разрешение", "5120x2880"));
+            part4config.add(new CharacteristicItem<>("vram_type", "Тип видеопамяти", "GDDR6"));
+            part4config.add(new CharacteristicItem<>("power_connector", "Разъем питания", "8 pin"));
             partsRepository.save(new Parts("part-4", "PALIT GeForce RTX 4060 DUAL", "/uploads/palit-geforce-rtx-4060-dual.jpg", "Описание...", 1050,
                     part4config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("rtx4060").get(),
                     typesRepository.findByValue("gpu").get()));
 
-            Map<String, Object> part5config = new HashMap<>();
-            part5config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "1980 Мгц"));
-            part5config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "2640 Мгц"));
-            part5config.put("bus_width", new CharacteristicValue<>("Шина", "192 бит"));
-            part5config.put("cuda", new CharacteristicValue<>("CUDA ядра", "7680"));
-            part5config.put("display_port", new CharacteristicValue<>("DisplayPort", "3"));
-            part5config.put("extension_slots", new CharacteristicValue<>("Слоты расширения", "3.1"));
-            part5config.put("fans", new CharacteristicValue<>("Вентиляторы", "3"));
-            part5config.put("hdmi", new CharacteristicValue<>("HDMI", "1"));
-            part5config.put("height", new CharacteristicValue<>("Высота", "63.5 мм"));
-            part5config.put("length", new CharacteristicValue<>("Длина", "329 мм"));
-            part5config.put("max_displays_quantity", new CharacteristicValue<>("Макс. кол-во дисплеев", "4"));
-            part5config.put("min_power_unit", new CharacteristicValue<>("Мин. мощность блока питания", "700 Вт"));
-            part5config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "5 нм"));
-            part5config.put("vram_capacity", new CharacteristicValue<>("Видеопамять", "12 ГБ"));
-            part5config.put("width", new CharacteristicValue<>("Ширина", "130 мм"));
-            part5config.put("max_resolution", new CharacteristicValue<>("Макс. разрешение", "7680x4320"));
-            part5config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6X"));
-            part5config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8+8 pin"));
+            List<CharacteristicItem> part5config = new ArrayList<>();
+            part5config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "1980 Мгц"));
+            part5config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "2640 Мгц"));
+            part5config.add(new CharacteristicItem<>("bus_width", "Шина", "192 бит"));
+            part5config.add(new CharacteristicItem<>("cuda", "CUDA ядра", "7680"));
+            part5config.add(new CharacteristicItem<>("display_port", "DisplayPort", "3"));
+            part5config.add(new CharacteristicItem<>("extension_slots", "Слоты расширения", "3.1"));
+            part5config.add(new CharacteristicItem<>("fans", "Вентиляторы", "3"));
+            part5config.add(new CharacteristicItem<>("hdmi", "HDMI", "1"));
+            part5config.add(new CharacteristicItem<>("height", "Высота", "63.5 мм"));
+            part5config.add(new CharacteristicItem<>("length", "Длина", "329 мм"));
+            part5config.add(new CharacteristicItem<>("max_displays_quantity", "Макс. кол-во дисплеев", "4"));
+            part5config.add(new CharacteristicItem<>("min_power_unit", "Мин. мощность блока питания", "700 Вт"));
+            part5config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "5 нм"));
+            part5config.add(new CharacteristicItem<>("vram_capacity", "Видеопамять", "12 ГБ"));
+            part5config.add(new CharacteristicItem<>("width", "Ширина", "130 мм"));
+            part5config.add(new CharacteristicItem<>("max_resolution", "Макс. разрешение", "7680x4320"));
+            part5config.add(new CharacteristicItem<>("vram_type", "Тип видеопамяти", "GDDR6X"));
+            part5config.add(new CharacteristicItem<>("power_connector", "Разъем питания", "8+8 pin"));
             partsRepository.save(new Parts("part-5", "Palit GeForce RTX 4070 SUPER JetStream", "/uploads/palit-geforce-rtx-4070-super-jetstream.jpg", "Описание...", 1350,
                     part5config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("rtx4070").get(),
                     typesRepository.findByValue("gpu").get()));
 
-
-            Map<String, Object> part6config = new HashMap<>();
-            part6config.put("base_frequency", new CharacteristicValue<>("Базовая частота", "2000 Мгц"));
-            part6config.put("boost_frequency", new CharacteristicValue<>("Турбо частота", "2565 Мгц"));
-            part6config.put("bus_width", new CharacteristicValue<>("Шина", "256 бит"));
-            part6config.put("cuda", new CharacteristicValue<>("CUDA ядра", "10240"));
-            part6config.put("display_port", new CharacteristicValue<>("DisplayPort", "2"));
-            part6config.put("extension_slots", new CharacteristicValue<>("Слоты расширения", null));
-            part6config.put("fans", new CharacteristicValue<>("Вентиляторы", "3"));
-            part6config.put("hdmi", new CharacteristicValue<>("HDMI", "2"));
-            part6config.put("height", new CharacteristicValue<>("Высота", "62 мм"));
-            part6config.put("length", new CharacteristicValue<>("Длина", "322 мм"));
-            part6config.put("max_displays_quantity", new CharacteristicValue<>("Макс. кол-во дисплеев", "4"));
-            part6config.put("min_power_unit", new CharacteristicValue<>("Мин. мощность блока питания", "850 Вт"));
-            part6config.put("tech_process", new CharacteristicValue<>("Тех-процесс", "5 нм"));
-            part6config.put("vram_capacity", new CharacteristicValue<>("Видеопамять", "16 ГБ"));
-            part6config.put("width", new CharacteristicValue<>("Ширина", "136 мм"));
-            part6config.put("max_resolution", new CharacteristicValue<>("Макс. разрешение", "7680x4320"));
-            part6config.put("vram_type", new CharacteristicValue<>("Тип видеопамяти", "GDDR6X"));
-            part6config.put("power_connector", new CharacteristicValue<>("Разъем питания", "8+8 pin"));
+            List<CharacteristicItem> part6config = new ArrayList<>();
+            part6config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "2000 Мгц"));
+            part6config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "2565 Мгц"));
+            part6config.add(new CharacteristicItem<>("bus_width", "Шина", "256 бит"));
+            part6config.add(new CharacteristicItem<>("cuda", "CUDA ядра", "10240"));
+            part6config.add(new CharacteristicItem<>("display_port", "DisplayPort", "2"));
+            part6config.add(new CharacteristicItem<>("extension_slots", "Слоты расширения", null));
+            part6config.add(new CharacteristicItem<>("fans", "Вентиляторы", "3"));
+            part6config.add(new CharacteristicItem<>("hdmi", "HDMI", "2"));
+            part6config.add(new CharacteristicItem<>("height", "Высота", "62 мм"));
+            part6config.add(new CharacteristicItem<>("length", "Длина", "322 мм"));
+            part6config.add(new CharacteristicItem<>("max_displays_quantity", "Макс. кол-во дисплеев", "4"));
+            part6config.add(new CharacteristicItem<>("min_power_unit", "Мин. мощность блока питания", "850 Вт"));
+            part6config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "5 нм"));
+            part6config.add(new CharacteristicItem<>("vram_capacity", "Видеопамять", "16 ГБ"));
+            part6config.add(new CharacteristicItem<>("width", "Ширина", "136 мм"));
+            part6config.add(new CharacteristicItem<>("max_resolution", "Макс. разрешение", "7680x4320"));
+            part6config.add(new CharacteristicItem<>("vram_type", "Тип видеопамяти", "GDDR6X"));
+            part6config.add(new CharacteristicItem<>("power_connector", "Разъем питания", "8+8 pin"));
             partsRepository.save(new Parts("part-6", "MSI GeForce RTX 4080 SUPER GAMING SLIM", "/uploads/msi-geforce-rtx-4080-super-gaming-slim.jpg", "Описание...", 1650,
                     part6config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("rtx4080").get(),
                     typesRepository.findByValue("gpu").get()));
 
-            Map<String, Object> part7config = new HashMap<>();
-            part7config.put("m2quantity", new CharacteristicValue<>("Количество M.2 слотов", "2"));
-            part7config.put("max_ram_capacity", new CharacteristicValue<>("Макс. объем оперативной памяти", "128 ГБ"));
-            part7config.put("pcie16quantity", new CharacteristicValue<>("Количество PCIe x16 слотов", "2"));
-            part7config.put("ram_slots", new CharacteristicValue<>("Количество слотов для RAM", "4"));
-            part7config.put("sata_quantity", new CharacteristicValue<>("Количество SATA портов", "4"));
-            part7config.put("chipset", new CharacteristicValue<>("Чипсет", "Intel B760"));
-            part7config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "microATX"));
-            part7config.put("ram_type", new CharacteristicValue<>("Тип RAM", "DDR4"));
-            part7config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
+            List<CharacteristicItem> part7config = new ArrayList<>();
+            part7config.add(new CharacteristicItem<>("m2quantity", "Количество M.2 слотов", "2"));
+            part7config.add(new CharacteristicItem<>("max_ram_capacity", "Макс. объем оперативной памяти", "128 ГБ"));
+            part7config.add(new CharacteristicItem<>("pcie16quantity", "Количество PCIe x16 слотов", "2"));
+            part7config.add(new CharacteristicItem<>("ram_slots", "Количество слотов для RAM", "4"));
+            part7config.add(new CharacteristicItem<>("sata_quantity", "Количество SATA портов", "4"));
+            part7config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel B760"));
+            part7config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "microATX"));
+            part7config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR4"));
+            part7config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-7", "MSI PRO B760M-A", "/uploads/msi-pro-b760m-a.jpg", "Описание...", 330,
                     part7config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelb760").get(),
                     typesRepository.findByValue("motherboard").get()));
 
-            Map<String, Object> part8config = new HashMap<>();
-            part8config.put("m2quantity", new CharacteristicValue<>("Количество M.2 слотов", "4"));
-            part8config.put("max_ram_capacity", new CharacteristicValue<>("Макс. объем оперативной памяти", "128 ГБ"));
-            part8config.put("pcie16quantity", new CharacteristicValue<>("Количество PCIe x16 слотов", "3"));
-            part8config.put("ram_slots", new CharacteristicValue<>("Количество слотов для RAM", "4"));
-            part8config.put("sata_quantity", new CharacteristicValue<>("Количество SATA портов", "6"));
-            part8config.put("chipset", new CharacteristicValue<>("Чипсет", "Intel Z790"));
-            part8config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "ATX"));
-            part8config.put("ram_type", new CharacteristicValue<>("Тип RAM", "DDR5"));
-            part8config.put("socket", new CharacteristicValue<>("Сокет", "LGA 1700"));
+            List<CharacteristicItem> part8config = new ArrayList<>();
+            part8config.add(new CharacteristicItem<>("m2quantity", "Количество M.2 слотов", "4"));
+            part8config.add(new CharacteristicItem<>("max_ram_capacity", "Макс. объем оперативной памяти", "128 ГБ"));
+            part8config.add(new CharacteristicItem<>("pcie16quantity", "Количество PCIe x16 слотов", "3"));
+            part8config.add(new CharacteristicItem<>("ram_slots", "Количество слотов для RAM", "4"));
+            part8config.add(new CharacteristicItem<>("sata_quantity", "Количество SATA портов", "6"));
+            part8config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel Z790"));
+            part8config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX"));
+            part8config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR5"));
+            part8config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-8", "MSI PRO Z790-A MAX", "/uploads/msi-pro-z790-a-max.jpg", "Описание...", 450,
                     part8config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelz790").get(),
                     typesRepository.findByValue("motherboard").get()));
 
-            Map<String, Object> part9config = new HashMap<>();
-            part9config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "61.25 CFM"));
-            part9config.put("fans_quantity", new CharacteristicValue<>("Количество вентиляторов", "1"));
-            part9config.put("height", new CharacteristicValue<>("Высота", "165 мм"));
-            part9config.put("max_noise_level", new CharacteristicValue<>("Макс. уровень шума", "23.7 дБ"));
-            part9config.put("tdp", new CharacteristicValue<>("TDP", "250 Вт"));
-            part9config.put("backlight", new CharacteristicValue<>("Подсветка", "Отсутствует"));
-            part9config.put("connector", new CharacteristicValue<>("Коннектор", "4-pin PWM"));
-            part9config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "140x140x25 мм"));
-            part9config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "500-1800 об/мин"));
-            part9config.put("sockets", new CharacteristicValue<>("Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
+            List<CharacteristicItem> part9config = new ArrayList<>();
+            part9config.add(new CharacteristicItem<>("cpu_fan_type", "Тип охлаждения", "Воздушное"));
+            part9config.add(new CharacteristicItem<>("air_flow", "Воздушный поток", "61.25 CFM"));
+            part9config.add(new CharacteristicItem<>("fans_quantity", "Количество вентиляторов", "1"));
+            part9config.add(new CharacteristicItem<>("height", "Высота", "165 мм"));
+            part9config.add(new CharacteristicItem<>("width", "Ширина", "120 мм"));
+            part9config.add(new CharacteristicItem<>("length", "Длина", "122.5 мм"));
+            part9config.add(new CharacteristicItem<>("max_noise_level", "Макс. уровень шума", "23.7 дБ"));
+            part9config.add(new CharacteristicItem<>("tdp", "TDP", "250 Вт"));
+            part9config.add(new CharacteristicItem<>("backlight", "Подсветка", "Отсутствует"));
+            part9config.add(new CharacteristicItem<>("connector", "Коннектор", "4-pin PWM"));
+            part9config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "140x140x25 мм"));
+            part9config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "500-1800 об/мин"));
+            part9config.add(new CharacteristicItem<>("sockets", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-9", "DeepCool ASSASSIN 4S", "/uploads/deepcool-assassin-4s.jpg", "Описание...", 150,
                     part9config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("deepcool").get(),
                     typesRepository.findByValue("cpu_fan").get()));
 
-
-            Map<String, Object> part10config = new HashMap<>();
-            part10config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "70.07 CFM"));
-            part10config.put("fans_quantity", new CharacteristicValue<>("Количество вентиляторов", "3"));
-            part10config.put("height", new CharacteristicValue<>("Высота", "30 мм"));
-            part10config.put("length", new CharacteristicValue<>("Длина", "399.5 мм"));
-            part10config.put("max_noise_level", new CharacteristicValue<>("Макс. уровень шума", "36.45 дБ"));
-            part10config.put("tdp", new CharacteristicValue<>("TDP", "280 Вт"));
-            part10config.put("width", new CharacteristicValue<>("Ширина", "120 мм"));
-            part10config.put("backlight", new CharacteristicValue<>("Подсветка", "ARGB"));
-            part10config.put("connector", new CharacteristicValue<>("Коннектор", "4-pin PWM"));
-            part10config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "120x120x25 мм"));
-            part10config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "2200 +/- 300 RPM"));
-            part10config.put("sockets", new CharacteristicValue<>("Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
+            List<CharacteristicItem> part10config = new ArrayList<>();
+            part10config.add(new CharacteristicItem<>("cpu_fan_type", "Тип охлаждения", "Водяное"));
+            part10config.add(new CharacteristicItem<>("air_flow", "Воздушный поток", "70.07 CFM"));
+            part10config.add(new CharacteristicItem<>("fans_quantity", "Количество вентиляторов", "3"));
+            part10config.add(new CharacteristicItem<>("height", "Высота", "30 мм"));
+            part10config.add(new CharacteristicItem<>("length", "Длина", "399.5 мм"));
+            part10config.add(new CharacteristicItem<>("max_noise_level", "Макс. уровень шума", "36.45 дБ"));
+            part10config.add(new CharacteristicItem<>("tdp", "TDP", "280 Вт"));
+            part10config.add(new CharacteristicItem<>("width", "Ширина", "120 мм"));
+            part10config.add(new CharacteristicItem<>("backlight", "Подсветка", "ARGB"));
+            part10config.add(new CharacteristicItem<>("connector", "Коннектор", "4-pin PWM"));
+            part10config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "120x120x25 мм"));
+            part10config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "2200 +/- 300 RPM"));
+            part10config.add(new CharacteristicItem<>("sockets", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-10", "ASUS ROG RYUO III 360 White", "/uploads/asus-rog-ryuo-III-360-white.jpg", "Описание...", 460,
                     part10config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("asus").get(),
                     typesRepository.findByValue("cpu_fan").get()));
 
-            Map<String, Object> part11config = new HashMap<>();
-            part11config.put("capacity", new CharacteristicValue<>("Емкость", "16 ГБ"));
-            part11config.put("frequency", new CharacteristicValue<>("Частота", "3600 МГц"));
-            part11config.put("type", new CharacteristicValue<>("Тип", "DDR4"));
+            List<CharacteristicItem> part11config = new ArrayList<>();
+            part11config.add(new CharacteristicItem<>("capacity", "Емкость", "16 ГБ"));
+            part11config.add(new CharacteristicItem<>("frequency", "Частота", "3600 МГц"));
+            part11config.add(new CharacteristicItem<>("type", "Тип", "DDR4"));
             partsRepository.save(new Parts("part-11", "16GB Kingston FURY Beast RGB", "/uploads/16gb-kingston-fury-beast-rgb.jpg", "Описание...", 200,
                     part11config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("16gb").get(),
                     typesRepository.findByValue("ram").get()));
 
-            Map<String, Object> part12config = new HashMap<>();
-            part12config.put("capacity", new CharacteristicValue<>("Емкость", "32 ГБ"));
-            part12config.put("frequency", new CharacteristicValue<>("Частота", "3600 МГц"));
-            part12config.put("type", new CharacteristicValue<>("Тип", "DDR4"));
+            List<CharacteristicItem> part12config = new ArrayList<>();
+            part12config.add(new CharacteristicItem<>("capacity", "Емкость", "32 ГБ"));
+            part12config.add(new CharacteristicItem<>("frequency", "Частота", "3600 МГц"));
+            part12config.add(new CharacteristicItem<>("type", "Тип", "DDR4"));
             partsRepository.save(new Parts("part-12", "32GB Kingston FURY Beast RGB", "/uploads/32gb-kingston-fury-beast-rgb.jpg", "Описание...", 320,
                     part12config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("32gb").get(),
                     typesRepository.findByValue("ram").get()));
 
-            Map<String, Object> part13config = new HashMap<>();
-            part13config.put("capacity", new CharacteristicValue<>("Емкость", "64 ГБ"));
-            part13config.put("frequency", new CharacteristicValue<>("Частота", "6000 МГц"));
-            part13config.put("type", new CharacteristicValue<>("Тип", "DDR5"));
+            List<CharacteristicItem> part13config = new ArrayList<>();
+            part13config.add(new CharacteristicItem<>("capacity", "Емкость", "64 ГБ"));
+            part13config.add(new CharacteristicItem<>("frequency", "Частота", "6000 МГц"));
+            part13config.add(new CharacteristicItem<>("type", "Тип", "DDR5"));
             partsRepository.save(new Parts("part-13", "64GB TEAMGROUP T-Force Delta RGB White", "/uploads/64gb-teamgroup-t-force-delta-rgb-white.jpg", "Описание...", 600,
                     part13config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("64gb").get(),
                     typesRepository.findByValue("ram").get()));
 
-            Map<String, Object> part14config = new HashMap<>();
-            part14config.put("capacity", new CharacteristicValue<>("Емкость", "512 ГБ"));
-            part14config.put("flash_memory_type", new CharacteristicValue<>("Тип флеш-памяти", "3D NAND"));
-            part14config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "M.2 NVME"));
-            part14config.put("connection_type", new CharacteristicValue<>("Тип подключения", "PCI-E 4.0 x4"));
-            part14config.put("controller_type", new CharacteristicValue<>("Тип контроллера", "Silicon Motion SM2269XT"));
-            part14config.put("read_velocity", new CharacteristicValue<>("Скорость чтения", "5000 МБ/с"));
-            part14config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "2700 МБ/с"));
+            List<CharacteristicItem> part14config = new ArrayList<>();
+            part14config.add(new CharacteristicItem<>("capacity", "Емкость", "512 ГБ"));
+            part14config.add(new CharacteristicItem<>("flash_memory_type", "Тип флеш-памяти", "3D NAND"));
+            part14config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "M.2 NVME"));
+            part14config.add(new CharacteristicItem<>("connection_type", "Тип подключения", "PCI-E 4.0 x4"));
+            part14config.add(new CharacteristicItem<>("controller_type", "Тип контроллера", "Silicon Motion SM2269XT"));
+            part14config.add(new CharacteristicItem<>("read_velocity", "Скорость чтения", "5000 МБ/с"));
+            part14config.add(new CharacteristicItem<>("write_velocity", "Скорость записи", "2700 МБ/с"));
             partsRepository.save(new Parts("part-14", "512GB ADATA LEGEND 850", "/uploads/512gb-adata-legend-850.jpg", "Описание...", 230,
                     part14config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("512gb").get(),
                     typesRepository.findByValue("ssd").get()));
 
-            Map<String, Object> part15config = new HashMap<>();
-            part15config.put("capacity", new CharacteristicValue<>("Емкость", "1 ТБ"));
-            part15config.put("flash_memory_type", new CharacteristicValue<>("Тип флеш-памяти", "3D NAND"));
-            part15config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "M.2 NVME"));
-            part15config.put("connection_type", new CharacteristicValue<>("Тип подключения", "PCI-E 4.0 x4"));
-            part15config.put("controller_type", new CharacteristicValue<>("Тип контроллера", "Silicon Motion SM2269XT"));
-            part15config.put("read_velocity", new CharacteristicValue<>("Скорость чтения", "5000 МБ/с"));
-            part15config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "4500 МБ/с"));
+            List<CharacteristicItem> part15config = new ArrayList<>();
+            part15config.add(new CharacteristicItem<>("capacity", "Емкость", "1 ТБ"));
+            part15config.add(new CharacteristicItem<>("flash_memory_type", "Тип флеш-памяти", "3D NAND"));
+            part15config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "M.2 NVME"));
+            part15config.add(new CharacteristicItem<>("connection_type", "Тип подключения", "PCI-E 4.0 x4"));
+            part15config.add(new CharacteristicItem<>("controller_type", "Тип контроллера", "Silicon Motion SM2269XT"));
+            part15config.add(new CharacteristicItem<>("read_velocity", "Скорость чтения", "5000 МБ/с"));
+            part15config.add(new CharacteristicItem<>("write_velocity", "Скорость записи", "4500 МБ/с"));
             partsRepository.save(new Parts("part-15", "1TB ADATA LEGEND 850", "/uploads/1tb-adata-legend-850.jpg", "Описание...", 380,
                     part15config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("1tb").get(),
                     typesRepository.findByValue("ssd").get()));
 
-            Map<String, Object> part16config = new HashMap<>();
-            part16config.put("capacity", new CharacteristicValue<>("Емкость", "2 ТБ"));
-            part16config.put("flash_memory_type", new CharacteristicValue<>("Тип флеш-памяти", "MLC 3D NAND"));
-            part16config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "M.2 NVME"));
-            part16config.put("read_velocity", new CharacteristicValue<>("Скорость чтения", "7450 МБ/с"));
-            part16config.put("write_velocity", new CharacteristicValue<>("Скорость записи", "6900 МБ/с"));
-            part16config.put("max_temperature", new CharacteristicValue<>("Макс. температура", "70 °C"));
+            List<CharacteristicItem> part16config = new ArrayList<>();
+            part16config.add(new CharacteristicItem<>("capacity", "Емкость", "2 ТБ"));
+            part16config.add(new CharacteristicItem<>("flash_memory_type", "Тип флеш-памяти", "MLC 3D NAND"));
+            part16config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "M.2 NVME"));
+            part16config.add(new CharacteristicItem<>("read_velocity", "Скорость чтения", "7450 МБ/с"));
+            part16config.add(new CharacteristicItem<>("write_velocity", "Скорость записи", "6900 МБ/с"));
+            part16config.add(new CharacteristicItem<>("max_temperature", "Макс. температура", "70 °C"));
             partsRepository.save(new Parts("part-16", "2TB Samsung 990 PRO", "/uploads/2tb-samsung-990-pro.jpg", "Описание...", 550,
                     part16config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("2tb").get(),
                     typesRepository.findByValue("ssd").get()));
 
-            Map<String, Object> part17config = new HashMap<>();
-            part17config.put("power", new CharacteristicValue<>("Мощность", "650W"));
-            part17config.put("cpu4plus4quantity", new CharacteristicValue<>("Количество 4+4-pin для процессора", "1"));
-            part17config.put("gpu6plus2quantity", new CharacteristicValue<>("Количество 6+2-pin для GPU", "2"));
-            part17config.put("sata_quantity", new CharacteristicValue<>("Количество SATA разъемов", "5"));
-            part17config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "ATX"));
-            part17config.put("pfc", new CharacteristicValue<>("PFC", "активный"));
-            part17config.put("certificate", new CharacteristicValue<>("Сертификат", "80+ Bronze"));
-            part17config.put("modular", new CharacteristicValue<>("Модульность", "Полумодульный"));
-            part17config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
+            List<CharacteristicItem> part17config = new ArrayList<>();
+            part17config.add(new CharacteristicItem<>("power", "Мощность", "650W"));
+            part17config.add(new CharacteristicItem<>("cpu4plus4quantity", "Количество 4+4-pin для процессора", "1"));
+            part17config.add(new CharacteristicItem<>("gpu6plus2quantity", "Количество 6+2-pin для GPU", "2"));
+            part17config.add(new CharacteristicItem<>("sata_quantity", "Количество SATA разъемов", "5"));
+            part17config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX"));
+            part17config.add(new CharacteristicItem<>("pfc", "PFC", "активный"));
+            part17config.add(new CharacteristicItem<>("certificate", "Сертификат", "80+ Bronze"));
+            part17config.add(new CharacteristicItem<>("modular", "Модульность", "Полумодульный"));
+            part17config.add(new CharacteristicItem<>("cooling_system", "Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-17", "650W DeepCool PK650D", "/uploads/650w-deepcool-pk650d.jpg", "Описание...", 310,
                     part17config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("500w").get(),
                     typesRepository.findByValue("psu").get()));
 
-            Map<String, Object> part18config = new HashMap<>();
-            part18config.put("power", new CharacteristicValue<>("Мощность", "750W"));
-            part18config.put("cpu4plus4quantity", new CharacteristicValue<>("Количество 4+4-pin для процессора", "2"));
-            part18config.put("gpu6plus2quantity", new CharacteristicValue<>("Количество 6+2-pin для GPU", "4"));
-            part18config.put("sata_quantity", new CharacteristicValue<>("Количество SATA разъемов", "7"));
-            part18config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "ATX"));
-            part18config.put("pfc", new CharacteristicValue<>("PFC", "активный"));
-            part18config.put("certificate", new CharacteristicValue<>("Сертификат", "80+ Bronze"));
-            part18config.put("modular", new CharacteristicValue<>("Модульность", "Полумодульный"));
-            part18config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
+            List<CharacteristicItem> part18config = new ArrayList<>();
+            part18config.add(new CharacteristicItem<>("power", "Мощность", "750W"));
+            part18config.add(new CharacteristicItem<>("cpu4plus4quantity", "Количество 4+4-pin для процессора", "2"));
+            part18config.add(new CharacteristicItem<>("gpu6plus2quantity", "Количество 6+2-pin для GPU", "4"));
+            part18config.add(new CharacteristicItem<>("sata_quantity", "Количество SATA разъемов", "7"));
+            part18config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX"));
+            part18config.add(new CharacteristicItem<>("pfc", "PFC", "активный"));
+            part18config.add(new CharacteristicItem<>("certificate", "Сертификат", "80+ Bronze"));
+            part18config.add(new CharacteristicItem<>("modular", "Модульность", "Полумодульный"));
+            part18config.add(new CharacteristicItem<>("cooling_system", "Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-18", "750W DeepCool PK750D", "/uploads/750w-deepcool-pk750d.jpg", "Описание...", 410,
                     part18config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("700w").get(),
                     typesRepository.findByValue("psu").get()));
 
-
-            Map<String, Object> part19config = new HashMap<>();
-            part19config.put("power", new CharacteristicValue<>("Мощность", "850W"));
-            part19config.put("cpu4plus4quantity", new CharacteristicValue<>("Количество 4+4-pin для процессора", "2"));
-            part19config.put("gpu6plus2quantity", new CharacteristicValue<>("Количество 6+2-pin для GPU", "5"));
-            part19config.put("sata_quantity", new CharacteristicValue<>("Количество SATA разъемов", "8"));
-            part19config.put("form_factor", new CharacteristicValue<>("Форм-фактор", "ATX12V 3.0"));
-            part19config.put("pfc", new CharacteristicValue<>("PFC", "активный"));
-            part19config.put("certificate", new CharacteristicValue<>("Сертификат", "80+ Gold"));
-            part19config.put("modular", new CharacteristicValue<>("Модульность", "Модульный"));
-            part19config.put("cooling_system", new CharacteristicValue<>("Охлаждающая система", "1 вентилятор (120 мм)"));
+            List<CharacteristicItem> part19config = new ArrayList<>();
+            part19config.add(new CharacteristicItem<>("power", "Мощность", "850W"));
+            part19config.add(new CharacteristicItem<>("cpu4plus4quantity", "Количество 4+4-pin для процессора", "2"));
+            part19config.add(new CharacteristicItem<>("gpu6plus2quantity", "Количество 6+2-pin для GPU", "5"));
+            part19config.add(new CharacteristicItem<>("sata_quantity", "Количество SATA разъемов", "8"));
+            part19config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX12V 3.0"));
+            part19config.add(new CharacteristicItem<>("pfc", "PFC", "активный"));
+            part19config.add(new CharacteristicItem<>("certificate", "Сертификат", "80+ Gold"));
+            part19config.add(new CharacteristicItem<>("modular", "Модульность", "Модульный"));
+            part19config.add(new CharacteristicItem<>("cooling_system", "Охлаждающая система", "1 вентилятор (120 мм)"));
             partsRepository.save(new Parts("part-19", "850W MSI MAG A850GL", "/uploads/850w-msi-mag-a850gl.jpg", "Описание...", 610,
                     part19config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("800w").get(),
                     typesRepository.findByValue("psu").get()));
 
-            Map<String, Object> part20config = new HashMap<>();
-            part20config.put("extension_slots_quantity", new CharacteristicValue<>("Количество слотов расширения", "8"));
-            part20config.put("hdd_slots_quantity", new CharacteristicValue<>("Количество слотов для HDD", "4"));
-            part20config.put("height", new CharacteristicValue<>("Высота", "450 мм"));
-            part20config.put("length", new CharacteristicValue<>("Длина", "446 мм"));
-            part20config.put("max_cpu_cooler_height", new CharacteristicValue<>("Макс. высота кулера процессора", "163 мм"));
-            part20config.put("max_gpu_length", new CharacteristicValue<>("Макс. длина GPU", "400 мм"));
-            part20config.put("max_liquid_cooling_length", new CharacteristicValue<>("Макс. длина системы жидкостного охлаждения", "420 мм"));
-            part20config.put("ssd_slots_quantity", new CharacteristicValue<>("Количество слотов для SSD", "4"));
-            part20config.put("weight", new CharacteristicValue<>("Вес", "11 кг"));
-            part20config.put("width", new CharacteristicValue<>("Ширина", "285 мм"));
-            part20config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
+            List<CharacteristicItem> part20config = new ArrayList<>();
+            part20config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "8"));
+            part20config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "4"));
+            part20config.add(new CharacteristicItem<>("height", "Высота", "450 мм"));
+            part20config.add(new CharacteristicItem<>("length", "Длина", "446 мм"));
+            part20config.add(new CharacteristicItem<>("max_cpu_cooler_height", "Макс. высота кулера процессора", "163 мм"));
+            part20config.add(new CharacteristicItem<>("max_gpu_length", "Макс. длина GPU", "400 мм"));
+            part20config.add(new CharacteristicItem<>("max_liquid_cooling_length", "Макс. длина системы жидкостного охлаждения", "420 мм"));
+            part20config.add(new CharacteristicItem<>("ssd_slots_quantity", "Количество слотов для SSD", "4"));
+            part20config.add(new CharacteristicItem<>("weight", "Вес", "11 кг"));
+            part20config.add(new CharacteristicItem<>("width", "Ширина", "285 мм"));
+            part20config.add(new CharacteristicItem<>("possible_form_factors", "Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
             partsRepository.save(new Parts("part-20", "ASUS TUF GAMING GT502 White", "/uploads/asus-tuf-gaming-gt502-white.jpg", "Описание...", 380,
                     part20config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("asus").get(),
                     typesRepository.findByValue("cases").get()));
 
-            Map<String, Object> part21config = new HashMap<>();
-            part21config.put("extension_slots_quantity", new CharacteristicValue<>("Количество слотов расширения", "6"));
-            part21config.put("hdd_slots_quantity", new CharacteristicValue<>("Количество слотов для HDD", "2"));
-            part21config.put("height", new CharacteristicValue<>("Высота", "464 мм"));
-            part21config.put("length", new CharacteristicValue<>("Длина", "480 мм"));
-            part21config.put("max_cpu_cooler_height", new CharacteristicValue<>("Макс. высота кулера процессора", "174 мм"));
-            part21config.put("max_gpu_length", new CharacteristicValue<>("Макс. длина GPU", "430 мм"));
-            part21config.put("max_liquid_cooling_length", new CharacteristicValue<>("Макс. длина системы жидкостного охлаждения", "390 мм"));
-            part21config.put("ssd_slots_quantity", new CharacteristicValue<>("Количество слотов для SSD", "5"));
-            part21config.put("weight", new CharacteristicValue<>("Вес", "18 кг"));
-            part21config.put("width", new CharacteristicValue<>("Ширина", "304 мм"));
-            part21config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
+            List<CharacteristicItem> part21config = new ArrayList<>();
+            part21config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "6"));
+            part21config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "2"));
+            part21config.add(new CharacteristicItem<>("height", "Высота", "464 мм"));
+            part21config.add(new CharacteristicItem<>("length", "Длина", "480 мм"));
+            part21config.add(new CharacteristicItem<>("max_cpu_cooler_height", "Макс. высота кулера процессора", "174 мм"));
+            part21config.add(new CharacteristicItem<>("max_gpu_length", "Макс. длина GPU", "430 мм"));
+            part21config.add(new CharacteristicItem<>("max_liquid_cooling_length", "Макс. длина системы жидкостного охлаждения", "390 мм"));
+            part21config.add(new CharacteristicItem<>("ssd_slots_quantity", "Количество слотов для SSD", "5"));
+            part21config.add(new CharacteristicItem<>("weight", "Вес", "18 кг"));
+            part21config.add(new CharacteristicItem<>("width", "Ширина", "304 мм"));
+            part21config.add(new CharacteristicItem<>("possible_form_factors", "Поддерживаемые форм-факторы", Arrays.asList("micro-ATX", "mini-ATX", "ATX")));
             partsRepository.save(new Parts("part-21", "Lian Li O11 Vision White", "/uploads/lian-li-011-vision-white.jpg", "Описание...", 450,
                     part21config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("lianli").get(),
                     typesRepository.findByValue("cases").get()));
 
-
-            Map<String, Object> part22config = new HashMap<>();
-            part22config.put("extension_slots_quantity", new CharacteristicValue<>("Количество слотов расширения", "4"));
-            part22config.put("hdd_slots_quantity", new CharacteristicValue<>("Количество слотов для HDD", "3"));
-            part22config.put("height", new CharacteristicValue<>("Высота", "428 мм"));
-            part22config.put("length", new CharacteristicValue<>("Длина", "431 мм"));
-            part22config.put("max_cpu_cooler_height", new CharacteristicValue<>("Макс. высота кулера для процессора", "165 мм"));
-            part22config.put("max_gpu_length", new CharacteristicValue<>("Макс. длина GPU", "320 мм"));
-            part22config.put("max_liquid_cooling_length", new CharacteristicValue<>("Макс. длина жидкостного охлаждения", "270 мм"));
-            part22config.put("ssd_slots_quantity", new CharacteristicValue<>("Количество слотов для SSD", "2"));
-            part22config.put("weight", new CharacteristicValue<>("Вес", "6 кг"));
-            part22config.put("width", new CharacteristicValue<>("Ширина", "215 мм"));
-            part22config.put("possible_form_factors", new CharacteristicValue<>("Поддерживаемые форм-факторы", "micro-ATX, mini-ATX"));
+            List<CharacteristicItem> part22config = new ArrayList<>();
+            part22config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "4"));
+            part22config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "3"));
+            part22config.add(new CharacteristicItem<>("height", "Высота", "428 мм"));
+            part22config.add(new CharacteristicItem<>("length", "Длина", "431 мм"));
+            part22config.add(new CharacteristicItem<>("max_cpu_cooler_height", "Макс. высота кулера для процессора", "165 мм"));
+            part22config.add(new CharacteristicItem<>("max_gpu_length", "Макс. длина GPU", "320 мм"));
+            part22config.add(new CharacteristicItem<>("max_liquid_cooling_length", "Макс. длина жидкостного охлаждения", "270 мм"));
+            part22config.add(new CharacteristicItem<>("ssd_slots_quantity", "Количество слотов для SSD", "2"));
+            part22config.add(new CharacteristicItem<>("weight", "Вес", "6 кг"));
+            part22config.add(new CharacteristicItem<>("width", "Ширина", "215 мм"));
+            part22config.add(new CharacteristicItem<>("possible_form_factors", "Поддерживаемые форм-факторы", "micro-ATX, mini-ATX"));
             partsRepository.save(new Parts("part-22", "DeepCool CH360", "/uploads/deepcool-ch360.jpg", "Описание...", 200,
                     part22config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("deepcool").get(),
                     typesRepository.findByValue("cases").get()));
 
-            Map<String, Object> part23config = new HashMap<>();
-            part23config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "59 CFM"));
-            part23config.put("max_noise_level", new CharacteristicValue<>("Макс. уровень шума", "27 dB"));
-            part23config.put("backlight", new CharacteristicValue<>("Подсветка", "ARGB"));
-            part23config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "120x120 мм"));
-            part23config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "800-1800 об/мин"));
+            List<CharacteristicItem> part23config = new ArrayList<>();
+            part23config.add(new CharacteristicItem<>("air_flow", "Воздушный поток", "59 CFM"));
+            part23config.add(new CharacteristicItem<>("max_noise_level", "Макс. уровень шума", "27 dB"));
+            part23config.add(new CharacteristicItem<>("backlight", "Подсветка", "ARGB"));
+            part23config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "120x120 мм"));
+            part23config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "800-1800 об/мин"));
             partsRepository.save(new Parts("part-23", "Montech AX 120 PWM White", "/uploads/montech-ax-120-pwm-white.jpg", "Описание...", 60,
                     part23config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("120x120mm").get(),
                     typesRepository.findByValue("fan").get()));
 
-            Map<String, Object> part24config = new HashMap<>();
-            part24config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "81 CFM"));
-            part24config.put("max_noise_level", new CharacteristicValue<>("Макс. уровень шума", "26.8 dB"));
-            part24config.put("backlight", new CharacteristicValue<>("Подсветка", "ARGB"));
-            part24config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "140x140 мм"));
-            part24config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "250-1600 об/мин"));
+            List<CharacteristicItem> part24config = new ArrayList<>();
+            part24config.add(new CharacteristicItem<>("air_flow", "Воздушный поток", "81 CFM"));
+            part24config.add(new CharacteristicItem<>("max_noise_level", "Макс. уровень шума", "26.8 dB"));
+            part24config.add(new CharacteristicItem<>("backlight", "Подсветка", "ARGB"));
+            part24config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "140x140 мм"));
+            part24config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "250-1600 об/мин"));
             partsRepository.save(new Parts("part-24", "Lian Li UNI FAN AL V2 120 White", "/uploads/lian-li-uni-fan-al-v2-120-white.jpg", "Описание...", 70,
                     part24config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("140x140mm").get(),
                     typesRepository.findByValue("fan").get()));
 
-
-            Map<String, Object> part25config = new HashMap<>();
-            part25config.put("air_flow", new CharacteristicValue<>("Воздушный поток", "75 CFM"));
-            part25config.put("max_noise_level", new CharacteristicValue<>("Макс. уровень шума", "26.8 dB"));
-            part25config.put("backlight", new CharacteristicValue<>("Подсветка", "Отсутствует"));
-            part25config.put("fan_size", new CharacteristicValue<>("Размер вентилятора", "120x120 мм"));
-            part25config.put("fan_speed", new CharacteristicValue<>("Скорость вентилятора", "500-1600 об/мин"));
+            List<CharacteristicItem> part25config = new ArrayList<>();
+            part25config.add(new CharacteristicItem<>("air_flow", "Воздушный поток", "75 CFM"));
+            part25config.add(new CharacteristicItem<>("max_noise_level", "Макс. уровень шума", "26.8 dB"));
+            part25config.add(new CharacteristicItem<>("backlight", "Подсветка", "Отсутствует"));
+            part25config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "120x120 мм"));
+            part25config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "500-1600 об/мин"));
             partsRepository.save(new Parts("part-25", "Thermaltake TOUGHFAN 12 White", "/uploads/thermaltake-toughfan-12-white.jpg", "Описание...", 80,
                     part25config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("120x120mm").get(),
                     typesRepository.findByValue("fan").get()));
 
-            Map<String, Object> part26config = new HashMap<>();
-            part26config.put("diagonal", new CharacteristicValue<>("Диагональ", "24\""));
-            part26config.put("resolution", new CharacteristicValue<>("Разрешение", "1920x1080 (16:9)"));
-            part26config.put("matrix", new CharacteristicValue<>("Матрица", "IPS"));
-            part26config.put("frequency", new CharacteristicValue<>("Частота обновления экрана", "144 Гц"));
-            part26config.put("ports", new CharacteristicValue<>("Входы", "DisplayPort, HDMI"));
+            List<CharacteristicItem> part26config = new ArrayList<>();
+            part26config.add(new CharacteristicItem<>("diagonal", "Диагональ", "24\""));
+            part26config.add(new CharacteristicItem<>("resolution", "Разрешение", "1920x1080 (16:9)"));
+            part26config.add(new CharacteristicItem<>("matrix", "Матрица", "IPS"));
+            part26config.add(new CharacteristicItem<>("frequency", "Частота обновления экрана", "144 Гц"));
+            part26config.add(new CharacteristicItem<>("ports", "Входы", "DisplayPort, HDMI"));
             partsRepository.save(new Parts("part-26", "LG UltraGear 24GN65R", "/uploads/lg-ultragear-24gn65r.jpg", "Описание...", 350,
                     part26config, categoriesRepository.findByValue("periphery").get(),
                     partitionsRepository.findByValue("24inch").get(),
                     typesRepository.findByValue("monitor").get()));
 
-            Map<String, Object> part27config = new HashMap<>();
-            part27config.put("buttons_quantity", new CharacteristicValue<>("Количество программируемых клавиш", "5"));
-            part27config.put("sensor_model", new CharacteristicValue<>("Модель сенсора", "Razer Focus Pro 30K"));
-            part27config.put("sensor_resolution", new CharacteristicValue<>("Разрешение оптического сенсора", "30000 DPI"));
-            part27config.put("weight", new CharacteristicValue<>("Вес", "64 г"));
+            List<CharacteristicItem> part27config = new ArrayList<>();
+            part27config.add(new CharacteristicItem<>("buttons_quantity", "Количество программируемых клавиш", "5"));
+            part27config.add(new CharacteristicItem<>("sensor_model", "Модель сенсора", "Razer Focus Pro 30K"));
+            part27config.add(new CharacteristicItem<>("sensor_resolution", "Разрешение оптического сенсора", "30000 DPI"));
+            part27config.add(new CharacteristicItem<>("weight", "Вес", "64 г"));
             partsRepository.save(new Parts("part-27", "Razer DeathAdder V3 Pro", "/uploads/razer-deathadder-v3-pro.jpg", "Описание...", 220,
                     part27config, categoriesRepository.findByValue("periphery").get(),
                     partitionsRepository.findByValue("razer").get(),
                     typesRepository.findByValue("mouse").get()));
 
-            Map<String, Object> part28config = new HashMap<>();
-            part28config.put("connection_type", new CharacteristicValue<>("Тип подключения", "с проводом"));
-            part28config.put("microphone", new CharacteristicValue<>("Микрофон с шумоподавлением", "есть"));
-            part28config.put("connector", new CharacteristicValue<>("Разъем", "USB"));
-            part28config.put("weight", new CharacteristicValue<>("Вес", "250 г"));
+            List<CharacteristicItem> part28config = new ArrayList<>();
+            part28config.add(new CharacteristicItem<>("connection_type", "Тип подключения", "с проводом"));
+            part28config.add(new CharacteristicItem<>("microphone", "Микрофон с шумоподавлением", "есть"));
+            part28config.add(new CharacteristicItem<>("connector", "Разъем", "USB"));
+            part28config.add(new CharacteristicItem<>("weight", "Вес", "250 г"));
             partsRepository.save(new Parts("part-28", "Razer Kraken V3", "/uploads/razer-kraken-v3.jpg", "Описание...", 300,
                     part28config, categoriesRepository.findByValue("periphery").get(),
                     partitionsRepository.findByValue("razer").get(),
                     typesRepository.findByValue("headphones").get()));
+
 
             pcTypesRepository.save(new PcTypes("pc-type-1", "gaming-pc", "Игровой ПК"));
             pcTypesRepository.save(new PcTypes("pc-type-2", "notebook", "Ноутбук"));

@@ -1,11 +1,12 @@
 package com.example.amazingpcbackend.entity;
 
+import com.example.amazingpcbackend.dao.CharacteristicItem;
 import lombok.*;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Map;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -15,7 +16,7 @@ import java.util.Map;
 @BsonDiscriminator("part")
 public class Parts extends Product {
 
-    private Map<String, Object> characteristics;
+    private List<CharacteristicItem> characteristics;
 
     @DBRef
     private Categories categories;
@@ -26,7 +27,7 @@ public class Parts extends Product {
     @DBRef
     private Types types;
 
-    public Parts(String id, String name, String image, String description, int price, Map<String, Object> characteristics, Categories category, Partitions partition, Types cpu) {
+    public Parts(String id, String name, String image, String description, int price, List<CharacteristicItem> characteristics, Categories category, Partitions partition, Types cpu) {
         setId(id);
         setName(name);
         setDescription(description);
