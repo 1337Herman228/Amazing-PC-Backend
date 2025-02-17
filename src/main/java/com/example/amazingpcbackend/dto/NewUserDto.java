@@ -5,9 +5,11 @@ import lombok.Data;
 
 @Data
 public class NewUserDto {
+    private String id;
     private String login;
     private String password;
     private final String position = "Пользователь";
+    private String roleId;
     private String name;
     private String surname;
     private String phone;

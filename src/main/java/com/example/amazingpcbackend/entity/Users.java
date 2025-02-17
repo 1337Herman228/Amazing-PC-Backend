@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -20,6 +21,11 @@ public class Users {
     private String login;
     private String password;
 
+    private String name;
+    private String surname;
+    private String phone;
+    private String email;
+
+    @DBRef
     private Roles roles;
-    private Person person;
 }

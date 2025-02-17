@@ -14,16 +14,13 @@ import java.util.*;
 public class DatabaseSeeder {
 
     @Bean
-    CommandLineRunner initDatabase(RolesRepository rolesRepository, PersonRepository personRepository, UsersRepository usersRepository, CategoriesRepository categoriesRepository, PartitionsRepository partitionsRepository, TypesRepository typesRepository, PartsRepository partsRepository, PcTypesRepository pcTypesRepository, PcCategoriesRepository pcCategoriesRepository, PcModelGroupsRepository pcModelGroupsRepository, PcRepository pcRepository, PurchaseItemRepository purchaseItemRepository, PurchasesRepository purchasesRepository, CartItemsRepository cartRepository, CompareItemsRepository compareItemsRepository) {
+    CommandLineRunner initDatabase(RolesRepository rolesRepository, UsersRepository usersRepository, CategoriesRepository categoriesRepository, PartitionsRepository partitionsRepository, TypesRepository typesRepository, PartsRepository partsRepository, PcTypesRepository pcTypesRepository, PcCategoriesRepository pcCategoriesRepository, PcModelGroupsRepository pcModelGroupsRepository, PcRepository pcRepository, PurchaseItemRepository purchaseItemRepository, PurchasesRepository purchasesRepository, CartItemsRepository cartRepository, CompareItemsRepository compareItemsRepository) {
         return args -> {
-            rolesRepository.save(new Roles("role-1", "admin"));
-            rolesRepository.save(new Roles("role-2", "user"));
+            rolesRepository.save(new Roles("role-1", "admin", "Администратор"));
+            rolesRepository.save(new Roles("role-2", "user" , "Пользователь"));
 
-            personRepository.save(new Person("person-1", "admin", "admin", "admin", "admin"));
-            personRepository.save(new Person("person-2", "user", "user", "user", "user"));
-
-            usersRepository.save(new Users("user-1", "admin", "$2a$10$PRS7/aqGOtIXgKIl/a/5ce9ugXrY.zi9595RTjkeSToY6/C9HGdBi", rolesRepository.findByPosition("admin").get(), personRepository.findByEmail("admin").get()));
-            usersRepository.save(new Users("user-2", "user", "$2a$10$n.9aYpIC1sU4Snv8ovfh3.53DHqicMUrlk4F3Gt1V0CLwYaabhZ..", rolesRepository.findByPosition("user").get(), personRepository.findByEmail("user").get()));
+            usersRepository.save(new Users("user-1", "admin", "$2a$10$PRS7/aqGOtIXgKIl/a/5ce9ugXrY.zi9595RTjkeSToY6/C9HGdBi", "Михаил", "Зубенко", "+375293334444", "zubmih@gmail.com", rolesRepository.findByValue("admin").get()));
+            usersRepository.save(new Users("user-2", "user", "$2a$10$n.9aYpIC1sU4Snv8ovfh3.53DHqicMUrlk4F3Gt1V0CLwYaabhZ..", "Клиторчук", "КалКалыч", "375293334444", "klkal@gmail.com", rolesRepository.findByValue("user").get()));
 
             categoriesRepository.save(new Categories("category-1", "components", "Комплектующие"));
             categoriesRepository.save(new Categories("category-2", "periphery", "Периферия"));

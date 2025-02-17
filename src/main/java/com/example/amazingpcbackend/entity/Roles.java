@@ -13,5 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Roles {
     @Id
     private String id;
-    private String position;
+    private String value;
+    private String label;
 }

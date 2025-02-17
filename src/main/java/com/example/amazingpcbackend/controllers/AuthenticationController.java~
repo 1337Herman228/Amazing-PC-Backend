@@ -44,7 +44,7 @@ public class AuthenticationController {
             AuthenticationResponse authenticationResponse = authenticationService.authenticate(authenticationRequest);
             AuthDto authDto = new AuthDto();
             authDto.setAuthenticationResponse(authenticationResponse);
-            authDto.setRole(userRepository.findByLogin(authenticationRequest.login()).orElseThrow().getRoles().getValue());
+            authDto.setRole(userRepository.findByLogin(authenticationRequest.login()).orElseThrow().getRoles().getPosition());
             authDto.setUserId(userRepository.findByLogin(authenticationRequest.login()).orElseThrow().getId());
             return authDto;
 

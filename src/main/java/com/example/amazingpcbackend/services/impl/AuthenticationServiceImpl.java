@@ -3,10 +3,8 @@ package com.example.amazingpcbackend.services.impl;
 import com.example.amazingpcbackend.dto.AuthenticationRequest;
 import com.example.amazingpcbackend.dto.AuthenticationResponse;
 import com.example.amazingpcbackend.dto.NewUserDto;
-import com.example.amazingpcbackend.entity.Person;
 import com.example.amazingpcbackend.entity.Roles;
 import com.example.amazingpcbackend.entity.Users;
-import com.example.amazingpcbackend.repo.PersonRepository;
 import com.example.amazingpcbackend.repo.RolesRepository;
 import com.example.amazingpcbackend.repo.UsersRepository;
 import com.example.amazingpcbackend.security.MyUserDetails;
@@ -17,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +32,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UsersRepository userRepository;
     private final RolesRepository rolesRepository;
-    private final PersonRepository personRepository;
 
     @Override
     public AuthenticationResponse register(NewUserDto newUser) {
@@ -45,19 +41,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new RuntimeException("User with login: %s already exists".formatted(login));
         }
 
-        Person person = new Person();
-        person.setName(newUser.getName());
-        person.setSurname(newUser.getSurname());
-        person.setPhone(newUser.getPhone());
-        person.setEmail(newUser.getEmail());
-        personRepository.save(person);
-
-        Roles role = rolesRepository.findByPosition("user").orElseThrow();
+        Roles role = rolesRepository.findByValue("user").orElseThrow();
         Users user = new Users()
                 .setPassword(passwordEncoder.encode(newUser.getPassword()))
                 .setLogin(login)
                 .setRoles(role)
-                .setPerson(person);
+                .setName(newUser.getName())
+                .setSurname(newUser.getSurname())
+                .setPhone(newUser.getPhone())
+                .setEmail(newUser.getEmail());
         userRepository.save(user);
         String token = jwtService.generateToken(new MyUserDetails(user));
         return new AuthenticationResponse(token);

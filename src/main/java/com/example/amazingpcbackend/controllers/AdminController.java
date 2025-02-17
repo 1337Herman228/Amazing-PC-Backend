@@ -1,21 +1,21 @@
 package com.example.amazingpcbackend.controllers;
 
-import com.example.amazingpcbackend.entity.Partitions;
-import com.example.amazingpcbackend.entity.Parts;
-import com.example.amazingpcbackend.entity.Types;
+import com.example.amazingpcbackend.dto.NewUserDto;
+import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.exceptions.PartitionsException;
 import com.example.amazingpcbackend.exceptions.PartsException;
 import com.example.amazingpcbackend.exceptions.TypesException;
-import com.example.amazingpcbackend.repo.PartitionsRepository;
-import com.example.amazingpcbackend.repo.PartsRepository;
-import com.example.amazingpcbackend.repo.TypesRepository;
+import com.example.amazingpcbackend.repo.*;
 import com.example.amazingpcbackend.services.PartService;
 import com.example.amazingpcbackend.services.PartitionsService;
 import com.example.amazingpcbackend.services.TypesService;
+import com.example.amazingpcbackend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -29,6 +29,9 @@ public class AdminController {
     private final TypesService typesService;
     private final PartitionsRepository partitionsRepository;
     private final PartitionsService partitionsService;
+    private final UsersRepository usersRepository;
+    private final RolesRepository rolesRepository;
+    private final UserService userService;
 
     @DeleteMapping("/parts/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -124,5 +127,51 @@ public class AdminController {
             throw new PartitionsException("can't edit partition", e);
         }
     }
+
+    @GetMapping("/users")
+    public List<Users> getUsers() {
+        return usersRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    public Users getUsersByID(@PathVariable String id) {
+        return usersRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addUser(@RequestBody NewUserDto user) throws Exception {
+        try {
+            return userService.addUser(user);
+        } catch (Exception e) {
+            throw new Exception("can't add new user", e);
+        }
+    }
+
+    @DeleteMapping ("/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteUser(@PathVariable String id) throws Exception {
+        try {
+            return userService.deleteUser(id);
+        } catch (Exception e) {
+            throw new Exception("can't delete user", e);
+        }
+    }
+
+    @PutMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editUser(@RequestBody NewUserDto newUserDto) throws Exception {
+        try {
+            return userService.editUser(newUserDto);
+        } catch (Exception e) {
+            throw new Exception("can't edit user", e);
+        }
+    }
+
+    @GetMapping("/roles")
+    public List<Roles> getRoles() {
+        return rolesRepository.findAll();
+    }
+
 
 }
