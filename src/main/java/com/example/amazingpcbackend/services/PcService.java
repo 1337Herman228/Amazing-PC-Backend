@@ -1,29 +1,45 @@
-//package com.example.amazingpcbackend.services;
-//
-//
-//import com.example.amazingpcbackend.dto.*;
-//import com.example.amazingpcbackend.entity.*;
-//import com.example.amazingpcbackend.repo.*;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.ArrayList;
-//import java.util.Comparator;
-//import java.util.List;
-//import java.util.Optional;
-//import java.util.stream.Collectors;
-//
-//@Service
-//@RequiredArgsConstructor
-//public class PcService {
-//
-//    private final PcTypesRepository pcTypesRepository;
-//    private final PcModelGroupsRepository pcModelGroupsRepository;
-//    private final PcRepository pcRepository;
-//    private final PcFansQuantityRepository pcFansQuantityRepository;
-//    private final PcSsdQuantityRepository pcSsdQuantityRepository;
-//    private final PartsRepository partsRepository;
-//
+package com.example.amazingpcbackend.services;
+
+
+import com.example.amazingpcbackend.dto.*;
+import com.example.amazingpcbackend.entity.*;
+import com.example.amazingpcbackend.repo.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class PcService {
+
+    private final PcTypesRepository pcTypesRepository;
+    private final PcModelGroupsRepository pcModelGroupsRepository;
+    private final PcRepository pcRepository;
+    private final PartsRepository partsRepository;
+    private final PcCategoriesRepository pcCategoriesRepository;
+
+    public List<PcCategories> getNonEmptyPcCategories() {
+        List<PcCategories> categories = new ArrayList<>();
+        List<PcCategories> allCategories = pcCategoriesRepository.findAll();
+        for (PcCategories category : allCategories) {
+            if (!pcModelGroupsRepository.findByPcCategories(category).isEmpty()) {
+                categories.add(category);
+            }
+        }
+        return categories;
+    }
+
+    public List<Pc> getPcsByModelGroupName(String pcModelGroupName) {
+        PcModelGroups pcModelGroup = pcModelGroupsRepository.findByModelGroupName(pcModelGroupName).get();
+
+        return pcRepository.findByPcModelGroup(pcModelGroup);
+    }
+
 //    public PcCatalogDto getPcCatalog( String pcType) {
 //
 //        Optional<PcTypes> pcTypes = pcTypesRepository.findByType(pcType);
@@ -66,41 +82,7 @@
 //        return pcCatalogDto;
 //    }
 //
-//    public List<PcDto> getPcsByModelGroupName(String pcModelGroupName){
-//        PcModelGroups pcModelGroup = pcModelGroupsRepository.findByModelGroupName(pcModelGroupName).get();
-//
-//        List<PcDto> pcDtoList = new ArrayList<>();
-//        List<Pc> pcList = pcRepository.findByPcModelGroup(pcModelGroup);
-//        for(Pc pc : pcList) {
-//
-//            List<FanDto> fanDtoList = new ArrayList<>();
-//            List<PcFansQuantity> pcFansQuantities = pcFansQuantityRepository.findByPc(pc);
-//            for(PcFansQuantity pcFansQuantity : pcFansQuantities) {
-//                FanDto fanDto = new FanDto();
-//                Optional<Parts> part = partsRepository.findById(pcFansQuantity.getFan().getPartId());
-//                fanDto.setFan(part.get());
-//                fanDto.setQuantity(pcFansQuantity.getQuantity());
-//                fanDtoList.add(fanDto);
-//            }
-//
-//            List<SsdDto> ssdDtoList = new ArrayList<>();
-//            List<PcSsdQuantity> pcSsdQuantities = pcSsdQuantityRepository.findByPc(pc);
-//            for(PcSsdQuantity pcSsdQuantity : pcSsdQuantities) {
-//                SsdDto ssdDto = new SsdDto();
-//                Optional<Parts> part = partsRepository.findById(pcSsdQuantity.getSsd().getPartId());
-//                ssdDto.setSsd(part.get());
-//                ssdDto.setQuantity(pcSsdQuantity.getQuantity());
-//                ssdDtoList.add(ssdDto);
-//            }
-//
-//            PcDto pcDto = mapToDto(pc);
-//            pcDto.setFansList(fanDtoList);
-//            pcDto.setSsdList(ssdDtoList);
-//            pcDtoList.add(pcDto);
-//        }
-//
-//        return pcDtoList;
-//    }
+
 //
 //    private static PcModelGroupCatalogDto getPcModelGroupCatalogDto(PcModelGroups pcModelGroup, Pc minPricePc, List<Pc> pcs) {
 //        float minPrice = minPricePc.getTotalPrice();
@@ -139,5 +121,5 @@
 //
 //        return pcDto;
 //    }
-//
-//}
+
+}

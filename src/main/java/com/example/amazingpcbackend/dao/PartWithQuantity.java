@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class PartWithQuantity {
+public class    PartWithQuantity {
     private int quantity;
     private Parts part;
 }

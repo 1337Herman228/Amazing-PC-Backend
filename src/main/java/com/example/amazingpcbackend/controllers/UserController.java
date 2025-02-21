@@ -1,13 +1,11 @@
 package com.example.amazingpcbackend.controllers;
 
-import com.example.amazingpcbackend.entity.Categories;
-import com.example.amazingpcbackend.entity.Partitions;
-import com.example.amazingpcbackend.entity.Parts;
-import com.example.amazingpcbackend.entity.Types;
-import com.example.amazingpcbackend.repo.CategoriesRepository;
-import com.example.amazingpcbackend.repo.PartitionsRepository;
-import com.example.amazingpcbackend.repo.PartsRepository;
-import com.example.amazingpcbackend.repo.TypesRepository;
+import com.example.amazingpcbackend.dto.ConfiguratorComponentsListDto;
+import com.example.amazingpcbackend.entity.*;
+import com.example.amazingpcbackend.repo.*;
+import com.example.amazingpcbackend.services.ConfiguratorService;
+import com.example.amazingpcbackend.services.PcService;
+import com.example.amazingpcbackend.services.PurchasesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +23,12 @@ public class UserController {
     private final CategoriesRepository categoriesRepository;
     private final PartitionsRepository partitionsRepository;
     private final PartsRepository partsRepository;
+    private final PurchasesService purchasesService;
+    private final PcCategoriesRepository pcCategoriesRepository;
+    private final PcTypesRepository pcTypesRepository;
+    private final PcModelGroupsRepository pcModelGroupsRepository;
+    private final PcService pcService;
+    private final ConfiguratorService configuratorService;
 
     @GetMapping("/types")
     public List<Types> getTypes() {
@@ -61,16 +65,61 @@ public class UserController {
         return partitionsRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/user-cart/{id}")
+    public List<PurchaseItem> getUserCartItems(@PathVariable String id) {
+        return purchasesService.getUserCartItems(id);
+    }
 
-//    @GetMapping("/configurator-parts")
-//    public ConfiguratorComponentsListDto getConfiguratorParts() {
-//        return configuratorService.getComponentsList();
-//    }
-//
-//    @GetMapping("/gaming-pc-catalog")
-//    public PcCatalogDto getGamingPc() {
+    @GetMapping("/pc-categories")
+    public List<PcCategories> getPcCategories() {
+        return pcCategoriesRepository.findAll();
+    }
+
+    @GetMapping("/not-empty-pc-categories")
+    public List<PcCategories> getNotEmptyPcCategories() {
+        return pcService.getNonEmptyPcCategories();
+    }
+
+    @GetMapping("/pc-types")
+    public List<PcTypes> getPcTypes() {
+        return pcTypesRepository.findAll();
+    }
+
+    @GetMapping("/gaming-pc-catalog")
+    public List<PcModelGroups> getGamingPcCatalog() {
+        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("gaming-pc").get());
+    }
+
+    @GetMapping("/notebooks-catalog")
+    public List<PcModelGroups> getNotebooksCatalog() {
+        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("notebook").get());
+    }
+
+    @GetMapping("/workstations-catalog")
+    public List<PcModelGroups> getWorkstationsCatalog() {
+        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("workstation").get());
+    }
+
+    @GetMapping("/get-pc-by-model-group-name/{modelGroupName}")
+    public List<Pc> getPcsByModelGroupName(@PathVariable String modelGroupName) {
+        return pcService.getPcsByModelGroupName(modelGroupName);
+    }
+
+    @GetMapping("/configurator-parts")
+    public ConfiguratorComponentsListDto getConfiguratorParts() {
+        return configuratorService.getComponentsList();
+    }
+
+
+
+//    @GetMapping("/pc-model-groups")
+//    public List<Pc> getPcCatalog() {
 //        return pcService.getPcCatalog("gaming-pc");
 //    }
+
+
+
+
 //
 //    @GetMapping("/notebooks-catalog")
 //    public PcCatalogDto getNotebooks() {
@@ -82,14 +131,8 @@ public class UserController {
 //        return pcService.getPcCatalog("workstation");
 //    }
 //
-//    @GetMapping("/get-pc-by-model-group-name/{modelGroupName}")
-//    public List<PcDto> getPcsByModelGroupName(@PathVariable String modelGroupName) {
-//        return pcService.getPcsByModelGroupName(modelGroupName);
-//    }
+
 //
-//    @GetMapping("/get-user-cart-items/{userId}")
-//    public List<PurchaseItems> getUserCartItems(@PathVariable Long userId) {
-//        return purchasesService.getUserCartItems(userId);
-//    }
+
 
 }

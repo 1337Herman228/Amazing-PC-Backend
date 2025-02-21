@@ -24,6 +24,7 @@ public class PcModelGroups {
     @DBRef
     private PcCategories pcCategories;
 
+    private String modelGroupImage;
     private String modelGroupName; //One
     private String modelGroupDescription; //Начальный игровой компьютер
 

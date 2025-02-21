@@ -689,7 +689,7 @@ public class DatabaseSeeder {
             lumenCoreSuper.setPcCategories(optimalGamingCategory);
             lumenCoreSuper.setName("Lumen Core Super");
             lumenCoreSuper.setDescription("Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].");
-            lumenCoreSuper.setImage("/uploads/lumen-core.jpg");
+            lumenCoreSuper.setImage("uploads/lumen-core.jpg");
             lumenCoreSuper.setPrice(7800);
 
             lumenCoreSuper.setGpu(gpuPart);
@@ -712,7 +712,7 @@ public class DatabaseSeeder {
             furySuper.setPcCategories(powerfulGamingCategory);
             furySuper.setName("Fury Super");
             furySuper.setDescription("Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].");
-            furySuper.setImage("/uploads/fury.jpg");
+            furySuper.setImage("uploads/fury.jpg");
             furySuper.setPrice(8800);
 
             furySuper.setGpu(gpuPart);
@@ -735,7 +735,7 @@ public class DatabaseSeeder {
             play17M1.setPcCategories(optimalWorkstationCategory);
             play17M1.setName("PLAY 17 M1");
             play17M1.setDescription("Ноутбук PLAY 17 – это отличный выбор для тех, кто хочет обладать современным ноутбуком, который можно использовать для игр, работы и учёбы. Имеет установленную ОС Windows 11 Home.");
-            play17M1.setImage("/uploads/hyperpc-play.jpg");
+            play17M1.setImage("uploads/hyperpc-play.jpg");
             play17M1.setPrice(7400);
 
             play17M1.setGpu(gpuPart);
@@ -753,7 +753,7 @@ public class DatabaseSeeder {
             g1ProSuper.setPcCategories(customGamingCategory);
             g1ProSuper.setName("G1 PRO Super");
             g1ProSuper.setDescription("Надежный начального уровня компьютер, оснащенный быстрым процессором и высокоскоростной памятью, предназначенный для профессиональных приложений и эффективной многозадачности.");
-            g1ProSuper.setImage("/uploads/pro-g1.jpg");
+            g1ProSuper.setImage("uploads/pro-g1.jpg");
             g1ProSuper.setPrice(3500);
 
             g1ProSuper.setGpu(gpuPart);
@@ -776,7 +776,7 @@ public class DatabaseSeeder {
             myConfiguration.setPcCategories(customGamingCategory);
             myConfiguration.setName("My Configuration");
             myConfiguration.setDescription(null);
-            myConfiguration.setImage("/components/case/no-case.jpg");
+            myConfiguration.setImage("components/case/no-case.jpg");
             myConfiguration.setPrice(3500);
 
             myConfiguration.setGpu(gpuPart);
