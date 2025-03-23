@@ -1,17 +1,17 @@
 package com.example.amazingpcbackend.services;
 
 
+import com.example.amazingpcbackend.dao.PartWithQuantity;
 import com.example.amazingpcbackend.dto.*;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +22,22 @@ public class PcService {
     private final PcRepository pcRepository;
     private final PartsRepository partsRepository;
     private final PcCategoriesRepository pcCategoriesRepository;
+    private final UsersRepository usersRepository;
+
+
+    public List<CatalogDto> getCatalog(PcTypes pcType) {
+        List<PcModelGroups> list = pcModelGroupsRepository.findByPcTypes(pcType);
+        List<CatalogDto> result = new ArrayList<>();
+        for (PcModelGroups pcModelGroup : list) {
+            CatalogDto catalogDto  = new CatalogDto();
+            catalogDto.setConfigurationsCount(pcRepository.findByPcModelGroup(pcModelGroup).size());
+            catalogDto.setMinPrice(pcRepository.findByPcModelGroup(pcModelGroup).stream().min(Comparator.comparing(Pc::getPrice)).get().getPrice());
+            catalogDto.setPcModelGroup(pcModelGroup);
+            catalogDto.setPc(pcRepository.findByPcModelGroup(pcModelGroup).stream().min(Comparator.comparing(Pc::getPrice)).get());
+            result.add(catalogDto);
+        }
+        return result;
+    }
 
     public List<PcCategories> getNonEmptyPcCategories() {
         List<PcCategories> categories = new ArrayList<>();
@@ -40,86 +56,93 @@ public class PcService {
         return pcRepository.findByPcModelGroup(pcModelGroup);
     }
 
-//    public PcCatalogDto getPcCatalog( String pcType) {
-//
-//        Optional<PcTypes> pcTypes = pcTypesRepository.findByType(pcType);
-//
-//        List<PcModelGroupCatalogDto> pcModelGroupCatalogList = new ArrayList<>();
-//        List<PcCategories> pcCategoriesList = new ArrayList<>();
-//
-//        List<PcModelGroups> pcModelGroups = pcModelGroupsRepository.findByPcTypes(pcTypes.get());
-//
-//        for(PcModelGroups pcModelGroup : pcModelGroups) {
-//            pcCategoriesList.add(pcModelGroup.getPcCategories());
-//
-//            List<Pc> pcs = pcRepository.findByPcModelGroup(pcModelGroup);
-//
-//            if (!pcs.isEmpty()) {
-//                // Находим минимальную цену
-//                Pc minPricePc = pcs.stream()
-//                        .min(Comparator.comparing(Pc::getTotalPrice))
-//                        .orElse(null);
-//
-//                // Получаем данные из ПК с минимальной ценой
-//                PcModelGroupCatalogDto pcModelGroupCatalogDto = getPcModelGroupCatalogDto(pcModelGroup, minPricePc, pcs);
-//                pcModelGroupCatalogList.add(pcModelGroupCatalogDto);
-//            }
-//
-//        }
-//
-//        // Удаление дубликатов по имени категории
-//        pcCategoriesList = new ArrayList<>(pcCategoriesList.stream()
-//                .collect(Collectors.toMap(
-//                        PcCategories::getPcCategoryName, // Ключ - имя категории
-//                        pcCategory -> pcCategory,         // Значение - сам объект
-//                        (existing, replacement) -> existing // Если ключ уже существует, оставить существующий
-//                ))
-//                .values()); // Преобразование обратно в список
-//
-//        PcCatalogDto pcCatalogDto = new PcCatalogDto();
-//        pcCatalogDto.setPcCategories(pcCategoriesList);
-//        pcCatalogDto.setPcModelGroupList(pcModelGroupCatalogList);
-//        return pcCatalogDto;
-//    }
-//
+    public Pc createConfiguration(Pc pc, PcConfigurationDto configuration) {
 
-//
-//    private static PcModelGroupCatalogDto getPcModelGroupCatalogDto(PcModelGroups pcModelGroup, Pc minPricePc, List<Pc> pcs) {
-//        float minPrice = minPricePc.getTotalPrice();
-//        String image = minPricePc.getImage();
-//        int configurationsCount = pcs.size();
-//
-//        PcModelGroupCatalogDto pcModelGroupCatalogDto = new PcModelGroupCatalogDto();
-//        pcModelGroupCatalogDto.setPcModelGroup(pcModelGroup);
-//        pcModelGroupCatalogDto.setConfigurationsCount(configurationsCount);
-//        pcModelGroupCatalogDto.setImage(image);
-//        pcModelGroupCatalogDto.setMinPrice(minPrice);
-//        return pcModelGroupCatalogDto;
-//    }
-//
-//    public PcDto mapToDto(Pc pc) {
-//        if (pc == null) {
-//            return null;
-//        }
-//
-//        PcDto pcDto = new PcDto();
-//        pcDto.setPcId(pc.getPcId());
-//        pcDto.setPcModelGroup(pc.getPcModelGroup() != null ? pc.getPcModelGroup() : null);
-//        pcDto.setPcType(pc.getPcType());
-//        pcDto.setPcCategories(pc.getPcCategories());
-//        pcDto.setName(pc.getName());
-//        pcDto.setDescription(pc.getDescription());
-//        pcDto.setImage(pc.getImage());
-//        pcDto.setTotalPrice(pc.getTotalPrice());
-//        pcDto.setGpu(pc.getGpu());
-//        pcDto.setCpu(pc.getCpu());
-//        pcDto.setMotherboard(pc.getMotherboard());
-//        pcDto.setCpuFan(pc.getCpuFan());
-//        pcDto.setRam(pc.getRam());
-//        pcDto.setPsu(pc.getPsu());
-//        pcDto.setPcCase(pc.getPcCase());
-//
-//        return pcDto;
-//    }
+        Parts cpu = partsRepository.findById(configuration.getCpuId()).get();
+        Parts gpu = partsRepository.findById(configuration.getGpuId()).get();
+        Parts mb = partsRepository.findById(configuration.getMotherboardId()).get();
+        Parts cpuFan = partsRepository.findById(configuration.getCpuFanId()).get();
+        Parts psu = partsRepository.findById(configuration.getPsuId()).get();
+        Parts ram = partsRepository.findById(configuration.getRamId()).get();
+
+        float price = 0;
+
+        pc.setName(configuration.getName());
+        pc.setUserCreated(usersRepository.findById(configuration.getUserId()).get());
+        pc.setMotherboard(mb);
+        pc.setCpu(cpu);
+        pc.setCpuFan(cpuFan);
+        pc.setGpu(gpu);
+        pc.setPsu(psu);
+        pc.setRam(ram);
+
+        price += cpu.getPrice();
+        price += gpu.getPrice();
+        price += mb.getPrice();
+        price += cpuFan.getPrice();
+        price += psu.getPrice();
+        price += ram.getPrice();
+
+        if (configuration.getPcCaseId() != null) {
+            Parts pcCase = partsRepository.findById(configuration.getPcCaseId()).get();
+            pc.setPcCase(pcCase);
+            pc.setImage(pcCase.getImage());
+            price += pcCase.getPrice();
+        } else {
+            pc.setImage("/components/case/no-case.jpg");
+        }
+
+        if (!configuration.getSsd().isEmpty()) {
+            List<PartWithQuantity> ssd = new ArrayList<>();
+            for (PartIdWithQuantity partIdWithQuantity : configuration.getSsd()) {
+                Parts part = partsRepository.findById(partIdWithQuantity.getPartId()).get();
+                ssd.add(new PartWithQuantity(partIdWithQuantity.getQuantity(), part));
+                price += part.getPrice();
+            }
+            pc.setSsd(ssd);
+        }
+
+        if (!configuration.getFans().isEmpty()) {
+            List<PartWithQuantity> fans = new ArrayList<>();
+            for (PartIdWithQuantity partIdWithQuantity : configuration.getFans()) {
+                Parts part = partsRepository.findById(partIdWithQuantity.getPartId()).get();
+                fans.add(new PartWithQuantity(partIdWithQuantity.getQuantity(), part));
+                price += part.getPrice();
+            }
+            pc.setFans(fans);
+        }
+
+        pc.setPrice(price);
+        pc.setPcType(pcTypesRepository.findByValue("configuration").get());
+        pcRepository.save(pc);
+        return pc;
+    }
+
+    public IdDto addPcConfiguration(PcConfigurationDto configuration) {
+        try {
+            Pc pc = new Pc();
+            pc = createConfiguration(pc,configuration);
+            IdDto idDto = new IdDto();
+            idDto.setId(pc.getId());
+            return idDto;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public HttpStatus editPcConfiguration(PcConfigurationDto configuration) {
+        try {
+            Pc pc = pcRepository.findById(configuration.getId()).get();
+            pc = createConfiguration(pc,configuration);
+            pcRepository.save(pc);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public Pc getConfiguration(String id) {
+        return pcRepository.findById(id).get();
+    }
 
 }

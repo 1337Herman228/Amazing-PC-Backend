@@ -1,0 +1,20 @@
+package com.example.amazingpcbackend.dto;
+
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class NewPcConfigurationDto {
+    private String userId;
+    private String name;
+    private String gpuId;
+    private String cpuId;
+    private String motherboardId;
+    private String cpuFanId;
+    private String ramId;
+    private String psuId;
+    private String pcCaseId;
+    private List<PartIdWithQuantity> ssd;
+    private List<PartIdWithQuantity> fans;
+}

@@ -20,13 +20,10 @@ public class Pc extends Product {
 
     @DBRef
     private PcModelGroups pcModelGroup;
-
     @DBRef
     private PcTypes pcType;
-
     @DBRef
     private PcCategories pcCategories;
-
     @DBRef
     private Parts gpu;
     @DBRef
@@ -41,11 +38,10 @@ public class Pc extends Product {
     private Parts psu;
     @DBRef
     private Parts pcCase;
-
     private List<PartWithQuantity> ssd;
-
     private List<PartWithQuantity> fans;
-
+    @DBRef
+    private Users userCreated;
     @Override
     public ProductType getProductType() {
         return ProductType.PC;

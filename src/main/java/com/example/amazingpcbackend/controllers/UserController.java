@@ -1,16 +1,12 @@
 package com.example.amazingpcbackend.controllers;
 
-import com.example.amazingpcbackend.dto.ConfiguratorComponentsListDto;
+import com.example.amazingpcbackend.dto.*;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.*;
-import com.example.amazingpcbackend.services.ConfiguratorService;
-import com.example.amazingpcbackend.services.PcService;
-import com.example.amazingpcbackend.services.PurchasesService;
+import com.example.amazingpcbackend.services.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +25,10 @@ public class UserController {
     private final PcModelGroupsRepository pcModelGroupsRepository;
     private final PcService pcService;
     private final ConfiguratorService configuratorService;
+    private final CartService cartService;
+    private final PurchaseItemRepository purchaseItemRepository;
+    private final UsersRepository usersRepository;
+    private final CompareService compareService;
 
     @GetMapping("/types")
     public List<Types> getTypes() {
@@ -86,18 +86,18 @@ public class UserController {
     }
 
     @GetMapping("/gaming-pc-catalog")
-    public List<PcModelGroups> getGamingPcCatalog() {
-        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("gaming-pc").get());
+    public List<CatalogDto> getGamingPcCatalog() {
+        return pcService.getCatalog(pcTypesRepository.findByValue("gaming-pc").get());
     }
 
     @GetMapping("/notebooks-catalog")
-    public List<PcModelGroups> getNotebooksCatalog() {
-        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("notebook").get());
+    public List<CatalogDto> getNotebooksCatalog() {
+        return pcService.getCatalog(pcTypesRepository.findByValue("notebook").get());
     }
 
     @GetMapping("/workstations-catalog")
-    public List<PcModelGroups> getWorkstationsCatalog() {
-        return pcModelGroupsRepository.findByPcTypes(pcTypesRepository.findByValue("workstation").get());
+    public List<CatalogDto> getWorkstationsCatalog() {
+        return pcService.getCatalog(pcTypesRepository.findByValue("workstation").get());
     }
 
     @GetMapping("/get-pc-by-model-group-name/{modelGroupName}")
@@ -110,29 +110,97 @@ public class UserController {
         return configuratorService.getComponentsList();
     }
 
+    @PutMapping("/edit-purchase-item-quantity")
+    public HttpStatus editPurchaseItemQuantity(@RequestBody EditPurchaseItemQuantityDto editPurchaseItemQuantityDto) {
+        return cartService.editPurchaseItemQuantity(editPurchaseItemQuantityDto.getId(), editPurchaseItemQuantityDto.getQuantity());
+    }
 
+    @DeleteMapping("/purchase-items/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePurchaseItem(@PathVariable String id) throws Exception {
+        try {
+            return cartService.deleteCartItem(id);
+        } catch (Exception e) {
+            throw new Exception("can't delete purchase item", e);
+        }
+    }
 
-//    @GetMapping("/pc-model-groups")
-//    public List<Pc> getPcCatalog() {
-//        return pcService.getPcCatalog("gaming-pc");
-//    }
+    @PostMapping("/configurations")
+    @ResponseStatus(HttpStatus.OK)
+    public IdDto saveConfiguration(@RequestBody PcConfigurationDto configuration) throws Exception {
+        try {
+            return pcService.addPcConfiguration(configuration);
+        } catch (Exception e) {
+            throw new Exception("can't save configuration", e);
+        }
+    }
 
+    @PutMapping("/configurations")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editConfiguration(@RequestBody PcConfigurationDto configuration) throws Exception {
+        try {
+            return pcService.editPcConfiguration(configuration);
+        } catch (Exception e) {
+            throw new Exception("can't save configuration", e);
+        }
+    }
 
+    @GetMapping("/configurations/{id}")
+    public Pc getConfiguration(@PathVariable String id) {
+        return pcService.getConfiguration(id);
+    }
 
+    @PostMapping("/configurator-products-to-cart")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus ConfiguratorProductsToCart(@RequestBody ConfiguratorProductsDto productsDto) throws Exception {
+        try {
+            List<String> ids = purchasesService.addConfiguratorProductsToPurchaseItems(productsDto);
+            return cartService.addCartItemsFromConfigurator(ids, productsDto.getUserId());
+        } catch (Exception e) {
+            throw new Exception("can't save configuration", e);
+        }
+    }
 
-//
-//    @GetMapping("/notebooks-catalog")
-//    public PcCatalogDto getNotebooks() {
-//        return pcService.getPcCatalog("notebook");
-//    }
-//
-//    @GetMapping("/workstations-catalog")
-//    public PcCatalogDto getWorkStations() {
-//        return pcService.getPcCatalog("workstation");
-//    }
-//
+    @PostMapping("/pc-to-cart")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus PcToCart(@RequestBody PcToCartDto pcToCartDto) throws Exception {
+        try {
+            String id = purchasesService.addPurchaseItemPc(new PcIdWithQuantity(pcToCartDto.getPcId(), pcToCartDto.getQuantity()));
+            cartService.addCartItemFromPurchaseItem(purchaseItemRepository.findById(id).get(), usersRepository.findById(pcToCartDto.getUserId()).get());
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new Exception("can't save configuration", e);
+        }
+    }
 
-//
+    @GetMapping("/compare/{userId}")
+    public CompareItemsDto getCompareItems(@PathVariable String userId) {
+        Users user = usersRepository.findById(userId).get();
+        return compareService.getCompareItems(user);
+    }
 
+    @GetMapping("/compare-count/{userId}")
+    public int getCompareItemsCount(@PathVariable String userId) {
+        Users user = usersRepository.findById(userId).get();
+        return compareService.getCompareItemsCount(user);
+    }
 
+    @DeleteMapping("/compare/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteCompareItem(@PathVariable String id) throws Exception {
+            return compareService.deleteItemById(id);
+    }
+
+    @DeleteMapping("/compare")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteAllCompareItems() throws Exception {
+        return compareService.deleteAllItems();
+    }
+
+    @PostMapping("/compare")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addCompareItem(@RequestBody AddCompareItemDto addCompareItemDto) throws Exception {
+        Users user = usersRepository.findById(addCompareItemDto.getUserId()).get();
+        return compareService.addCompareItem(user,addCompareItemDto.getProductId());
+    }
 }

@@ -76,7 +76,7 @@ public class DatabaseSeeder {
             part1config.add( new CharacteristicItem<>("cachel3","Кэш 3-го уровня", "18432 КБ"));
             part1config.add( new CharacteristicItem<>("socket","Сокет", "LGA 1700"));
             part1config.add( new CharacteristicItem<>("tech_process","Тех-процесс", "7 нм"));
-            part1config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4", "DDR5")));
+            part1config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4")));
             partsRepository.save(new Parts("part-1","I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350,part1config, categoriesRepository.findByValue("components").get(), partitionsRepository.findByValue("intelcore12th").get(), typesRepository.findByValue("cpu").get()));
 
             List<CharacteristicItem> part2config = new ArrayList<>();
@@ -196,7 +196,7 @@ public class DatabaseSeeder {
             part7config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel B760"));
             part7config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "microATX"));
             part7config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR4"));
-            part7config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
+            part7config.add(new CharacteristicItem<>("socket", "Сокет", "SOCKET JOPA"));
             partsRepository.save(new Parts("part-7", "MSI PRO B760M-A", "/uploads/msi-pro-b760m-a.jpg", "Описание...", 330,
                     part7config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelb760").get(),
@@ -211,7 +211,7 @@ public class DatabaseSeeder {
             part8config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel Z790"));
             part8config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX"));
             part8config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR5"));
-            part8config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
+            part8config.add(new CharacteristicItem<>("socket", "Сокет", "SOCKET JOPA"));
             partsRepository.save(new Parts("part-8", "MSI PRO Z790-A MAX", "/uploads/msi-pro-z790-a-max.jpg", "Описание...", 450,
                     part8config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelz790").get(),
@@ -230,7 +230,7 @@ public class DatabaseSeeder {
             part9config.add(new CharacteristicItem<>("connector", "Коннектор", "4-pin PWM"));
             part9config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "140x140x25 мм"));
             part9config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "500-1800 об/мин"));
-            part9config.add(new CharacteristicItem<>("sockets", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
+            part9config.add(new CharacteristicItem<>("socket", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-9", "DeepCool ASSASSIN 4S", "/uploads/deepcool-assassin-4s.jpg", "Описание...", 150,
                     part9config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("deepcool").get(),
@@ -249,7 +249,7 @@ public class DatabaseSeeder {
             part10config.add(new CharacteristicItem<>("connector", "Коннектор", "4-pin PWM"));
             part10config.add(new CharacteristicItem<>("fan_size", "Размер вентилятора", "120x120x25 мм"));
             part10config.add(new CharacteristicItem<>("fan_speed", "Скорость вентилятора", "2200 +/- 300 RPM"));
-            part10config.add(new CharacteristicItem<>("sockets", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
+            part10config.add(new CharacteristicItem<>("socket", "Сокеты", Arrays.asList("AM4", "AM5", "LGA 1150", "LGA 1151", "LGA 1155", "LGA 1200", "LGA 1700", "LGA 2011", "LGA 2011-3", "LGA 2066")));
             partsRepository.save(new Parts("part-10", "ASUS ROG RYUO III 360 White", "/uploads/asus-rog-ryuo-III-360-white.jpg", "Описание...", 460,
                     part10config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("asus").get(),
@@ -366,7 +366,7 @@ public class DatabaseSeeder {
                     typesRepository.findByValue("psu").get()));
 
             List<CharacteristicItem> part20config = new ArrayList<>();
-            part20config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "8"));
+            part20config.add(new CharacteristicItem<>("extension_slots", "Количество слотов расширения", "8"));
             part20config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "4"));
             part20config.add(new CharacteristicItem<>("height", "Высота", "450 мм"));
             part20config.add(new CharacteristicItem<>("length", "Длина", "446 мм"));
@@ -383,7 +383,7 @@ public class DatabaseSeeder {
                     typesRepository.findByValue("cases").get()));
 
             List<CharacteristicItem> part21config = new ArrayList<>();
-            part21config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "6"));
+            part21config.add(new CharacteristicItem<>("extension_slots", "Количество слотов расширения", "6"));
             part21config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "2"));
             part21config.add(new CharacteristicItem<>("height", "Высота", "464 мм"));
             part21config.add(new CharacteristicItem<>("length", "Длина", "480 мм"));
@@ -400,7 +400,7 @@ public class DatabaseSeeder {
                     typesRepository.findByValue("cases").get()));
 
             List<CharacteristicItem> part22config = new ArrayList<>();
-            part22config.add(new CharacteristicItem<>("extension_slots_quantity", "Количество слотов расширения", "4"));
+            part22config.add(new CharacteristicItem<>("extension_slots", "Количество слотов расширения", "4"));
             part22config.add(new CharacteristicItem<>("hdd_slots_quantity", "Количество слотов для HDD", "3"));
             part22config.add(new CharacteristicItem<>("height", "Высота", "428 мм"));
             part22config.add(new CharacteristicItem<>("length", "Длина", "431 мм"));
@@ -502,6 +502,7 @@ public class DatabaseSeeder {
             PcTypes gamingPcType = pcTypesRepository.findById("pc-type-1").orElseThrow();
             PcTypes notebookType = pcTypesRepository.findById("pc-type-2").orElseThrow();
             PcTypes workstationType = pcTypesRepository.findById("pc-type-3").orElseThrow();
+            PcTypes configurationType = pcTypesRepository.findById("pc-type-4").orElseThrow();
 
             PcCategories noneCategory = pcCategoriesRepository.findById("pc-category-1").orElseThrow();
             PcCategories optimalGamingCategory = pcCategoriesRepository.findById("pc-category-2").orElseThrow();
@@ -601,7 +602,9 @@ public class DatabaseSeeder {
 
 // Parts
             Parts cpuPart = partsRepository.findById("part-1").orElseThrow();
+            Parts cpuPart2 = partsRepository.findById("part-2").orElseThrow();
             Parts gpuPart = partsRepository.findById("part-4").orElseThrow();
+            Parts gpuPart2 = partsRepository.findById("part-5").orElseThrow();
             Parts cpuFan = partsRepository.findById("part-9").orElseThrow();
             Parts motherboardPart = partsRepository.findById("part-7").orElseThrow();
             Parts psuPart = partsRepository.findById("part-18").orElseThrow();
@@ -646,8 +649,8 @@ public class DatabaseSeeder {
             oneMax.setImage("/uploads/one.jpg");
             oneMax.setPrice(5500);
 
-            oneMax.setGpu(gpuPart);
-            oneMax.setCpu(cpuPart);
+            oneMax.setGpu(gpuPart2);
+            oneMax.setCpu(cpuPart2);
             oneMax.setMotherboard(motherboardPart);
             oneMax.setCpuFan(cpuFan);
             oneMax.setPsu(psuPart);
@@ -771,13 +774,10 @@ public class DatabaseSeeder {
 // "My Configuration" (без pc_model_group)
             Pc myConfiguration = new Pc();
             myConfiguration.setId("pc-8");
-            myConfiguration.setPcModelGroup(null);
-            myConfiguration.setPcType(gamingPcType);
-            myConfiguration.setPcCategories(customGamingCategory);
+            myConfiguration.setPcType(configurationType);
             myConfiguration.setName("My Configuration");
-            myConfiguration.setDescription(null);
             myConfiguration.setImage("/components/case/no-case.jpg");
-            myConfiguration.setPrice(3500);
+            myConfiguration.setUserCreated(usersRepository.findById("user-2").get());
 
             myConfiguration.setGpu(gpuPart);
             myConfiguration.setCpu(cpuPart);
@@ -808,6 +808,8 @@ public class DatabaseSeeder {
             compareItemsRepository.save(new CompareItems("compare-item-2", user1, partsRepository.findById("part-3").get()));
             compareItemsRepository.save(new CompareItems("compare-item-3", user1, partsRepository.findById("part-4").get()));
             compareItemsRepository.save(new CompareItems("compare-item-4", user1, partsRepository.findById("part-8").get()));
+            compareItemsRepository.save(new CompareItems("compare-item-5", user1, pcRepository.findById("pc-1").get()));
+            compareItemsRepository.save(new CompareItems("compare-item-6", user1, pcRepository.findById("pc-2").get()));
 
         };
     }
