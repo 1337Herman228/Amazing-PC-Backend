@@ -141,6 +141,24 @@ public class PcService {
         }
     }
 
+    public List<Pc> getUserConfigurations(Users user) {
+        try{
+            return pcRepository.findByUserCreated(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpStatus deleteUserConfiguration(String configurationId) {
+        try{
+            Pc pc = pcRepository.findById(configurationId).get();
+            pcRepository.delete(pc);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
     public Pc getConfiguration(String id) {
         return pcRepository.findById(id).get();
     }

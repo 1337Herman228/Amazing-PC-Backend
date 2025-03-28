@@ -1,9 +1,8 @@
 package com.example.amazingpcbackend.services;
 
-import com.example.amazingpcbackend.entity.CartItems;
-import com.example.amazingpcbackend.entity.PurchaseItem;
-import com.example.amazingpcbackend.entity.Users;
+import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.CartItemsRepository;
+import com.example.amazingpcbackend.repo.PcRepository;
 import com.example.amazingpcbackend.repo.PurchaseItemRepository;
 import com.example.amazingpcbackend.repo.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +18,7 @@ public class CartService {
     private final PurchaseItemRepository purchaseItemRepository;
     private final CartItemsRepository cartItemsRepository;
     private final UsersRepository usersRepository;
+    private final PcRepository pcRepository;
 
     public HttpStatus editPurchaseItemQuantity(String id, int quantity) {
         try {
@@ -66,6 +66,19 @@ public class CartService {
             return HttpStatus.OK;
         } catch (Exception e) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public void deleteCartItemsWithConfiguration(String configurationId) {
+        try{
+            Pc pc = pcRepository.findById(configurationId).orElse(null);
+            List<PurchaseItem> purchaseItem = purchaseItemRepository.findByProduct(pc);
+            for (PurchaseItem purchaseItem1 : purchaseItem) {
+                CartItems cartItem = cartItemsRepository.findByItem(purchaseItem1).get();
+                cartItemsRepository.delete(cartItem);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

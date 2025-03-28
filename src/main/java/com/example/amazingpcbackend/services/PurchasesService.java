@@ -1,11 +1,10 @@
 package com.example.amazingpcbackend.services;
 
+import com.example.amazingpcbackend.dto.CompareTypeDto;
 import com.example.amazingpcbackend.dto.ConfiguratorProductsDto;
 import com.example.amazingpcbackend.dto.PartIdWithQuantity;
 import com.example.amazingpcbackend.dto.PcIdWithQuantity;
-import com.example.amazingpcbackend.entity.CartItems;
-import com.example.amazingpcbackend.entity.PurchaseItem;
-import com.example.amazingpcbackend.entity.Users;
+import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,19 +32,19 @@ public class PurchasesService {
                 .toList();
     }
 
-    public List<String> addConfiguratorProductsToPurchaseItems(ConfiguratorProductsDto productsDto){
+    public List<String> addConfiguratorProductsToPurchaseItems(ConfiguratorProductsDto productsDto) {
         List<String> ids = new ArrayList<>();
-        try{
+        try {
             ids.add(addPurchaseItemPc(productsDto.getPc()));
             ids.addAll(addPurchaseItemsParts(productsDto.getParts()));
             return ids;
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
 
-    public  List<String>  addPurchaseItemsParts(List<PartIdWithQuantity> partIdWithQuantityList) {
+    public List<String> addPurchaseItemsParts(List<PartIdWithQuantity> partIdWithQuantityList) {
         List<String> ids = new ArrayList<>();
         try {
             for (PartIdWithQuantity partIdWithQuantity : partIdWithQuantityList) {
@@ -83,6 +82,24 @@ public class PurchasesService {
                 .setQuantity(pcIdWithQuantity.getQuantity());
         purchaseItemRepository.save(purchaseItem);
         return purchaseItem.getId();
+    }
+
+    public String addPurchaseItem(String productId, int quantity) {
+        if (pcRepository.findById(productId).isPresent()) {
+            Pc pc = pcRepository.findById(productId).get();
+            PurchaseItem purchaseItem = new PurchaseItem();
+            purchaseItem.setProduct(pc).setQuantity(quantity);
+            purchaseItemRepository.save(purchaseItem);
+            return purchaseItem.getId();
+        }
+        if (partsRepository.findById(productId).isPresent()) {
+            Parts part = partsRepository.findById(productId).get();
+            PurchaseItem purchaseItem = new PurchaseItem();
+            purchaseItem.setProduct(part).setQuantity(quantity);
+            purchaseItemRepository.save(purchaseItem);
+            return purchaseItem.getId();
+        }
+        return null;
     }
 
 

@@ -196,7 +196,7 @@ public class DatabaseSeeder {
             part7config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel B760"));
             part7config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "microATX"));
             part7config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR4"));
-            part7config.add(new CharacteristicItem<>("socket", "Сокет", "SOCKET JOPA"));
+            part7config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-7", "MSI PRO B760M-A", "/uploads/msi-pro-b760m-a.jpg", "Описание...", 330,
                     part7config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelb760").get(),
@@ -211,7 +211,7 @@ public class DatabaseSeeder {
             part8config.add(new CharacteristicItem<>("chipset", "Чипсет", "Intel Z790"));
             part8config.add(new CharacteristicItem<>("form_factor", "Форм-фактор", "ATX"));
             part8config.add(new CharacteristicItem<>("ram_type", "Тип RAM", "DDR5"));
-            part8config.add(new CharacteristicItem<>("socket", "Сокет", "SOCKET JOPA"));
+            part8config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
             partsRepository.save(new Parts("part-8", "MSI PRO Z790-A MAX", "/uploads/msi-pro-z790-a-max.jpg", "Описание...", 450,
                     part8config, categoriesRepository.findByValue("components").get(),
                     partitionsRepository.findByValue("intelz790").get(),

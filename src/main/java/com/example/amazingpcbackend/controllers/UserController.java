@@ -173,6 +173,18 @@ public class UserController {
         }
     }
 
+    @PostMapping("/product-to-cart")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus productToCart(@RequestBody AddProductToCartDto addProductToCartDto) throws Exception {
+        try {
+            String id = purchasesService.addPurchaseItem(addProductToCartDto.getProductId(), addProductToCartDto.getQuantity());
+            cartService.addCartItemFromPurchaseItem(purchaseItemRepository.findById(id).get(), usersRepository.findById(addProductToCartDto.getUserId()).get());
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new Exception("can't save product", e);
+        }
+    }
+
     @GetMapping("/compare/{userId}")
     public CompareItemsDto getCompareItems(@PathVariable String userId) {
         Users user = usersRepository.findById(userId).get();
@@ -187,20 +199,34 @@ public class UserController {
 
     @DeleteMapping("/compare/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deleteCompareItem(@PathVariable String id) throws Exception {
-            return compareService.deleteItemById(id);
+    public HttpStatus deleteCompareItem(@PathVariable String id) {
+        return compareService.deleteItemById(id);
     }
 
     @DeleteMapping("/compare")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deleteAllCompareItems() throws Exception {
+    public HttpStatus deleteAllCompareItems() {
         return compareService.deleteAllItems();
     }
 
     @PostMapping("/compare")
     @ResponseStatus(HttpStatus.OK)
-    public HttpStatus addCompareItem(@RequestBody AddCompareItemDto addCompareItemDto) throws Exception {
+    public HttpStatus addCompareItem(@RequestBody AddCompareItemDto addCompareItemDto) {
         Users user = usersRepository.findById(addCompareItemDto.getUserId()).get();
-        return compareService.addCompareItem(user,addCompareItemDto.getProductId());
+        return compareService.addCompareItem(user, addCompareItemDto.getProductId());
     }
+
+    @GetMapping("/my-configurations/{userId}")
+    public List<Pc> getUserConfigurations(@PathVariable String userId) {
+        Users user = usersRepository.findById(userId).get();
+        return pcService.getUserConfigurations(user);
+    }
+
+    @DeleteMapping("/my-configurations/{configurationId}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deleteUserConfiguration(@PathVariable String configurationId) {
+        cartService.deleteCartItemsWithConfiguration(configurationId);
+        return pcService.deleteUserConfiguration(configurationId);
+    }
+
 }
