@@ -20,6 +20,8 @@ public class Purchases {
     private Date date;
     private String destination;
 
+    private PurchaseStatus status;
+
     @DBRef
     private Users user;
 

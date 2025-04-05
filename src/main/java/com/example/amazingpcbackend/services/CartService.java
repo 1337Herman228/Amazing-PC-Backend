@@ -50,6 +50,10 @@ public class CartService {
         }
     }
 
+    public void deleteAllCartItems() {
+        cartItemsRepository.deleteAll();
+    }
+
     public HttpStatus addCartItemsFromConfigurator(List<String> ids, String userId) {
         try {
             Users user = usersRepository.findById(userId).orElse(null);

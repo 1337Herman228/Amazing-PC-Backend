@@ -791,12 +791,17 @@ public class DatabaseSeeder {
 
             pcRepository.save(myConfiguration);
 
-            purchaseItemRepository.save(new PurchaseItem("purchase-item-1", 2, partsRepository.findById("part-1").get()));
-            purchaseItemRepository.save(new PurchaseItem("purchase-item-2", 3, partsRepository.findById("part-6").get()));
-            purchaseItemRepository.save(new PurchaseItem("purchase-item-3", 1, pcRepository.findById("pc-1").get()));
-            purchaseItemRepository.save(new PurchaseItem("purchase-item-4", 1, pcRepository.findById("pc-2").get()));
+            PurchaseItem pi1 = purchaseItemRepository.save(new PurchaseItem("purchase-item-1", 2, partsRepository.findById("part-1").get()));
+            PurchaseItem pi2 =  purchaseItemRepository.save(new PurchaseItem("purchase-item-2", 3, partsRepository.findById("part-6").get()));
+             PurchaseItem pi3 = purchaseItemRepository.save(new PurchaseItem("purchase-item-3", 1, pcRepository.findById("pc-1").get()));
+             PurchaseItem pi4 = purchaseItemRepository.save(new PurchaseItem("purchase-item-4", 1, pcRepository.findById("pc-2").get()));
 
-            purchasesRepository.save(new Purchases("purchase-1", new Date(), "Description...", usersRepository.findById("user-2").get(), purchaseItemRepository.findAll()));
+            List<PurchaseItem> itemsList = new ArrayList<>();
+            itemsList.add(pi1);
+            itemsList.add(pi2);
+            itemsList.add(pi3);
+            itemsList.add(pi4);
+            purchasesRepository.save(new Purchases("purchase-1", new Date(), "Description...", PurchaseStatus.CREATED, usersRepository.findById("user-2").get(), itemsList) );
 
             Users user1 = usersRepository.findById("user-2").get();
             cartRepository.save(new CartItems("cart-item-1", user1, purchaseItemRepository.findById("purchase-item-1").get()));

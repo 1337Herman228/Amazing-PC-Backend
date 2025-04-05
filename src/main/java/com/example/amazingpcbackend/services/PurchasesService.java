@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +24,20 @@ public class PurchasesService {
     private final PurchaseItemRepository purchaseItemRepository;
     private final PartsRepository partsRepository;
     private final PcRepository pcRepository;
+    private final PurchasesRepository purchasesRepository;
+    private final CartService cartService;
+
+    public List<Purchases> getAllPurchases(Users user) {
+        try{
+            return purchasesRepository.findByUser(user).stream()
+                    .filter(purchases -> !purchases.getStatus().equals(PurchaseStatus.CANCELED))
+                    .filter(purchases -> !purchases.getStatus().equals(PurchaseStatus.COMPLETED))
+                    .collect(Collectors.toList());
+        }catch(Exception e) {
+            return null;
+
+        }
+    }
 
     public List<PurchaseItem> getUserCartItems(String userId) {
         Users user = usersRepository.findById(userId).orElse(null);
@@ -102,5 +118,59 @@ public class PurchasesService {
         return null;
     }
 
+    public HttpStatus createPurchase(Users user, String destination) {
+        try {
+            List<CartItems> cartItems = cartItemsRepository.findByUser(user);
+            if (cartItems.isEmpty())
+                return HttpStatus.OK;
+            List<PurchaseItem> purchaseItems = cartItems.stream().map(CartItems::getItem).toList();
+            Purchases purchase = new Purchases();
+            purchase.setUser(user);
+            purchase.setStatus(PurchaseStatus.CREATED);
+            purchase.setDate(new Date());
+            purchase.setDestination(destination);
+            purchase.setItemList(purchaseItems);
+            purchasesRepository.save(purchase);
+
+            cartService.deleteAllCartItems();
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+
+    public HttpStatus cancelPurchase(String purchaseId) {
+        try {
+            Purchases purchase = purchasesRepository.findById(purchaseId).get();
+            purchase.setStatus(PurchaseStatus.CANCELED);
+            purchasesRepository.save(purchase);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus deletePurchase(String purchaseId) {
+        try {
+            Purchases purchase = purchasesRepository.findById(purchaseId).get();
+            purchasesRepository.delete(purchase);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+//    public HttpStatus editPurchase(String purchaseId, Purchases purchase){
+//        try {
+//            Purchases purchase = purchasesRepository.findById(purchaseId).get();
+//            purchasesRepository.delete(purchase);
+//            return HttpStatus.OK;
+//        } catch (Exception e) {
+//            return HttpStatus.INTERNAL_SERVER_ERROR;
+//        }
+//    }
 
 }

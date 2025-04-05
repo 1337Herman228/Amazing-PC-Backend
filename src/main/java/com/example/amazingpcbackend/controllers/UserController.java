@@ -29,10 +29,17 @@ public class UserController {
     private final PurchaseItemRepository purchaseItemRepository;
     private final UsersRepository usersRepository;
     private final CompareService compareService;
+    private final PurchasesRepository purchasesRepository;
+    private final UserService userService;
 
     @GetMapping("/types")
     public List<Types> getTypes() {
         return typesRepository.findAll();
+    }
+
+    @GetMapping("/type-by-value/{value}")
+    public Types getTypeByValue(@PathVariable String value) {
+        return typesRepository.findByValue(value).get();
     }
 
     @GetMapping("/categories")
@@ -43,6 +50,12 @@ public class UserController {
     @GetMapping("/partitions")
     public List<Partitions> getPartitions() {
         return partitionsRepository.findAll();
+    }
+
+    @GetMapping("/parts-by-type/{typeId}")
+    public List<Parts> getPartsByType(@PathVariable String typeId) {
+        Types type = typesRepository.findById(typeId).get();
+        return partsRepository.findByTypes(type);
     }
 
     @GetMapping("/parts")
@@ -228,5 +241,57 @@ public class UserController {
         cartService.deleteCartItemsWithConfiguration(configurationId);
         return pcService.deleteUserConfiguration(configurationId);
     }
+
+    @GetMapping("/purchases/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Purchases> getPurchases(@PathVariable String userId) {
+        Users user = usersRepository.findById(userId).get();
+        return purchasesService.getAllPurchases(user);
+    }
+
+    @PostMapping("/purchases")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus createPurchase(@RequestBody AddPurchaseDto addPurchaseDto) {
+        Users user = usersRepository.findById(addPurchaseDto.getUserId()).get();
+        return purchasesService.createPurchase(user, addPurchaseDto.getDestination());
+    }
+
+    @PutMapping("/purchases/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus cancelPurchase(@PathVariable String id) {
+        return purchasesService.cancelPurchase(id);
+    }
+
+    @DeleteMapping("/purchases/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePurchase(@PathVariable String id) {
+        return purchasesService.deletePurchase(id);
+    }
+
+    @GetMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserInfoDto getUserInfo(@PathVariable String id) {
+        Users user = usersRepository.findById(id).get();
+        UserInfoDto userInfoDto = new UserInfoDto();
+        userInfoDto.setName(user.getName());
+        userInfoDto.setEmail(user.getEmail());
+        userInfoDto.setLogin(user.getLogin());
+        userInfoDto.setPhone(user.getPhone());
+        userInfoDto.setSurname(user.getSurname());
+        return userInfoDto;
+    }
+
+    @PutMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editUserInfo(@RequestBody NewUserDto newUserDto) {
+        return userService.editUserInfo(newUserDto);
+    }
+
+    @PutMapping("/change-password")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
+        return userService.changePassword(changePasswordDto);
+    }
+
 
 }
