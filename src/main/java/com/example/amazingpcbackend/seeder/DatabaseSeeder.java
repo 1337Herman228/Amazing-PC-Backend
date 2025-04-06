@@ -17,7 +17,7 @@ public class DatabaseSeeder {
     CommandLineRunner initDatabase(RolesRepository rolesRepository, UsersRepository usersRepository, CategoriesRepository categoriesRepository, PartitionsRepository partitionsRepository, TypesRepository typesRepository, PartsRepository partsRepository, PcTypesRepository pcTypesRepository, PcCategoriesRepository pcCategoriesRepository, PcModelGroupsRepository pcModelGroupsRepository, PcRepository pcRepository, PurchaseItemRepository purchaseItemRepository, PurchasesRepository purchasesRepository, CartItemsRepository cartRepository, CompareItemsRepository compareItemsRepository) {
         return args -> {
             rolesRepository.save(new Roles("role-1", "admin", "Администратор"));
-            rolesRepository.save(new Roles("role-2", "user" , "Пользователь"));
+            rolesRepository.save(new Roles("role-2", "user", "Пользователь"));
 
             usersRepository.save(new Users("user-1", "admin", "$2a$10$PRS7/aqGOtIXgKIl/a/5ce9ugXrY.zi9595RTjkeSToY6/C9HGdBi", "Михаил", "Зубенко", "+375293334444", "zubmih@gmail.com", rolesRepository.findByValue("admin").get()));
             usersRepository.save(new Users("user-2", "user", "$2a$10$n.9aYpIC1sU4Snv8ovfh3.53DHqicMUrlk4F3Gt1V0CLwYaabhZ..", "Клиторчук", "КалКалыч", "375293334444", "klkal@gmail.com", rolesRepository.findByValue("user").get()));
@@ -65,19 +65,19 @@ public class DatabaseSeeder {
             partitionsRepository.save(new Partitions("partition-25", "Razer", "razer"));
 
             List<CharacteristicItem> part1config = new ArrayList<>();
-            part1config.add(new CharacteristicItem<>("base_frequency","Базовая частота", "2500 Мгц"));
-            part1config.add(new CharacteristicItem<>("boost_frequency","Турбо частота", "4400 Мгц"));
-            part1config.add( new CharacteristicItem<>("cpu_cores","Кол-во ядер", "6"));
-            part1config.add( new CharacteristicItem<>("cpu_threads","Кол-во потоков", "12"));
-            part1config.add( new CharacteristicItem<>("max_ram_capacity","Макс. объем оперативной памяти", "128 ГБ"));
+            part1config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "2500 Мгц"));
+            part1config.add(new CharacteristicItem<>("boost_frequency", "Турбо частота", "4400 Мгц"));
+            part1config.add(new CharacteristicItem<>("cpu_cores", "Кол-во ядер", "6"));
+            part1config.add(new CharacteristicItem<>("cpu_threads", "Кол-во потоков", "12"));
+            part1config.add(new CharacteristicItem<>("max_ram_capacity", "Макс. объем оперативной памяти", "128 ГБ"));
             part1config.add(new CharacteristicItem<>("tdp", "Тепловыделение", "65 Вт"));
-            part1config.add( new CharacteristicItem<>("cachel1","Кэш 1-го уровня", null));
-            part1config.add( new CharacteristicItem<>("cachel2","Кэш 2-го уровня", "7680 КБ"));
-            part1config.add( new CharacteristicItem<>("cachel3","Кэш 3-го уровня", "18432 КБ"));
-            part1config.add( new CharacteristicItem<>("socket","Сокет", "LGA 1700"));
-            part1config.add( new CharacteristicItem<>("tech_process","Тех-процесс", "7 нм"));
+            part1config.add(new CharacteristicItem<>("cachel1", "Кэш 1-го уровня", null));
+            part1config.add(new CharacteristicItem<>("cachel2", "Кэш 2-го уровня", "7680 КБ"));
+            part1config.add(new CharacteristicItem<>("cachel3", "Кэш 3-го уровня", "18432 КБ"));
+            part1config.add(new CharacteristicItem<>("socket", "Сокет", "LGA 1700"));
+            part1config.add(new CharacteristicItem<>("tech_process", "Тех-процесс", "7 нм"));
             part1config.add(new CharacteristicItem<>("ram_type", "Тип ОЗУ", Arrays.asList("DDR4")));
-            partsRepository.save(new Parts("part-1","I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350,part1config, categoriesRepository.findByValue("components").get(), partitionsRepository.findByValue("intelcore12th").get(), typesRepository.findByValue("cpu").get()));
+            partsRepository.save(new Parts("part-1", "I5-12400F", "/uploads/i5-12400f.jpg", "Описание...", 350, part1config, categoriesRepository.findByValue("components").get(), partitionsRepository.findByValue("intelcore12th").get(), typesRepository.findByValue("cpu").get()));
 
             List<CharacteristicItem> part2config = new ArrayList<>();
             part2config.add(new CharacteristicItem<>("base_frequency", "Базовая частота", "2500 Мгц"));
@@ -492,7 +492,7 @@ public class DatabaseSeeder {
             pcCategoriesRepository.save(new PcCategories("pc-category-3", "powerful-gaming-pc", "Мощные игровые компьютеры",
                     "Мощные игровые компьютеры для максимальных настроек графики в играх, на базе процессоров Intel Core и видеокарт NVIDIA GeForce RTX. Отлично подходят для киберспортивных игроков и геймеров, ценящих плавность игрового процесса с высоким FPS на максимальных графических настройках. Выбор чемпионов."));
             pcCategoriesRepository.save(new PcCategories("pc-category-4", "custom-gaming-pc", "Кастомные компьютеры",
-                    "Эксклюзивная линейка компьютеров для тех, кто не ищет компромиссов в играх. Конфигурации на основе самых мощных процессоров Intel Core и видеокарт NVIDIA GeForce RTX обеспечивают высший уровень производительности, уникальные корпуса с RGB-подсветкой и системой водяного охлаждения. Персонализированные варианты для самых изысканных геймеров." ));
+                    "Эксклюзивная линейка компьютеров для тех, кто не ищет компромиссов в играх. Конфигурации на основе самых мощных процессоров Intel Core и видеокарт NVIDIA GeForce RTX обеспечивают высший уровень производительности, уникальные корпуса с RGB-подсветкой и системой водяного охлаждения. Персонализированные варианты для самых изысканных геймеров."));
             pcCategoriesRepository.save(new PcCategories("pc-category-5", "gaming-mini-pc", "Игровые мини ПК",
                     "Добро пожаловать в эпоху компактных игровых компьютеров нового поколения! Это воплощение мощи и стиля в одном устройстве. Оформленные в современном дизайне, они скрывает в себе потрясающую производительность, способную обеспечить вас плавным геймплеем на максимальных настройках графики."));
             pcCategoriesRepository.save(new PcCategories("pc-category-6", "optimal-workstation", "Оптимальные рабочие станции",
@@ -526,7 +526,7 @@ public class DatabaseSeeder {
                     "Современный дизайн", "HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля.",
                     "/single-product/one/hyperpc-one-block-design.jpg",
                     "Мощность", "HYPERPC ONE оснащён современными комплектующими, которые обеспечивают отличную производительность как в играх, так и при решении творческих задач.",
-                    "/single-product/one/hyperpc-one-block-performance.jpg", "/pc/performance/performance-1.2"
+                    "/single-product/one/hyperpc-one-block-performance.jpg"
             ));
 
             pcModelGroupsRepository.save(new PcModelGroups(
@@ -544,7 +544,7 @@ public class DatabaseSeeder {
                     "Современный дизайн", "HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля.",
                     "/single-product/one/hyperpc-one-block-design.jpg",
                     "Мощность", "HYPERPC ONE оснащён современными комплектующими, которые обеспечивают отличную производительность как в играх, так и при решении творческих задач.",
-                    "/single-product/one/hyperpc-one-block-performance.jpg", "/pc/performance/performance-1.2"
+                    "/single-product/one/hyperpc-one-block-performance.jpg"
             ));
 
             pcModelGroupsRepository.save(new PcModelGroups(
@@ -562,7 +562,7 @@ public class DatabaseSeeder {
                     "Современный дизайн", "HYPERPC ONE разработан для тех, кто ценит не только мощность, но и эстетику. Компактный корпус сочетает в себе премиальные материалы и продуманное охлаждение, создавая идеальное сочетание функциональности и стиля.",
                     "/single-product/one/hyperpc-one-block-design.jpg",
                     "Мощность", "HYPERPC ONE оснащён современными комплектующими, которые обеспечивают отличную производительность как в играх, так и при решении творческих задач.",
-                    "/single-product/one/hyperpc-one-block-performance.jpg", "/pc/performance/performance-1.2"
+                    "/single-product/one/hyperpc-one-block-performance.jpg"
             ));
 
             pcModelGroupsRepository.save(new PcModelGroups(
@@ -579,7 +579,7 @@ public class DatabaseSeeder {
                     "Современный дизайн", "Компактные и мощные, эти ноутбуки созданы для современных игр и мультимедийных задач.",
                     "/single-product/one/hyperpc-one-block-design.jpg",
                     "Мощность", "Оборудованы современными комплектующими, которые обеспечивают отличную производительность как в играх, так и при решении творческих задач.",
-                    "/single-product/one/hyperpc-one-block-performance.jpg", "/pc/performance/performance-1.2"
+                    "/single-product/one/hyperpc-one-block-performance.jpg"
             ));
 
             pcModelGroupsRepository.save(new PcModelGroups(
@@ -597,7 +597,7 @@ public class DatabaseSeeder {
                     "Современный дизайн", "Компактный и стильный дизайн, оптимизированный для творческих профессионалов.",
                     "/single-product/one/hyperpc-one-block-design.jpg",
                     "Мощность", "Высокая производительность для работы с графикой, видео и другими ресурсозатратными задачами.",
-                    "/single-product/one/hyperpc-one-block-performance.jpg", "/pc/performance/performance-1.2"
+                    "/single-product/one/hyperpc-one-block-performance.jpg"
             ));
 
 // Parts
@@ -792,16 +792,16 @@ public class DatabaseSeeder {
             pcRepository.save(myConfiguration);
 
             PurchaseItem pi1 = purchaseItemRepository.save(new PurchaseItem("purchase-item-1", 2, partsRepository.findById("part-1").get()));
-            PurchaseItem pi2 =  purchaseItemRepository.save(new PurchaseItem("purchase-item-2", 3, partsRepository.findById("part-6").get()));
-             PurchaseItem pi3 = purchaseItemRepository.save(new PurchaseItem("purchase-item-3", 1, pcRepository.findById("pc-1").get()));
-             PurchaseItem pi4 = purchaseItemRepository.save(new PurchaseItem("purchase-item-4", 1, pcRepository.findById("pc-2").get()));
+            PurchaseItem pi2 = purchaseItemRepository.save(new PurchaseItem("purchase-item-2", 3, partsRepository.findById("part-6").get()));
+            PurchaseItem pi3 = purchaseItemRepository.save(new PurchaseItem("purchase-item-3", 1, pcRepository.findById("pc-1").get()));
+            PurchaseItem pi4 = purchaseItemRepository.save(new PurchaseItem("purchase-item-4", 1, pcRepository.findById("pc-2").get()));
 
             List<PurchaseItem> itemsList = new ArrayList<>();
             itemsList.add(pi1);
             itemsList.add(pi2);
             itemsList.add(pi3);
             itemsList.add(pi4);
-            purchasesRepository.save(new Purchases("purchase-1", new Date(), "Description...", PurchaseStatus.CREATED, usersRepository.findById("user-2").get(), itemsList) );
+            purchasesRepository.save(new Purchases("purchase-1", new Date(), "Description...", PurchaseStatus.CREATED, usersRepository.findById("user-2").get(), itemsList));
 
             Users user1 = usersRepository.findById("user-2").get();
             cartRepository.save(new CartItems("cart-item-1", user1, purchaseItemRepository.findById("purchase-item-1").get()));

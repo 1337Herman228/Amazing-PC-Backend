@@ -46,5 +46,4 @@ public class PcModelGroups {
     private String performanceTitle;
     private String performanceDescription;
     private String performanceImage;
-    private String performanceImage2;
 }

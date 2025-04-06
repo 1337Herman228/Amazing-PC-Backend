@@ -29,7 +29,7 @@ public class PcService {
         List<PcModelGroups> list = pcModelGroupsRepository.findByPcTypes(pcType);
         List<CatalogDto> result = new ArrayList<>();
         for (PcModelGroups pcModelGroup : list) {
-            CatalogDto catalogDto  = new CatalogDto();
+            CatalogDto catalogDto = new CatalogDto();
             catalogDto.setConfigurationsCount(pcRepository.findByPcModelGroup(pcModelGroup).size());
             catalogDto.setMinPrice(pcRepository.findByPcModelGroup(pcModelGroup).stream().min(Comparator.comparing(Pc::getPrice)).get().getPrice());
             catalogDto.setPcModelGroup(pcModelGroup);
@@ -121,7 +121,7 @@ public class PcService {
     public IdDto addPcConfiguration(PcConfigurationDto configuration) {
         try {
             Pc pc = new Pc();
-            pc = createConfiguration(pc,configuration);
+            pc = createConfiguration(pc, configuration);
             IdDto idDto = new IdDto();
             idDto.setId(pc.getId());
             return idDto;
@@ -133,7 +133,7 @@ public class PcService {
     public HttpStatus editPcConfiguration(PcConfigurationDto configuration) {
         try {
             Pc pc = pcRepository.findById(configuration.getId()).get();
-            pc = createConfiguration(pc,configuration);
+            pc = createConfiguration(pc, configuration);
             pcRepository.save(pc);
             return HttpStatus.OK;
         } catch (Exception e) {
@@ -142,7 +142,7 @@ public class PcService {
     }
 
     public List<Pc> getUserConfigurations(Users user) {
-        try{
+        try {
             return pcRepository.findByUserCreated(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -150,7 +150,7 @@ public class PcService {
     }
 
     public HttpStatus deleteUserConfiguration(String configurationId) {
-        try{
+        try {
             Pc pc = pcRepository.findById(configurationId).get();
             pcRepository.delete(pc);
             return HttpStatus.OK;
@@ -161,6 +161,125 @@ public class PcService {
 
     public Pc getConfiguration(String id) {
         return pcRepository.findById(id).get();
+    }
+
+    public HttpStatus addPcCategory(AddPcCategoryDto addPcCategoryDto) {
+        try {
+            PcCategories pcCategories = new PcCategories();
+            pcCategories.setValue(addPcCategoryDto.getValue());
+            pcCategories.setLabel(addPcCategoryDto.getLabel());
+            pcCategories.setDescription(addPcCategoryDto.getDescription());
+            pcCategoriesRepository.save(pcCategories);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus editPcCategory(PcCategories pcCategories) {
+        try {
+            PcCategories pcCategoriesEntity = pcCategoriesRepository.findById(pcCategories.getId()).get();
+            pcCategoriesEntity.setDescription(pcCategories.getDescription());
+            pcCategoriesEntity.setLabel(pcCategories.getLabel());
+            pcCategoriesEntity.setValue(pcCategories.getValue());
+
+            pcCategoriesRepository.save(pcCategoriesEntity);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus addPcType(AddPcTypeDto pcTypeDto) {
+        try {
+            PcTypes pcTypes = new PcTypes();
+            pcTypes.setValue(pcTypeDto.getValue());
+            pcTypes.setLabel(pcTypeDto.getLabel());
+            pcTypesRepository.save(pcTypes);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus editPcType(PcTypes pcTypes) {
+        try {
+            PcTypes pcTypeEntity = pcTypesRepository.findById(pcTypes.getId()).get();
+            pcTypeEntity.setLabel(pcTypes.getLabel());
+            pcTypeEntity.setValue(pcTypes.getValue());
+
+            pcTypesRepository.save(pcTypeEntity);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus addPcModelGroup(AddPcModelGroupDto pcModelGroupDto) {
+        try {
+
+            if (pcModelGroupsRepository.findByModelGroupName(pcModelGroupDto.getModelGroupName()).isPresent()) {
+                return HttpStatus.CONFLICT;
+            }
+
+            PcModelGroups pcModelGroups = new PcModelGroups();
+
+            fillPcModelGroup(pcModelGroups, pcModelGroupDto);
+
+            pcModelGroupsRepository.save(pcModelGroups);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus editPcModelGroup(AddPcModelGroupDto pcModelGroupDto) {
+        try {
+
+            PcModelGroups pcModelGroups = pcModelGroupsRepository.findById(pcModelGroupDto.getId()).get();
+
+            if (!pcModelGroups.getModelGroupName().equals(pcModelGroupDto.getModelGroupName())
+                    && pcModelGroupsRepository.findByModelGroupName(pcModelGroupDto.getModelGroupName()).isPresent()) {
+                return HttpStatus.CONFLICT;
+            }
+
+
+            fillPcModelGroup(pcModelGroups, pcModelGroupDto);
+
+            pcModelGroupsRepository.save(pcModelGroups);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    private void fillPcModelGroup(PcModelGroups pcModelGroups, AddPcModelGroupDto pcModelGroupDto) {
+        pcModelGroups.setPcTypes(pcTypesRepository.findById(pcModelGroupDto.getPcTypeId()).get());
+        pcModelGroups.setPcCategories(pcCategoriesRepository.findById(pcModelGroupDto.getPcCategoryId()).get());
+        pcModelGroups.setModelGroupImage(pcModelGroupDto.getModelGroupImage());
+        pcModelGroups.setModelGroupName(pcModelGroupDto.getModelGroupName());
+        pcModelGroups.setModelGroupDescription(pcModelGroupDto.getModelGroupDescription());
+        pcModelGroups.setGpuDescription(pcModelGroupDto.getGpuDescription());
+        pcModelGroups.setCpuDescription(pcModelGroupDto.getCpuDescription());
+        pcModelGroups.setMotherboardDescription(pcModelGroupDto.getMotherboardDescription());
+        pcModelGroups.setRamDescription(pcModelGroupDto.getRamDescription());
+        pcModelGroups.setSsdDescription(pcModelGroupDto.getSsdDescription());
+        pcModelGroups.setPsuDescription(pcModelGroupDto.getPsuDescription());
+        pcModelGroups.setHeaderDescription(pcModelGroupDto.getHeaderDescription());
+        pcModelGroups.setHeaderImage(pcModelGroupDto.getHeaderImage());
+        pcModelGroups.setHeaderImageMobile(pcModelGroupDto.getHeaderImageMobile());
+        pcModelGroups.setDesignTitle(pcModelGroupDto.getDesignTitle());
+        pcModelGroups.setDesignDescription(pcModelGroupDto.getDesignDescription());
+        pcModelGroups.setDesignImage(pcModelGroupDto.getDesignImage());
+        pcModelGroups.setPerformanceTitle(pcModelGroupDto.getPerformanceTitle());
+        pcModelGroups.setPerformanceDescription(pcModelGroupDto.getPerformanceDescription());
+        pcModelGroups.setPerformanceImage(pcModelGroupDto.getPerformanceImage());
     }
 
 }

@@ -1,15 +1,15 @@
 package com.example.amazingpcbackend.controllers;
 
+import com.example.amazingpcbackend.dto.AddPcCategoryDto;
+import com.example.amazingpcbackend.dto.AddPcModelGroupDto;
+import com.example.amazingpcbackend.dto.AddPcTypeDto;
 import com.example.amazingpcbackend.dto.NewUserDto;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.exceptions.PartitionsException;
 import com.example.amazingpcbackend.exceptions.PartsException;
 import com.example.amazingpcbackend.exceptions.TypesException;
 import com.example.amazingpcbackend.repo.*;
-import com.example.amazingpcbackend.services.PartService;
-import com.example.amazingpcbackend.services.PartitionsService;
-import com.example.amazingpcbackend.services.TypesService;
-import com.example.amazingpcbackend.services.UserService;
+import com.example.amazingpcbackend.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +32,10 @@ public class AdminController {
     private final UsersRepository usersRepository;
     private final RolesRepository rolesRepository;
     private final UserService userService;
+    private final PcCategoriesRepository pcCategoriesRepository;
+    private final PcService pcService;
+    private final PcTypesRepository pcTypesRepository;
+    private final PcModelGroupsRepository pcModelGroupsRepository;
 
     @DeleteMapping("/parts/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -75,7 +79,7 @@ public class AdminController {
         }
     }
 
-    @DeleteMapping ("/types/{id}")
+    @DeleteMapping("/types/{id}")
     @ResponseStatus(HttpStatus.OK)
     public HttpStatus deleteType(@PathVariable String id) throws TypesException {
         try {
@@ -107,7 +111,7 @@ public class AdminController {
         }
     }
 
-    @DeleteMapping ("/partitions/{id}")
+    @DeleteMapping("/partitions/{id}")
     @ResponseStatus(HttpStatus.OK)
     public HttpStatus deletePartition(@PathVariable String id) throws PartitionsException {
         try {
@@ -148,7 +152,7 @@ public class AdminController {
         }
     }
 
-    @DeleteMapping ("/users/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
     public HttpStatus deleteUser(@PathVariable String id) throws Exception {
         try {
@@ -172,6 +176,88 @@ public class AdminController {
     public List<Roles> getRoles() {
         return rolesRepository.findAll();
     }
+
+    @GetMapping("/pc-category/{id}")
+    public PcCategories getPcCategoryById(@PathVariable String id) {
+        return pcCategoriesRepository.findById(id).get();
+    }
+
+    @DeleteMapping("/pc-category/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePcCategory(@PathVariable String id) {
+        try {
+            pcCategoriesRepository.deleteById(id);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+
+    @PostMapping("/pc-category")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addPcCategory(@RequestBody AddPcCategoryDto pcCategoryDto) {
+        return pcService.addPcCategory(pcCategoryDto);
+    }
+
+
+    @PutMapping("/pc-category")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPcCategory(@RequestBody PcCategories pcCategories) {
+        return pcService.editPcCategory(pcCategories);
+    }
+
+    @GetMapping("/pc-types/{id}")
+    public PcTypes getPcTypeById(@PathVariable String id) {
+        return pcTypesRepository.findById(id).get();
+    }
+
+    @DeleteMapping("/pc-types/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePcType(@PathVariable String id) {
+        try {
+            pcTypesRepository.deleteById(id);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+
+    @PostMapping("/pc-types")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addPcType(@RequestBody AddPcTypeDto pcTypeDto) {
+        return pcService.addPcType(pcTypeDto);
+    }
+
+
+    @PutMapping("/pc-types")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPcType(@RequestBody PcTypes pcTypes) {
+        return pcService.editPcType(pcTypes);
+    }
+
+    @DeleteMapping("/pc-model-groups/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePcModelGroup(@PathVariable String id) {
+        try {
+            pcModelGroupsRepository.deleteById(id);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+
+    @PostMapping("/pc-model-groups")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addPcModelGroup(@RequestBody AddPcModelGroupDto pcModelGroupDto) {
+        return pcService.addPcModelGroup(pcModelGroupDto);
+    }
+
+    @PutMapping("/pc-model-groups")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPcModelGroup(@RequestBody AddPcModelGroupDto pcModelGroupDto) {
+        return pcService.editPcModelGroup(pcModelGroupDto);
+    }
+
 
 
 }

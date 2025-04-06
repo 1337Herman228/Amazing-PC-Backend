@@ -113,6 +113,16 @@ public class UserController {
         return pcService.getCatalog(pcTypesRepository.findByValue("workstation").get());
     }
 
+    @GetMapping("/pc-model-groups")
+    public List<PcModelGroups> getPcModelGroups() {
+        return pcModelGroupsRepository.findAll();
+    }
+
+    @GetMapping("/pc-model-groups/{id}")
+    public PcModelGroups getPcModelGroupById(@PathVariable String id) {
+        return pcModelGroupsRepository.findById(id).orElse(null);
+    }
+
     @GetMapping("/get-pc-by-model-group-name/{modelGroupName}")
     public List<Pc> getPcsByModelGroupName(@PathVariable String modelGroupName) {
         return pcService.getPcsByModelGroupName(modelGroupName);
