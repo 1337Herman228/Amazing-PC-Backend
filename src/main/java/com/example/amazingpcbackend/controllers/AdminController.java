@@ -1,9 +1,6 @@
 package com.example.amazingpcbackend.controllers;
 
-import com.example.amazingpcbackend.dto.AddPcCategoryDto;
-import com.example.amazingpcbackend.dto.AddPcModelGroupDto;
-import com.example.amazingpcbackend.dto.AddPcTypeDto;
-import com.example.amazingpcbackend.dto.NewUserDto;
+import com.example.amazingpcbackend.dto.*;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.exceptions.PartitionsException;
 import com.example.amazingpcbackend.exceptions.PartsException;
@@ -258,6 +255,21 @@ public class AdminController {
         return pcService.editPcModelGroup(pcModelGroupDto);
     }
 
+    @DeleteMapping("/pc/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePc(@PathVariable String id) {
+        return pcService.deletePc(id);
+    }
 
+    @PostMapping("/pc")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus addPC(@RequestBody AddPcDto addPcDto) {
+        return pcService.addPc(addPcDto);
+    }
 
+    @PutMapping("/pc")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPC(@RequestBody AddPcDto addPcDto) {
+        return pcService.editPc(addPcDto);
+    }
 }

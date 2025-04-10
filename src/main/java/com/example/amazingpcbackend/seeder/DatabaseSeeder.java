@@ -549,7 +549,7 @@ public class DatabaseSeeder {
 
             pcModelGroupsRepository.save(new PcModelGroups(
                     "pc-model-group-3", gamingPcType, powerfulGamingCategory,
-                    "/gaming-pc/fury.jpg",
+                    "/gaming-pc/fury-super.jpg",
                     "Fury", "Начальный игровой компьютер",
                     "Процессоры 6 и 10 ядерные Intel Core i5",
                     "Графические карты GeForce RTX 4060 и 4060 Ti",
@@ -715,7 +715,7 @@ public class DatabaseSeeder {
             furySuper.setPcCategories(powerfulGamingCategory);
             furySuper.setName("Fury Super");
             furySuper.setDescription("Платформа для гейминга в Full HD разрешении, созданная на базе центрального процессора Intel® Core™ i5-12400F [до 4.4GHz, 6 ядер] и видеокарты Palit GeForce RTX 4060 Ti Dual [8GB, 4352 CUDA].");
-            furySuper.setImage("/uploads/fury.jpg");
+            furySuper.setImage("/uploads/fury-super.jpg");
             furySuper.setPrice(8800);
 
             furySuper.setGpu(gpuPart);

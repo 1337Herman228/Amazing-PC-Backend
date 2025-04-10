@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,7 @@ public class PcService {
     private final PartsRepository partsRepository;
     private final PcCategoriesRepository pcCategoriesRepository;
     private final UsersRepository usersRepository;
+    private final ProductRepository productRepository;
 
 
     public List<CatalogDto> getCatalog(PcTypes pcType) {
@@ -58,6 +60,59 @@ public class PcService {
 
     public Pc createConfiguration(Pc pc, PcConfigurationDto configuration) {
 
+        fillPc(pc, configuration);
+        pc.setUserCreated(usersRepository.findById(configuration.getUserId()).get());
+
+        pc.setPcType(pcTypesRepository.findByValue("configuration").get());
+        pcRepository.save(pc);
+        return pc;
+    }
+
+    public HttpStatus addPc(AddPcDto addPcDto) {
+
+        try {
+
+            if (pcRepository.findByName(addPcDto.getName()).isPresent()) {
+                return HttpStatus.CONFLICT;
+            }
+
+            Pc pc = new Pc();
+            return setPcFields(addPcDto, pc);
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    public HttpStatus editPc(AddPcDto addPcDto) {
+        try {
+
+            Pc pc = pcRepository.findById(addPcDto.getId()).get();
+
+            if (pcRepository.findByName(addPcDto.getName()).isPresent() &&
+                    !addPcDto.getName().equals(pc.getName())) {
+                return HttpStatus.CONFLICT;
+            }
+
+            return setPcFields(addPcDto, pc);
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    private HttpStatus setPcFields(AddPcDto addPcDto, Pc pc) {
+        fillPc(pc, addPcDto);
+        pc.setImage(addPcDto.getImage());
+        pc.setDescription(addPcDto.getDescription());
+        pc.setPcType(pcTypesRepository.findById(addPcDto.getPcTypeId()).get());
+        pc.setPcCategories(pcCategoriesRepository.findById(addPcDto.getPcCategoryId()).get());
+        pc.setPcModelGroup(pcModelGroupsRepository.findById(addPcDto.getPcModelGroupId()).get());
+        pcRepository.save(pc);
+
+        return HttpStatus.OK;
+    }
+
+
+    private void fillPc(Pc pc, PcConfigurationDto configuration) {
         Parts cpu = partsRepository.findById(configuration.getCpuId()).get();
         Parts gpu = partsRepository.findById(configuration.getGpuId()).get();
         Parts mb = partsRepository.findById(configuration.getMotherboardId()).get();
@@ -68,7 +123,6 @@ public class PcService {
         float price = 0;
 
         pc.setName(configuration.getName());
-        pc.setUserCreated(usersRepository.findById(configuration.getUserId()).get());
         pc.setMotherboard(mb);
         pc.setCpu(cpu);
         pc.setCpuFan(cpuFan);
@@ -113,9 +167,6 @@ public class PcService {
         }
 
         pc.setPrice(price);
-        pc.setPcType(pcTypesRepository.findByValue("configuration").get());
-        pcRepository.save(pc);
-        return pc;
     }
 
     public IdDto addPcConfiguration(PcConfigurationDto configuration) {
@@ -159,8 +210,24 @@ public class PcService {
         }
     }
 
+    public HttpStatus deletePc(String pcId) {
+        try {
+            pcRepository.deleteById(pcId);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
     public Pc getConfiguration(String id) {
         return pcRepository.findById(id).get();
+    }
+
+    public List<Pc> getAllSellablePc() {
+        return pcRepository
+                .findAll()
+                .stream()
+                .filter(pc -> !pc.getPcType().getValue().equals("configuration")).collect(Collectors.toList());
     }
 
     public HttpStatus addPcCategory(AddPcCategoryDto addPcCategoryDto) {

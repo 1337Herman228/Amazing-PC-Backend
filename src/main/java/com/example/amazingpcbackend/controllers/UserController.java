@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +32,7 @@ public class UserController {
     private final CompareService compareService;
     private final PurchasesRepository purchasesRepository;
     private final UserService userService;
+    private final PcRepository pcRepository;
 
     @GetMapping("/types")
     public List<Types> getTypes() {
@@ -98,6 +100,11 @@ public class UserController {
         return pcTypesRepository.findAll();
     }
 
+    @GetMapping("/pc")
+    public List<Pc> getAllPc() {
+        return pcService.getAllSellablePc();
+    }
+
     @GetMapping("/gaming-pc-catalog")
     public List<CatalogDto> getGamingPcCatalog() {
         return pcService.getCatalog(pcTypesRepository.findByValue("gaming-pc").get());
@@ -116,6 +123,11 @@ public class UserController {
     @GetMapping("/pc-model-groups")
     public List<PcModelGroups> getPcModelGroups() {
         return pcModelGroupsRepository.findAll();
+    }
+
+    @GetMapping("/pc-model-groups-reduced")
+    public List<OptionDto> getPcModelGroupsReduced() {
+        return pcModelGroupsRepository.findAll().stream().map(modelGroup -> new OptionDto(modelGroup.getId(), modelGroup.getModelGroupName(), modelGroup.getModelGroupName())).collect(Collectors.toList());
     }
 
     @GetMapping("/pc-model-groups/{id}")
