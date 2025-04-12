@@ -18,9 +18,11 @@ public class DatabaseSeeder {
         return args -> {
             rolesRepository.save(new Roles("role-1", "admin", "Администратор"));
             rolesRepository.save(new Roles("role-2", "user", "Пользователь"));
+            rolesRepository.save(new Roles("role-3", "manager", "Менеджер"));
 
             usersRepository.save(new Users("user-1", "admin", "$2a$10$PRS7/aqGOtIXgKIl/a/5ce9ugXrY.zi9595RTjkeSToY6/C9HGdBi", "Михаил", "Зубенко", "+375293334444", "zubmih@gmail.com", rolesRepository.findByValue("admin").get()));
             usersRepository.save(new Users("user-2", "user", "$2a$10$n.9aYpIC1sU4Snv8ovfh3.53DHqicMUrlk4F3Gt1V0CLwYaabhZ..", "Клиторчук", "КалКалыч", "375293334444", "klkal@gmail.com", rolesRepository.findByValue("user").get()));
+            usersRepository.save(new Users("user-3", "manager", "$2a$10$.nPoduaZ1kpDSViLx9W0t./wX5fGKOTQZV/fIm43OYthGk1/rQdn2", "Сергей", "Мавроди", "375291234567", "mav@gmail.com", rolesRepository.findByValue("manager").get()));
 
             categoriesRepository.save(new Categories("category-1", "components", "Комплектующие"));
             categoriesRepository.save(new Categories("category-2", "periphery", "Периферия"));

@@ -284,12 +284,6 @@ public class UserController {
         return purchasesService.cancelPurchase(id);
     }
 
-    @DeleteMapping("/purchases/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public HttpStatus deletePurchase(@PathVariable String id) {
-        return purchasesService.deletePurchase(id);
-    }
-
     @GetMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserInfoDto getUserInfo(@PathVariable String id) {

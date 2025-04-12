@@ -1,9 +1,6 @@
 package com.example.amazingpcbackend.services;
 
-import com.example.amazingpcbackend.dto.CompareTypeDto;
-import com.example.amazingpcbackend.dto.ConfiguratorProductsDto;
-import com.example.amazingpcbackend.dto.PartIdWithQuantity;
-import com.example.amazingpcbackend.dto.PcIdWithQuantity;
+import com.example.amazingpcbackend.dto.*;
 import com.example.amazingpcbackend.entity.*;
 import com.example.amazingpcbackend.repo.*;
 import lombok.RequiredArgsConstructor;
@@ -28,15 +25,41 @@ public class PurchasesService {
     private final CartService cartService;
 
     public List<Purchases> getAllPurchases(Users user) {
-        try{
-            return purchasesRepository.findByUser(user).stream()
-                    .filter(purchases -> !purchases.getStatus().equals(PurchaseStatus.CANCELED))
-                    .filter(purchases -> !purchases.getStatus().equals(PurchaseStatus.COMPLETED))
-                    .collect(Collectors.toList());
-        }catch(Exception e) {
+        try {
+            return filterPurchases(purchasesRepository.findByUser(user));
+        } catch (Exception e) {
             return null;
-
         }
+    }
+
+    public List<Purchases> getAllUnfilteredPurchases() {
+        try {
+            return purchasesRepository.findAll();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public HttpStatus editPurchase(EditPurchaseDto editPurchaseDto) {
+        try {
+            Purchases purchase = purchasesRepository.findById(editPurchaseDto.getId()).orElse(null);
+            assert purchase != null;
+            purchase.setUser(usersRepository.findById(editPurchaseDto.getUserId()).orElse(null));
+            purchase.setStatus(PurchaseStatus.valueOf(editPurchaseDto.getStatus()));
+            purchase.setDestination(editPurchaseDto.getDestination());
+            purchasesRepository.save(purchase);
+
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    private List<Purchases> filterPurchases(List<Purchases> purchases) {
+        return purchases.stream()
+                .filter(purchase -> !purchase.getStatus().equals(PurchaseStatus.CANCELED))
+                .filter(purchase -> !purchase.getStatus().equals(PurchaseStatus.COMPLETED))
+                .collect(Collectors.toList());
     }
 
     public List<PurchaseItem> getUserCartItems(String userId) {

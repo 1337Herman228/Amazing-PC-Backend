@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('admin')")
+@PreAuthorize("hasAuthority('admin') || hasAuthority('manager')")
 @RequiredArgsConstructor
 public class AdminController {
 
@@ -33,6 +33,10 @@ public class AdminController {
     private final PcService pcService;
     private final PcTypesRepository pcTypesRepository;
     private final PcModelGroupsRepository pcModelGroupsRepository;
+    private final PurchasesService purchasesService;
+    private final PurchasesRepository purchasesRepository;
+    private final StatisticsService statisticsService;
+    private final CompareItemsRepository compareItemsRepository;
 
     @DeleteMapping("/parts/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -272,4 +276,53 @@ public class AdminController {
     public HttpStatus editPC(@RequestBody AddPcDto addPcDto) {
         return pcService.editPc(addPcDto);
     }
+
+    @GetMapping("/purchases")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Purchases> getPurchases() {
+        return purchasesService.getAllUnfilteredPurchases();
+    }
+
+    @GetMapping("/purchases/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Purchases getPurchaseById(@PathVariable String id) {
+        return purchasesRepository.findById(id).get();
+    }
+
+    @DeleteMapping("/purchases/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus deletePurchase(@PathVariable String id) {
+        return purchasesService.deletePurchase(id);
+    }
+
+    @PutMapping("/purchases")
+    @ResponseStatus(HttpStatus.OK)
+    public HttpStatus editPurchase(@RequestBody EditPurchaseDto editPurchaseDto) {
+        return purchasesService.editPurchase(editPurchaseDto);
+    }
+
+    @GetMapping("/statistic/bestsellers")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductWithPriceDto> getSalesStatistics() {
+        return statisticsService.getSalesStatistics(purchasesRepository.findAll());
+    }
+
+    @GetMapping("/statistic/most-comparing")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ComparingProductsDto> getComparingStatistics() {
+        return statisticsService.getMostComparedProducts(compareItemsRepository.findAll());
+    }
+
+    @GetMapping("/statistic/selling-types")
+    @ResponseStatus(HttpStatus.OK)
+    public SellingStatistic getSellingTypesStatistics() {
+        return statisticsService.getSellingTypes();
+    }
+
+    @GetMapping("/statistic/daily-sales-income")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SalesIncomePerPeriodDto> getDailySalesIncomeStatistics() {
+        return statisticsService.getDailySalesIncome();
+    }
+
 }
